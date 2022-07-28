@@ -1,0 +1,295 @@
+{% if section.blocks.size > 0 %}
+<div class="collection-custom-block-images" id="custom-block-images-{{section.id}}">
+  <div class="{% if section.settings.layout == 'default' %}container{% else %}container-padd60{% endif %}">
+    <div class="row">
+      {% for block in section.blocks %}
+            {% if block.settings.collection_page == page.handle %}
+            {% for i in (1..3) %}
+            {% capture image %}image_{{i}}{% endcapture %}
+            {% capture heading %}heading_{{i}}{% endcapture %}
+            {% capture link %}link_{{i}}{% endcapture %}
+            {% capture button %}button_{{i}}{% endcapture %}
+            
+                {% if block.settings[image] != blank or block.settings[heading] != blank %}
+                <div class="col-12 col-lg-4 three-blocks">
+                    <div class="custom-block-image-col">
+                      <div class="img-box">
+                        <a href="{{ block.settings[link] }}" class="animate-scale">
+                          {%- assign img_url = block.settings[image] | img_url: '600x', crop: 'center' -%}
+                          {% if block.settings[image] != blank %}
+                          <img data-src="{{ img_url }}"
+                               src="{{ img_url }}" alt="{{ block.settings.image.alt | default: shop.name }}" itemprop="logo"
+                               class="lazyautosizes lazyloaded" data-sizes="auto">
+                          {% else %}
+                          <div class="not_img">
+                            570 x 740px
+                          </div>   
+                          {% endif %}
+                        </a>
+                      </div>
+                      <div class="content-bottom">
+                      {% if block.settings[heading] != blank %}
+                      <div class="img-inner" style="color: {{ section.settings.color_content }}">
+                        
+                        {% if block.settings[heading] != blank %}
+                        <h2 class="heading"
+                            style="{% if section.settings.font_size_heading != blank %}
+                                   font-size: {{ section.settings.font_size_heading }};
+                                   {% endif %}">
+                            {% render 'multilang' with block.settings[heading]  %}
+                        </h2>
+                        {% endif %}
+         
+                      </div>
+                      {% endif %}
+                      
+                      {% if block.settings[button] != blank %}
+                      <a href="{{ block.settings[link] }}" class="btn btn-img-block"
+                         style="{% if section.settings.bg_button != blank %}
+                                background-color:{{ section.settings.bg_button }};
+                                {% endif %}
+                                {% if section.settings.border_button != blank %}
+                                border-color:{{ section.settings.border_button }};
+                                {% endif %}
+                                {% if section.settings.color_button != blank %}
+                                color:{{ section.settings.color_button }};
+                                {% endif %}">
+                        {% render 'multilang' with block.settings[button] %}
+                      </a>
+                      {% endif %}
+                      </div>
+                    </div>
+                </div>
+                {% endif %}
+            {% endfor %}
+            {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+<style>
+    {% assign margin_bottom =  section.settings.margin_bottom %}  
+
+    @media (max-width: 1199px) and (min-width: 768px) {
+        #custom-block-images-{{section.id}} {
+            padding: 70px 0;
+        }
+    }
+
+    @media (max-width: 767px) {
+        #custom-block-images-{{section.id}} {
+            padding: 50px 0;
+        }
+    }
+  
+
+    @media (max-width: 767px) {
+        #custom-block-images-{{section.id}}  {
+            margin-bottom: {{ section.settings.margin_bottom_mb }}px;
+        }
+    }
+
+    @media (min-width: 768px) and (max-width: 1199px) {
+        #custom-block-images-{{section.id}}  {
+            margin-bottom: {{ section.settings.margin_bottom_tab }}px;
+        }
+    }
+    
+    @media (min-width: 1200px) {
+        #custom-block-images-{{section.id}} {
+            margin-bottom: {{ margin_bottom }}px;
+        }
+    }	
+</style>
+{% endif %}
+
+
+{% schema %}
+    {
+        "name": "Custom Block: Spotlight 5",
+        "class": "collection-custom-block-images-sections",
+        "settings": [
+             {
+                "type": "select",
+                "id": "layout",
+                "label": "Banner Layout:",
+                "options": [
+                    {
+                        "value": "default",
+                        "label": "Default"
+                    },
+                    {
+                        "value": "boxed",
+                        "label": "Boxed"
+                    }
+                ],
+                "default": "boxed"
+            },
+            {
+                "type": "header",
+                "content": "Header"
+            },
+            {
+                "type" : "color",
+                "id" : "color_content",
+                "label" : "Color Heading",
+                "default" : "#fff"
+            },
+            {
+                "type" : "text",
+                "id" : "font_size_heading",
+                "label" : "Heading Font Size ",
+                "default" : "30px"
+            },
+            {
+                "type" : "color",
+                "id" : "bg_button",
+                "label" : "Background Button",
+                "default" : "#232323"
+            },
+            {
+                "type" : "color",
+                "id" : "border_button",
+                "label" : "Border Button",
+                "default" : "#232323"
+            },
+            {
+                "type" : "color",
+                "id" : "color_button",
+                "label" : "Button Color",
+                "default" : "#fff"
+            },
+            {
+                "type": "header",
+                "content": "Margin Bottom:"
+            },
+            {
+                "type": "range",
+                "id": "margin_bottom_mb",
+                "label": "Mobile",
+                "min": 0,
+                "max": 100,
+                "step": 1,
+                "default": 0
+            },
+            {
+                "type": "range",
+                "id": "margin_bottom_tab",
+                "label": "Tablet",
+                "min": 0,
+                "max": 100,
+                "step": 1,
+                "default": 0
+            },
+            {
+                "type": "range",
+                "id": "margin_bottom",
+                "label": "Desktop",
+                "min": 0,
+                "max": 100,
+                "step": 1,
+                "default": 0
+            }	      
+        ],
+        "blocks": [
+            {
+                "type": "image",
+                "name": "Collection Block",
+                "settings": [ 
+                {
+                   "type": "page",
+                   "id": "collection_page",
+                   "label": "Select Block Page"
+                },
+                {
+                    "type": "header",
+                    "content": "Banner Content Block",
+                    "info": "======================="
+                },
+                {
+                    "type" : "header",
+                    "content" : "Block 1"
+                },
+                {
+                    "type": "image_picker",
+                    "id": "image_1",
+                    "label" : "Select Image"
+                },
+                {
+                    "type" : "text",
+                    "id" : "heading_1",
+                    "label" : "Heading",
+                    "default" : "Da Scarvéro"
+                },             
+                {
+                    "type" : "text",
+                    "id" : "button_1",
+                    "label" : "Button",
+                    "default" : "Shop Now"
+                },
+                {
+                    "type" : "url",
+                    "id" : "link_1",
+                    "label" : "Link"
+                },
+                {
+                    "type" : "header",
+                    "content" : "Block 2"
+                },
+                {
+                    "type": "image_picker",
+                    "id": "image_2",
+                    "label" : "Select Image"
+                },
+                
+                {
+                    "type" : "text",
+                    "id" : "heading_2",
+                    "label" : "Heading",
+                    "default" : "Da Scarvéro"
+                },             
+                {
+                    "type" : "text",
+                    "id" : "button_2",
+                    "label" : "Button",
+                    "default" : "Shop Now"
+                },
+                {
+                    "type" : "url",
+                    "id" : "link_2",
+                    "label" : "Link"
+                },
+                {
+                    "type" : "header",
+                    "content" : "Block 3"
+                },
+                {
+                    "type": "image_picker",
+                    "id": "image_3",
+                    "label" : "Select Image"
+                },
+                
+                {
+                    "type" : "text",
+                    "id" : "heading_3",
+                    "label" : "Heading",
+                    "default" : "Da Scarvéro"
+                },             
+                {
+                    "type" : "text",
+                    "id" : "button_3",
+                    "label" : "Button",
+                    "default" : "Shop Now"
+                },
+                {
+                    "type" : "url",
+                    "id" : "link_3",
+                    "label" : "Link"
+                }
+                ]
+            }
+        
+        ]
+    }
+{% endschema %}

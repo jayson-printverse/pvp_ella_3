@@ -1,0 +1,176 @@
+{% if linklists[page.handle].links != blank %}
+<section class="collection-menu-block" id="collection-menu-{{section.id}}">
+    <div class="{% if section.settings.layout == 'default' %}container{% elsif section.settings.layout == 'padd_60' %}container-padd60{% endif %}">
+        <div class="collection-block">
+            <div class="row collection-slider" data-collection-menu-slider data-rows="{{ section.settings.collection_rows }}">
+                    {% for link in linklists[page.handle].links %}
+                    <div class="item col-12 col-sm-6 col-md-4 col-lg-3 col5">
+                        <a class="{%if linklists[link.handle] != empty %}menu__moblie {% endif %}{% if link.active %}current{% endif %}"  href="{{ link.url }}">
+                            {% assign img = link.handle | downcase | replace: ' ', '-' | append: '.png' | file_url %}
+
+                            <span class="icon-img">
+                                <img src="{{ img }}" alt="{{ link.title }}" onError="style.display = 'none';">
+                            </span>
+
+                            {% render 'multilang' with link.title %}
+                            
+                            {% if linklists[link.handle] != empty %}
+                            <span class="icon-dropdown" data-toggle-menu-mb>
+                                <i class="fa fa-angle-right" aria-hidden="true"></i>
+                            </span>
+                            {% endif %}          
+                        </a>
+                    </div>
+                    {% endfor %}
+            </div>
+        </div>
+    </div>
+</section>
+{% endif %}
+
+<style>
+    {% assign margin_bottom =  section.settings.margin_bottom %}
+
+    .collection-menu-block{
+        background: {{ section.settings.bg_color }};
+    }
+    .collection-menu-block .collection-slider .item a{
+        color: {{ section.settings.color_text }};
+    }
+    .collection-menu-block .collection-slider .slick-arrow{
+        color: {{ section.settings.color_arrow }};
+    }
+
+    @media (min-width: 768px) {
+            {% unless section.settings.display_brand_border %}
+            #collection-menu-{{section.id}} {
+                border-top: none;
+            }
+            {% endunless %}
+    }
+
+    {% if section.settings.display_brand_border %}
+    #collection-menu-{{section.id}} {
+        border-top: 1px solid #ebebeb;
+    }
+    {% endif %}
+
+    @media (max-width: 767px) {
+        #collection-menu-{{section.id}} {
+            margin-bottom: {{ section.settings.margin_bottom_mb }}px;
+        }
+    }
+
+    @media (min-width: 768px) and (max-width: 1199px) {
+        #collection-menu-{{section.id}} {
+            margin-bottom: {{ section.settings.margin_bottom_tab }}px;
+        }
+    }
+
+    @media (min-width: 1200px) {
+        #collection-menu-{{section.id}} {
+        margin-bottom: {{ margin_bottom }}px;
+        }
+    }
+
+</style>
+
+
+
+{% schema %}
+    {
+        "name": "Collection Menu Block",
+        "class": "collection-menu-sections",
+        "settings": [
+            {
+                "type": "select",
+                "id": "layout",
+                "label": "Layout:",
+                "options": [
+                    {
+                        "value": "default",
+                        "label": "Default"
+                    },
+                    {
+                        "value": "padd_60",
+                        "label": "Full Width"
+                    }
+                ],
+                "default": "default"
+            },
+            {
+                "type" : "header",
+                "content" : "Header"
+            },
+            {
+                "type" : "color",
+                "id" : "bg_color",
+                "label" : "Background",
+                "default" : "#232323"
+            },
+            {
+                "type" : "color",
+                "id" : "color_text",
+                "label" : "Text Color",
+                "default" : "#fff"
+            },
+            {
+                "type" : "color",
+                "id" : "color_arrow",
+                "label" : "Button Arrow Color",
+                "default" : "#fff"
+            },
+            {
+                "type": "select",
+                "id": "collection_rows",
+                "label": "Collection per row",
+                "options": [
+                    {
+                        "value": "6",
+                        "label": "6"
+                    },
+                    {
+                        "value": "7",
+                        "label": "7"
+                    },
+                    {
+                        "value": "8",
+                        "label": "8"
+                    }
+                ],
+                "default": "8"
+            },
+            {
+                "type": "header",
+                "content": "Margin Bottom:"
+            },
+            {
+                "type": "range",
+                "id": "margin_bottom_mb",
+                "label": "Mobile",
+                "min": 0,
+                "max": 100,
+                "step": 1,
+                "default": 0
+            },
+            {
+                "type": "range",
+                "id": "margin_bottom_tab",
+                "label": "Tablet",
+                "min": 0,
+                "max": 100,
+                "step": 1,
+                "default": 0
+            },
+            {
+                "type": "range",
+                "id": "margin_bottom",
+                "label": "Margin Bottom",
+                "min": 0,
+                "max": 100,
+                "step": 1,
+                "default": 0
+            }
+        ]
+    }
+{% endschema %}

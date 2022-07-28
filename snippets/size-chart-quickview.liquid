@@ -1,0 +1,25 @@
+{% if settings.display_size_chart %}
+<div class="modal fade halo_modal-custom" id="size_chart_quickview" role="dialog">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                {% if settings.custom_size_chart_header != blank %}
+                <h5 class="modal-title">
+                    {% render 'multilang' with settings.custom_size_chart_header %}
+                </h5>
+                {% endif %}
+                
+                <a data-dismiss="modal" class="close close-modal" title="{{ 'cart.ajax_cart.close' | t }}" href="javascript:void(0)">
+                    {% render 'icon-close' %}
+                </a>
+            </div>
+        
+            <div class="modal-body">
+                <div class="size-chart-img">
+                    <img src="{{ settings.custom_size_chart | img_url: 'original' }}" alt="{{ settings.custom_size_chart_header }}"/>             
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endif %}

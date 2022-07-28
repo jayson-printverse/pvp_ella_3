@@ -1,0 +1,802 @@
+{% if section.blocks.size > 0 %}
+<div class="home-custom-block custom-block-midle-banner" id="custom-block-{{section.id}}">
+    <div class="{% if section.settings.layout == 'default' %}container{% else %}container-padd60{% endif %}">
+          {% for block in section.blocks %}
+            {% if block.settings.collection_page == page.handle %}
+              {% for i in (1..5) %}
+              {% capture image %}image_{{i}}{% endcapture %} 
+              {% capture sub_banner_heading %}sub_banner_heading_{{i}}{% endcapture %}
+              {% capture banner_heading %}banner_heading_{{i}}{% endcapture %}
+              {% capture banner_des %}banner_des_{{i}}{% endcapture %}
+              {% capture banner_button %}banner_button_{{i}}{% endcapture %}
+              {% capture link %}link_{{i}}{% endcapture %}
+              {% capture color_sub_banner_heading %}color_sub_banner_heading_{{i}}{% endcapture %}
+              {% capture banner_title %}banner_title_{{i}}{% endcapture %}
+              {% capture banner_title_countdown %}banner_title_countdown_{{i}}{% endcapture %}
+              {% capture countdown %}countdown_{{i}}{% endcapture %}
+              {% capture alignment %}alignment_{{i}}{% endcapture %}
+              {% capture display_block %}display_block_{{i}}{% endcapture %}
+
+              {% if block.type == 'largeImg' %}
+                {% if block.settings[image] != blank or block.settings[banner_heading] != blank %}
+                  {% if block.settings[display_block] %}
+                  <div class="row">
+                    <div class="col-12 col-md-8">
+                      <div class="custom-block-banner banner-large-img">
+                        <div class="img-box">
+                          <a href="{{ block.settings[link] }}">
+                            {%- assign img_url = block.settings[image] | img_url: 'master' -%}
+
+                            {% if block.settings[image] != blank %}
+                            <img data-src="{{ img_url }}"
+                                 src="https:{{ img_url }}" alt="{{ block.settings.image.alt | default: shop.name }}" itemprop="logo"
+                                 class="lazyautosizes lazyloaded" data-sizes="auto">
+                            {% else %}
+                            <div class="not_img">
+                              1190 x 720px
+                            </div>   
+                            {% endif %}                        
+                          </a>
+
+                          {% if block.settings[banner_title] != blank or block.settings[banner_title_countdown] != blank or block.settings[countdown] != blank %}
+                          <div class="content-box" style="{% if block.settings.color != blank %}color: {{ block.settings.color }};{% endif %}">
+                              {% if block.settings[banner_title] != blank %}
+                              <h3 class="banner-title">
+                                  {% render 'multilang' with block.settings[banner_title] %} 
+
+                                  <span class="border-bt-hover" style="{% if block.settings.color != blank %}background-color: {{ block.settings.color }};{% endif %}"></span>
+                              </h3>
+                              {% endif %}
+                              
+                              {% if block.settings[banner_title_countdown] != blank %}
+                              <p class="des">
+                                  {% render 'multilang' with block.settings[banner_title_countdown] %} 
+                              </p>
+                              {% endif %}
+                              
+                              {% if block.settings[countdown] != blank %}
+                              <div class="sub-banner-countdown countdown-{{ block.id }}" data-countdown data-countdown-value="{{ block.settings[countdown] }}"></div>
+                              {% endif %}
+                          </div>
+                          
+                          <style>
+                              .countdown-{{ block.id }} .clock-item {
+                                  border-color: {{ section.settings.color_border_countdown | color_modify: 'alpha', 0.8 }} !important;
+                              }
+                          </style>
+                          {% endif %}
+
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-12 col-md-4 content-text">
+                      {% if block.settings[banner_heading] != blank or block.settings[banner_des] != blank or block.settings[banner_button] != blank or block.settings[sub_banner_heading] != blank %}
+                        <div class="banner-content inner {% if block.settings[alignment] == 'left' %}abs_left{% elsif block.settings[alignment] == 'right' %}abs_right{% else %}abs_center{% endif %}">
+                          {% if block.settings[sub_banner_heading] != blank %}
+                          <h3 class="banner-heading sub-text"
+                              style="{% if section.settings.font_size_sub_banner_heading != blank %}
+                                     font-size: {{ section.settings.font_size_sub_banner_heading }};
+                                     {% endif %}
+                                     {% if block.settings[color_sub_banner_heading] != blank %}
+                                     color:{{ block.settings[color_sub_banner_heading] }};
+                                     {% endif %}
+                                      font-weight: 400;
+                                      letter-spacing: .02em;
+                                      margin-bottom: 10px;
+                                      padding-bottom: 0;
+                                      text-transform: capitalize;">
+                          {% render 'multilang' with block.settings[sub_banner_heading]  %}
+                          </h3>
+                          {% endif %}
+                          {% if block.settings[banner_heading] != blank %}
+                          <h2 class="banner-heading"
+                              style="{% if section.settings.font_size_banner_heading != blank %}
+                                     font-size: {{ section.settings.font_size_banner_heading }};
+                                     {% endif %}
+                                     {% if section.settings.color_banner_heading != blank %}
+                                     color:{{ section.settings.color_banner_heading }};
+                                     {% endif %}
+                                     margin-bottom: 0px;">
+                            {% render 'multilang' with block.settings[banner_heading]  %}
+                          </h2>
+                          {% endif %}
+
+                          {% if block.settings[banner_des] != blank %}
+                          <p class="banner-des{% if block.settings[countdown] != blank %} has-coundown{% endif %}"
+                             style="{% if section.settings.font_size_banner_des != blank %}
+                                    font-size: {{ section.settings.font_size_banner_des }};
+                                    {% endif %}
+                                    {% if section.settings.color_banner_des != blank %}
+                                    color: {{ section.settings.color_banner_des }};
+                                    {% endif %}">
+
+                            {% comment %}{% render 'multilang' with block.settings[banner_des] %}{% endcomment %}
+                            {% if settings.enable_multilang and multilang contains '|' %}
+                            <span class="lang1">
+                              {{ block.settings[banner_des] | split: '|' | first | strip | truncatewords: 30 }}
+                            </span>
+                            <span class="lang2">
+                              {{ block.settings[banner_des] | split: '|' | last | strip | truncatewords: 30 }}
+                            </span>
+                            {% else %}
+                            <span>
+                              {{ block.settings[banner_des] | split: '|' | first | truncatewords: 30}}
+                            </span>
+                            {% endif %}
+
+                          </p>
+                          {% endif %}
+
+                          {% if block.settings[banner_button] != blank %}
+                          <a href="{{ block.settings[link] }}" class="banner-button btn"
+                             style="{% if section.settings.color_banner_button != blank %}
+                                    color:{{ section.settings.color_banner_button }};
+                                    {% endif %}
+                                    font-size:{{ section.settings.font_size_button }};">
+                            {% render 'multilang' with block.settings[banner_button] %}
+                          </a>
+                          {% endif %}
+
+                        </div>
+                        {% endif %} 
+                    </div>
+                  </div>
+                  {% endif %}
+                {% endif %}
+              {% endif %}
+              {% endfor %}
+            {% endif %}
+          {% endfor %}
+    </div>
+</div>
+
+<style>
+  {% assign margin_bottom =  section.settings.margin_bottom %}
+
+    .custom-block-midle-banner .banner-content .banner-button span{
+        background-image: linear-gradient(transparent 97%, {{ section.settings.color_banner_button }} 3%);
+        background-repeat: repeat-x;
+        background-position-y: -1px;
+    }
+
+    #custom-block-home-custom-block-baner-collection-list-5 .container-fluid .custom-block-banner .img-box img{
+        width: 100%;
+        object-fit: cover;
+    }
+    #custom-block-home-custom-block-baner-collection-list-5 .banner-large-img .banner-content .banner-button+.banner-button{
+        margin-left: 10px;
+    }
+
+    .custom-block-midle-banner .custom-block-banner .img-box .content-box .banner-title{
+      color: {{ section.settings.color_banner_title }};
+      font-size: {{ section.settings.font_size_banner_title }};
+    }
+
+    .custom-block-midle-banner .custom-block-banner .img-box .content-box .des{
+      color: {{ section.settings.color_title_countdown }};
+      font-size: {{ section.settings.font_size_banner_countdown }};
+    }
+
+    .custom-block-midle-banner .custom-block-banner .img-box .sub-banner-countdown .clock-item{
+      color: {{ section.settings.color_countdown }};
+    }
+
+    @media (max-width: 1199px){
+        .home-custom-block .banner-content .sub-text{
+            font-size: 12px !important;
+        }
+    }
+
+    @media (max-width: 767px) {
+        #custom-block-{{ section.id }} {
+            margin-bottom: {{ section.settings.margin_bottom_mb }}px;
+        }
+    }
+
+    @media (min-width: 768px) and (max-width: 1199px) {
+        #custom-block-{{ section.id }} {
+            margin-bottom: {{ section.settings.margin_bottom_tab }}px;
+        }
+    }
+  
+    @media (min-width: 1200px) {
+        #custom-block-{{ section.id }} {
+        margin-bottom: {{ margin_bottom }}px;
+        }
+    }   
+
+    #custom-block-{{ section.id }} .img-box {
+        text-align: {{ section.settings.img_align }};
+    }
+</style>
+{% endif %}
+
+
+{% schema %}
+  {
+    "name": "Custom Collection Midle",
+    "class": "custom-collection-banner-sections",
+    "settings": [
+        {
+            "type": "select",
+            "id": "layout",
+            "label": "Banner Layout:",
+            "options": [
+                {
+                    "value": "default",
+                    "label": "Default"
+                },
+                {
+                    "value": "boxed",
+                    "label": "Boxed"
+                }
+            ],
+            "default": "boxed"
+        },
+        {
+            "type": "header",
+            "content": "Settings For Content"
+        },
+        {
+            "type" : "text",
+            "id" : "font_size_sub_banner_heading",
+            "label" : "Sub Heading Font Size ",
+            "default" : "12px"
+        },
+        {
+            "type" : "text",
+            "id" : "font_size_banner_heading",
+            "label" : "Heading Font Size ",
+            "default" : "40px"
+        },
+        {
+            "type" : "text",
+            "id" : "font_size_banner_des",
+            "label" : "Description Font Size",
+            "default" : "12px"
+        }, 
+        {
+            "type" : "text",
+            "id" : "font_size_button",
+            "label" : "Button Font Size",
+            "default" : "16px"
+        },
+        {
+            "type" : "color",
+            "id" : "color_banner_heading",
+            "label" : "Heading Color",
+            "default" : "#232323"
+        },
+        {
+            "type" : "color",
+            "id" : "color_banner_des",
+            "label" : "Description Color",
+            "default" : "#232323"
+        },
+        {
+            "type" : "color",
+            "id" : "color_banner_button",
+            "label" : "Button Color",
+            "default" : "#232323",
+            "info": "======================="
+        },
+        {
+            "type" : "text",
+            "id" : "font_size_banner_title",
+            "label" : "Banner Title Font Size",
+            "default" : "20px"
+        },
+        {
+            "type" : "color",
+            "id" : "color_banner_title",
+            "label" : "Banner Title Color",
+            "default" : "#fff"
+        },
+        {
+            "type" : "text",
+            "id" : "font_size_banner_countdown",
+            "label" : "Banner Title Countdown Font Size",
+            "default" : "12px"
+        },
+        {
+            "type" : "color",
+            "id" : "color_title_countdown",
+            "label" : "Banner Title Countdown Color",
+            "default" : "#fff"
+        },
+        {
+            "type" : "color",
+            "id" : "color_countdown",
+            "label" : "Banner Countdown Color",
+            "default" : "#fff"
+        },
+        {
+            "type" : "color",
+            "id" : "color_border_countdown",
+            "label" : "Border Countdown Color",
+            "default" : "#fff"
+        },
+
+        {
+            "type": "header",
+            "content": "Margin Bottom:"
+        },
+        {
+            "type": "range",
+            "id": "margin_bottom_mb",
+            "label": "Mobile",
+            "min": 0,
+            "max": 100,
+            "step": 1,
+            "default": 25
+        },
+        {
+            "type": "range",
+            "id": "margin_bottom_tab",
+            "label": "Tablet",
+            "min": 0,
+            "max": 100,
+            "step": 1,
+            "default": 30
+        },             
+        {
+            "type": "range",
+            "id": "margin_bottom",
+            "label": "Margin Bottom",
+            "min": 0,
+            "max": 100,
+            "step": 1,
+            "default": 30
+        }       
+    ],
+    "blocks": [
+        {
+            "type": "largeImg",
+            "name": "Collection Block",
+            "settings": [ 
+                {
+                   "type": "page",
+                   "id": "collection_page",
+                   "label": "Select Banner Page"
+                },
+                {
+                    "type": "header",
+                    "content": "Banner Content Block",
+                    "info": "======================="
+                },
+                {
+                    "type" : "header",
+                    "content" : "Block 1"
+                },
+                {
+                    "type": "checkbox",
+                    "id": "display_block_1",
+                    "label": "Display Block 1?",
+                    "default": true
+                },
+                {
+                    "type": "image_picker",
+                    "id": "image_1",
+                    "label" : "Select Image"
+                },
+                {
+                    "type": "select",
+                    "id": "alignment_1",
+                    "label": "Text alignment",
+                    "default": "left",
+                    "options": [
+                        {
+                            "value": "left",
+                            "label": "Left"
+                        },
+                        {
+                            "value": "center",
+                            "label": "Center"
+                        },
+                        {
+                            "value": "right",
+                            "label": "Right"
+                        }
+                    ]
+                },
+                {
+                    "type" : "text",
+                    "id" : "sub_banner_heading_1",
+                    "label" : "Sub Banner Heading",
+                    "default" : "Just Release"
+                },
+                {
+                    "type" : "color",
+                    "id" : "color_sub_banner_heading_1",
+                    "label" : "Heading Color",
+                    "default" : "#232323"
+                },
+                {
+                    "type" : "text",
+                    "id" : "banner_heading_1",
+                    "label" : "Banner Heading",
+                    "default" : "Metropólis"
+                },
+                {
+                    "type" : "textarea",
+                    "id" : "banner_des_1",
+                    "label" : "Banner Description",
+                    "default": "Pellentesque posuere orci lobortis scelerisque blandit. Donec id tellus lacinia an tincidunt risus an consequat delit quisquemos."
+                },
+                {
+                    "type" : "text",
+                    "id" : "banner_button_1",
+                    "label" : "Button Banner",
+                    "default" : "Shop The Collection"
+                },
+                {
+                    "type" : "url",
+                    "id" : "link_1",
+                    "label" : "Banner Link",
+                    "info" : "======================"
+                },
+                {
+                    "type" : "text",
+                    "id" : "banner_title_1",
+                    "label" : "Banner Title"
+                },
+                {
+                    "type" : "text",
+                    "id" : "banner_title_countdown_1",
+                    "label" : "Banner Title Countdown"
+                },
+                {
+                    "type" : "textarea",
+                    "id" : "countdown_1",
+                    "label" : "Countdown"
+                },
+                {
+                    "type" : "header",
+                    "content" : "Block 2"
+                },
+                {
+                    "type": "checkbox",
+                    "id": "display_block_2",
+                    "label": "Display Block 2?",
+                    "default": true
+                },
+                {
+                    "type": "image_picker",
+                    "id": "image_2",
+                    "label" : "Select Image"
+                },
+                {
+                    "type": "select",
+                    "id": "alignment_2",
+                    "label": "Text alignment",
+                    "default": "left",
+                    "options": [
+                        {
+                            "value": "left",
+                            "label": "Left"
+                        },
+                        {
+                            "value": "center",
+                            "label": "Center"
+                        },
+                        {
+                            "value": "right",
+                            "label": "Right"
+                        }
+                    ]
+                },
+                {
+                    "type" : "text",
+                    "id" : "sub_banner_heading_2",
+                    "label" : "Sub Banner Heading",
+                    "default" : "Just Release"
+                },
+                {
+                    "type" : "color",
+                    "id" : "color_sub_banner_heading_2",
+                    "label" : "Heading Color",
+                    "default" : "#232323"
+                },
+                {
+                    "type" : "text",
+                    "id" : "banner_heading_2",
+                    "label" : "Banner Heading",
+                    "default" : "Metropólis"
+                },
+                {
+                    "type" : "textarea",
+                    "id" : "banner_des_2",
+                    "label" : "Banner Description",
+                    "default": "Pellentesque posuere orci lobortis scelerisque blandit. Donec id tellus lacinia an tincidunt risus an consequat delit quisquemos."
+                },
+                {
+                    "type" : "text",
+                    "id" : "banner_button_2",
+                    "label" : "Button Banner",
+                    "default" : "Shop The Collection"
+                },
+                {
+                    "type" : "url",
+                    "id" : "link_2",
+                    "label" : "Banner Link",
+                    "info" : "======================"
+                },
+                {
+                    "type" : "text",
+                    "id" : "banner_title_2",
+                    "label" : "Banner Title"
+                },
+                {
+                    "type" : "text",
+                    "id" : "banner_title_countdown_2",
+                    "label" : "Banner Title Countdown"
+                },
+                {
+                    "type" : "textarea",
+                    "id" : "countdown_2",
+                    "label" : "Countdown"
+                },
+                {
+                    "type" : "header",
+                    "content" : "Block 3"
+                },
+                {
+                    "type": "checkbox",
+                    "id": "display_block_3",
+                    "label": "Display Block 3?",
+                    "default": true
+                },
+                {
+                    "type": "image_picker",
+                    "id": "image_3",
+                    "label" : "Select Image"
+                },
+                {
+                    "type": "select",
+                    "id": "alignment_3",
+                    "label": "Text alignment",
+                    "default": "left",
+                    "options": [
+                        {
+                            "value": "left",
+                            "label": "Left"
+                        },
+                        {
+                            "value": "center",
+                            "label": "Center"
+                        },
+                        {
+                            "value": "right",
+                            "label": "Right"
+                        }
+                    ]
+                },
+                {
+                    "type" : "text",
+                    "id" : "sub_banner_heading_3",
+                    "label" : "Sub Banner Heading",
+                    "default" : "Just Release"
+                },
+                {
+                    "type" : "color",
+                    "id" : "color_sub_banner_heading_3",
+                    "label" : "Heading Color",
+                    "default" : "#232323"
+                },
+                {
+                    "type" : "text",
+                    "id" : "banner_heading_3",
+                    "label" : "Banner Heading",
+                    "default" : "Metropólis"
+                },
+                {
+                    "type" : "textarea",
+                    "id" : "banner_des_3",
+                    "label" : "Banner Description",
+                    "default": "Pellentesque posuere orci lobortis scelerisque blandit. Donec id tellus lacinia an tincidunt risus an consequat delit quisquemos."
+                },
+                {
+                    "type" : "text",
+                    "id" : "banner_button_3",
+                    "label" : "Button Banner",
+                    "default" : "Shop The Collection"
+                },
+                {
+                    "type" : "url",
+                    "id" : "link_3",
+                    "label" : "Banner Link",
+                    "info" : "======================"
+                },
+                {
+                    "type" : "text",
+                    "id" : "banner_title_3",
+                    "label" : "Banner Title"
+                },
+                {
+                    "type" : "text",
+                    "id" : "banner_title_countdown_3",
+                    "label" : "Banner Title Countdown"
+                },
+                {
+                    "type" : "textarea",
+                    "id" : "countdown_3",
+                    "label" : "Countdown"
+                },
+                {
+                    "type" : "header",
+                    "content" : "Block 4"
+                },
+                {
+                    "type": "checkbox",
+                    "id": "display_block_4",
+                    "label": "Display Block 4?",
+                    "default": true
+                },
+                {
+                    "type": "image_picker",
+                    "id": "image_4",
+                    "label" : "Select Image"
+                },
+                {
+                    "type": "select",
+                    "id": "alignment_4",
+                    "label": "Text alignment",
+                    "default": "left",
+                    "options": [
+                        {
+                            "value": "left",
+                            "label": "Left"
+                        },
+                        {
+                            "value": "center",
+                            "label": "Center"
+                        },
+                        {
+                            "value": "right",
+                            "label": "Right"
+                        }
+                    ]
+                },
+                {
+                    "type" : "text",
+                    "id" : "sub_banner_heading_4",
+                    "label" : "Sub Banner Heading",
+                    "default" : "Just Release"
+                },
+                {
+                    "type" : "color",
+                    "id" : "color_sub_banner_heading_4",
+                    "label" : "Heading Color",
+                    "default" : "#232323"
+                },
+                {
+                    "type" : "text",
+                    "id" : "banner_heading_4",
+                    "label" : "Banner Heading",
+                    "default" : "Metropólis"
+                },
+                {
+                    "type" : "textarea",
+                    "id" : "banner_des_4",
+                    "label" : "Banner Description",
+                    "default": "Pellentesque posuere orci lobortis scelerisque blandit. Donec id tellus lacinia an tincidunt risus an consequat delit quisquemos."
+                },
+                {
+                    "type" : "text",
+                    "id" : "banner_button_4",
+                    "label" : "Button Banner",
+                    "default" : "Shop The Collection"
+                },
+                {
+                    "type" : "url",
+                    "id" : "link_4",
+                    "label" : "Banner Link",
+                    "info" : "======================"
+                },
+                {
+                    "type" : "text",
+                    "id" : "banner_title_4",
+                    "label" : "Banner Title"
+                },
+                {
+                    "type" : "text",
+                    "id" : "banner_title_countdown_4",
+                    "label" : "Banner Title Countdown"
+                },
+                {
+                    "type" : "textarea",
+                    "id" : "countdown_4",
+                    "label" : "Countdown"
+                },
+                {
+                    "type" : "header",
+                    "content" : "Block 5"
+                },
+                {
+                    "type": "checkbox",
+                    "id": "display_block_5",
+                    "label": "Display Block 5?",
+                    "default": true
+                },
+                {
+                    "type": "image_picker",
+                    "id": "image_5",
+                    "label" : "Select Image"
+                },
+                {
+                    "type": "select",
+                    "id": "alignment_5",
+                    "label": "Text alignment",
+                    "default": "left",
+                    "options": [
+                        {
+                            "value": "left",
+                            "label": "Left"
+                        },
+                        {
+                            "value": "center",
+                            "label": "Center"
+                        },
+                        {
+                            "value": "right",
+                            "label": "Right"
+                        }
+                    ]
+                },
+                {
+                    "type" : "text",
+                    "id" : "sub_banner_heading_5",
+                    "label" : "Sub Banner Heading",
+                    "default" : "Just Release"
+                },
+                {
+                    "type" : "color",
+                    "id" : "color_sub_banner_heading_5",
+                    "label" : "Heading Color",
+                    "default" : "#232323"
+                },
+                {
+                    "type" : "text",
+                    "id" : "banner_heading_5",
+                    "label" : "Banner Heading",
+                    "default" : "Metropólis"
+                },
+                {
+                    "type" : "textarea",
+                    "id" : "banner_des_5",
+                    "label" : "Banner Description",
+                    "default": "Pellentesque posuere orci lobortis scelerisque blandit. Donec id tellus lacinia an tincidunt risus an consequat delit quisquemos."
+                },
+                {
+                    "type" : "text",
+                    "id" : "banner_button_5",
+                    "label" : "Button Banner",
+                    "default" : "Shop The Collection"
+                },
+                {
+                    "type" : "url",
+                    "id" : "link_5",
+                    "label" : "Banner Link",
+                    "info" : "======================"
+                },
+                {
+                    "type" : "text",
+                    "id" : "banner_title_5",
+                    "label" : "Banner Title"
+                },
+                {
+                    "type" : "text",
+                    "id" : "banner_title_countdown_5",
+                    "label" : "Banner Title Countdown"
+                },
+                {
+                    "type" : "textarea",
+                    "id" : "countdown_5",
+                    "label" : "Countdown"
+                }
+               
+            ]
+        }
+    ]
+  }
+{% endschema %}

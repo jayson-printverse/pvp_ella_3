@@ -1,0 +1,15 @@
+<div class="lookbook-page">
+  <div class="container">
+    {% render 'breadcrumb' %}
+
+    <header class="page-header">
+      <h2>
+        {% render 'multilang' with page.title %}
+      </h2>  
+    </header>
+
+    <div class="wrapper-lookbook">
+      {% section 'lookbook'%}
+    </div>
+  </div>
+</div>

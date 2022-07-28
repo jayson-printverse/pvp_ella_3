@@ -1,0 +1,117 @@
+<div class="header-mb">          
+    <div class="header-mb-left header-mb-items">
+      
+    <div class="header-logo">
+      {% if section.settings.brand_type == 'image' and section.settings.logo != bank %}
+      <a class="logo-img" href="{{ routes.cart_url | split: 'cart' | first }}" title="Logo">
+        {% render 'icon-logo-landscape' %}
+        
+        {% comment %}
+        <img data-src="{{ 'pro-bug-32px-alt.svg' | asset_url }}"
+             src="{{ 'pro-bug-32px-alt.svg' | asset_url }}"
+             alt="{{ section.settings.logo.alt | default: shop.name }}" itemprop="logo" class="lazyautosizes lazyloade" data-sizes="auto">
+        {% endcomment %}
+      </a>
+      {% elsif section.settings.brand_text != '' %}
+      <a class="logo-title" href="{{ routes.cart_url | split: 'cart' | first }}">
+        {{ section.settings.brand_text }}
+      </a>
+      {% else %}
+      <a class="logo-title" href="{{ routes.cart_url | split: 'cart' | first }}">
+        {{ shop.name }}
+      </a>
+      {% endif %}
+    </div>
+      
+      {% comment %}
+        <div class="hamburger-icon svg-mb">
+            <a href="#" class="icon-nav" title="Menu Mobile Icon" data-menu-mb-toogle>
+                <span class="icon-line"></span>
+            </a>
+        </div>
+      {% endcomment %}
+
+      {% comment %}
+      // hide for now 10/05/2020
+      	{% if settings.enable_search %}
+        <div class="search-mb svg-mb">
+
+            <a href="#" title="Search Icon" class="icon-search" data-search-mobile-toggle>
+                {% render 'icon-search' %}
+            </a>
+          	
+
+            <a href="javascript:void(0)" title="close" class="close close-search">
+                {% render 'icon-close' %}
+            </a>
+        
+            {% render 'search-bar' %}
+        </div>  
+      	{% endif %}
+      {% endcomment %}
+    </div>
+
+  <div class="header-mb-middle header-mb-items">
+    {% comment %}
+    <div class="header-logo">
+      {% if section.settings.brand_type == 'image' and section.settings.logo != bank %}
+      <a class="logo-img" href="{{ routes.cart_url | split: 'cart' | first }}" title="Logo">
+        {% render 'icon-logo-landscape' %}
+        
+        {% comment %}
+        <img data-src="{{ 'pro-bug-32px-alt.svg' | asset_url }}"
+             src="{{ 'pro-bug-32px-alt.svg' | asset_url }}"
+             alt="{{ section.settings.logo.alt | default: shop.name }}" itemprop="logo" class="lazyautosizes lazyloade" data-sizes="auto">
+        {% endcomment %}
+      </a>
+      {% elsif section.settings.brand_text != '' %}
+      <a class="logo-title" href="{{ routes.cart_url | split: 'cart' | first }}">
+        {{ section.settings.brand_text }}
+      </a>
+      {% else %}
+      <a class="logo-title" href="{{ routes.cart_url | split: 'cart' | first }}">
+        {{ shop.name }}
+      </a>
+      {% endif %}
+    </div>
+    {% endcomment %}
+  </div>
+
+  <div class="header-mb-right header-mb-items">
+    <div class="acc-mb svg-mb">
+      <a href="#" title="User Icon" class="icon-user" data-user-mobile-toggle>
+        {% render 'icon-user' %}
+      </a>
+    </div>
+    
+    <div class="hamburger-icon svg-mb">
+      <a href="#" class="icon-nav" title="Menu Mobile Icon" data-menu-mb-toogle>
+        <span class="icon-line"></span>
+      </a>
+    </div>   
+    
+    {% if shop.customer_accounts_enabled %}
+    <div class="acc-mb svg-mb">
+      <a href="#" title="User Icon" class="icon-user" data-user-mobile-toggle>
+        {% render 'icon-user' %}
+      </a>
+    </div>
+    {% endif %}
+    
+    
+    
+    {% comment %}
+    <div class="cart-icon svg-mb">
+      <a href="#" title="Cart Icon" data-cart-toggle>       
+        {% render 'icon-cart' %}
+
+        <span class="cartCount" data-cart-count>
+          {{ cart.item_count }}
+        </span>
+      </a>
+    </div>
+    {% endcomment %}
+    
+    
+  </div>          
+</div>

@@ -1,0 +1,198 @@
+{% render 'breadcrumb' %}
+
+<header class="page-header">
+  {% if cart.item_count > 0 %}
+  <a class="btn-continue continue" {% if settings.redirect_button == 'go_back' %}href="javascript:void(0)" onclick="window.history.back();"{% elsif settings.redirect_button == 'link_to' %} href="{{ settings.link_to_redirect }}"{% else %}href="javascript:void(0)" id="reload_page"{% endif %}>
+    <span {% if settings.enable_multilang %}data-translate="cart.ajax_cart.continue_shopping"{% endif %}>
+      {{ 'cart.ajax_cart.continue_shopping' | t }}
+    </span>
+    <i class="fa fa-angle-right"></i>
+  </a>
+  {% endif %}
+  
+  <h1 {% if settings.enable_multilang %}data-translate="cart.general.title"{%endif%}>
+    {{ 'cart.general.title' | t }}
+  </h1>
+</header>
+
+{% if cart.item_count > 0 %}
+<form class="cart-form wrapper-cart-template" action="{{ routes.cart_url }}" method="post" novalidate>
+  <div class="left-col cart_items">
+    <div class="box-title"{% if settings.enable_multilang %} data-translate="cart.label.product"{%endif%}>
+      {{ 'cart.label.product' | t }} 
+    </div> 
+    
+    <ul class="cart-list">
+      {% for item in cart.items %}
+      <li data-product_id="{{item.product_id}}">
+        <div class="details">   
+          <div class="cart-thumb">
+            <a class="product-img" href="{{ item.url }}">
+              <img src="{{ item | img_url: '160x' }}"  alt="{{ item.title | escape }}" />
+            </a> 
+          </div>
+          
+          <div class="cart-details">
+            <a href="{{ item.url }}" class="product-name">
+              {% render 'multilang' with item.product.title %}
+            </a>
+            
+            <div class="size">  
+              {% if item.product.variants.size != 0 %}
+              {% unless item.variant.title contains 'Default' %}
+              <small>
+                {{ item.variant.title }}
+              </small>
+              {% endunless %}
+              {% endif %}
+            </div>
+
+            <div class="properties">
+              {%- for p in item.properties -%}
+              {%- unless p.last == blank or p.first contains 'pf' -%}
+              <label>{{ p.first }}:&nbsp;</label>
+              {%- if p.last contains '/uploads/' -%}
+              <a href="{{ p.last }}">{{ p.last | split: '/' | last }}</a>
+              {%- else -%}
+              {{ p.last }}
+              {%- endif -%}
+              <br>
+              {%- endunless -%}
+              {%- endfor -%}
+            </div>
+            {% if settings.show_vendor %}
+            <div class="product-vendor">
+              {{ item.vendor }}
+            </div>
+            {% endif %}
+            
+            <div class="price-box">
+              <span>
+                {{ item.price | money }}
+              </span>
+            </div>
+            
+            <div class="quantity">
+              <label {% if settings.enable_multilang %}data-translate="cart.label.quantity"{%endif%}>
+                {{ 'cart.label.quantity' | t }}: 
+              </label>
+              
+              <div class="qty-group">
+                <a href="#" data-minus-quantity class="minus button"></a>
+                <input type="text" name="updates[]" id="updates_{{ item.id }}" value="{{ item.quantity }}">
+                <a href="#" data-plus-quantity class="plus button"></a>
+              </div>
+              
+              <div class="group-action">
+                <button class="update btn" type="submit" name="update">
+                  <span class="text" {% if settings.enable_multilang %}data-translate="cart.general.update"{% endif %}>
+                    {{ 'cart.general.update' | t }}
+                  </span>
+                </button>
+                
+                <a class="remove" href="{{ routes.cart_url }}/change?line={{ forloop.index }}&amp;quantity=0" data-id="{{ item.id }}">
+                  {% render 'icon-close' %}
+                  <span class="text text-hover" {% if settings.enable_multilang %}data-translate="cart.general.remove"{% endif %}>
+                    {{ 'cart.general.remove' | t }}
+                  </span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </li>
+      {% endfor %}
+    </ul>
+    
+    {% if settings.img_trust != blank %}
+    <div class="secure-shopping-guarantee">
+      <div class="secure-text">
+        <span class="icon">
+          <svg aria-hidden="true" data-prefix="fas" data-icon="user-shield" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512" class="svg-inline--fa fa-user-shield fa-w-20 fa-2x"><path fill="currentColor" d="M622.3 271.1l-115.2-45c-4.1-1.6-12.6-3.7-22.2 0l-115.2 45c-10.7 4.2-17.7 14-17.7 24.9 0 111.6 68.7 188.8 132.9 213.9 9.6 3.7 18 1.6 22.2 0C558.4 489.9 640 420.5 640 296c0-10.9-7-20.7-17.7-24.9zM496 462.4V273.3l95.5 37.3c-5.6 87.1-60.9 135.4-95.5 151.8zM224 256c70.7 0 128-57.3 128-128S294.7 0 224 0 96 57.3 96 128s57.3 128 128 128zm96 40c0-2.5.8-4.8 1.1-7.2-2.5-.1-4.9-.8-7.5-.8h-16.7c-22.2 10.2-46.9 16-72.9 16s-50.6-5.8-72.9-16h-16.7C60.2 288 0 348.2 0 422.4V464c0 26.5 21.5 48 48 48h352c6.8 0 13.3-1.5 19.2-4-54-42.9-99.2-116.7-99.2-212z" class=""></path></svg>
+        </span>
+        
+    {% render 'multilang' with settings.secure_text %}
+      </div>
+      <img src="{{ settings.img_trust | img_url: '800x'  }}">      
+    </div>
+    {% endif %}
+  </div>
+  
+  <div class="right-col">
+    <div class="box-title"{% if settings.enable_multilang %} data-translate="cart.label.order_summary"{%endif%}>
+      {{ 'cart.label.order_summary' | t }} 
+    </div>
+    
+    <div class="total">
+      <span class="label">
+        <span {% if settings.enable_multilang %}data-translate="cart.label.total"{% endif %}>
+          {{ 'cart.label.total' | t }}:
+        </span>
+      </span>
+      <span class="price">
+        {{ cart.total_price | money }}
+      </span> 
+    </div>
+
+    {% if section.settings.cart_notes %}
+    <label class="add-comments" for="cartSpecialInstructions">
+      <span class="note" {% if settings.enable_multilang %}data-translate="cart.general.label"{%endif%}>
+        {{ 'cart.general.label' | t }}
+      </span>
+      <span {% if settings.enable_multilang %}data-translate="cart.general.label_text"{%endif%}>
+        {{ 'cart.general.label_text' | t }}
+      </span>
+    </label>
+    
+    <textarea name="note" class="input-full" id="cartSpecialInstructions">{{ cart.note }}</textarea>
+    {% endif %}
+    
+    <div class="btn-actions">
+
+      {% if settings.enable_checkbox %}
+        <div class="checkbox-group">
+          <input class="conditions" type="checkbox" name="conditions">
+          <label>{% render 'multilang' with settings.checkbox_text %}</label>
+        </div>
+
+        <input class="btn btn-checkout show" type="submit"  name="checkout" {% if settings.enable_multilang %}data-translate="cart.general.button_checkout"{% endif %} value="{{ 'cart.general.button_checkout' | t }}">
+      {% else %}
+        <input class="btn btn-checkout" type="submit"  name="checkout" {% if settings.enable_multilang %}data-translate="cart.general.button_checkout"{% endif %} value="{{ 'cart.general.button_checkout' | t }}">
+      {% endif %}
+
+      
+      {% if additional_checkout_buttons %}
+      <div>{{ content_for_additional_checkout_buttons }}</div>
+      {% endif %}
+    </div>
+    
+    {% unless cart.item_count == 0 %}
+    {% render 'shipping-rates-calculator' %}
+    {% endunless %}
+  </div>
+  <input type="hidden" id="invoice_language" name="attributes[lang]" value="{{ routes.cart_url | split: 'cart' | first | remove: '/'}}">
+</form>
+
+{% else %}
+<p class="alert alert-warning" {% if settings.enable_multilang %}data-translate="cart.general.empty"{%endif%}>
+  {{ 'cart.general.empty' | t }}
+</p>
+<p class="cart-empty" {% if settings.enable_multilang %}data-translate="cart.general.continue_browsing_html"{%endif%}>
+  {{ 'cart.general.continue_browsing_html' | t }}
+</p>
+{% endif %}
+
+{% schema %}
+  {
+    "name": "Cart Page",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "cart_notes",
+        "label": "Allow customers to add notes to their order?",
+        "default": true,
+        "info": "Only enabled in the ajax cart if you use your cart.liquid markup. See docs below."
+      }
+    ]
+  }
+{% endschema %}

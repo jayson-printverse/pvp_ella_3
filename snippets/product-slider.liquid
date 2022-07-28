@@ -1,0 +1,23 @@
+<div class="product-template product-template-slider">
+    <div class="container">
+        {% if collection %}
+        <div class="next_prev-groups">
+            {% render 'breadcrumb' %}
+            {% render 'next-prev-product' %} 	
+        </div>
+
+        {% else %}
+        {% render 'breadcrumb' %}
+        {% endif %}
+    </div>       
+    <div class="halo-product-content">
+        <div class="pro-page">
+            {% section 'product-template-slider' %}
+            {% section 'product-recommendations' %}
+        </div>
+
+        <div class="container">
+            {% section 'recently-viewed-products' %}
+        </div>           
+    </div>   
+</div>

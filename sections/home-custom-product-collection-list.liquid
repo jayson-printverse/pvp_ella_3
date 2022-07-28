@@ -1,0 +1,198 @@
+{% case section.settings.collection_results_per_row1 %}
+  {% when '2' %}
+    {%- assign grid_item_width = 'col-6' -%}
+  {%- assign row = 'two-items' -%}
+  {% when '3' %}
+    {%- assign grid_item_width = 'col-6 col-md-4' -%}
+  {%- assign row = 'three-items' -%}
+  {% when '4' %}
+    {%- assign grid_item_width = 'col-6 col-md-4 col-lg-3' -%}
+  {%- assign row = 'four-items' -%}
+  {% when '5' %}
+    {%- assign grid_item_width = 'col-6 col-md-4 col-lg-3 col5' -%}
+  {%- assign row = 'five-items' -%}
+  {% when '6' %}
+    {%- assign grid_item_width = 'col-6 col-md-4 col-lg-3 col-xl-2' -%}
+  {%- assign row = 'six-items' -%}
+{% endcase %}
+
+<div class="custom-collection-products" id="custom-collection-{{section.id}}" >
+  <div class="container">
+
+    {% for link in linklists[page.handle].links %}
+    {% assign collection = link.object %}
+    {% assign number_of_links = number_of_links | plus: 1 %}
+    <div class="row{% if section.settings.banner_is == 'right'%} flex-row-reverse{% endif %}">
+     
+      <div class="no-padd col-12 col-md-12 col-lg-6 column-banner">
+        <div class="column-banner-inner">
+          <div class="content-left">
+            <p>{% render 'multilang' with page.title %}</p>
+            <h3 class="collection-title">
+              <a href="{{ collection.url }}" title="{{ 'collections.general.link_title' | t: title: collection_title }}" {% if settings.enable_multilang %}data-translate="collections.general.link_title|title:{{collection_title}}" translate-item="title"{% endif %}>
+                {% render 'multilang' with collection.title %}
+              </a>
+            </h3>
+            <div class="des">
+              {% if settings.enable_multilang and collection.description contains '[lang2]' %}
+              <div class="lang1">
+                {{ collection.description | split: '[lang2]' | first | strip_html | truncatewords: 40 }}
+              </div>
+              <div class="lang2">
+                {{ collection.description | split: '[lang2]' | last | strip_html  | truncatewords: 40 }}
+              </div>
+              {% else %}
+              <div>
+                {{ collection.description | truncatewords: 40 }}
+              </div>
+              {% endif %}
+            </div>
+          </div>
+          <div class="content-right">
+            {% for product in collections[link.handle].products limit: 1 %}
+            <a class="product-image-left" href="{{ product.url }}" title="{{ product.title }}">
+              <img src="{{product.featured_image.src | product_img_url: '460x'}}" alt="">
+            </a>
+            <a class="product-title" href="{{ product.url | within: collection }}">
+              {% render 'multilang' with product.title %}
+             </a>
+            {% endfor %}
+          </div>
+        </div>        
+      </div>
+     
+      <div class="col-12 col-md-12 col-lg-6 column-product" data-collection-product>
+        <div class="widget-product">
+          <div class="products-grid row {{ row }}" data-row="2" >
+            {% for product in collections[link.handle].products limit: section.settings.slider_collection_limit %}
+              {% unless forloop.first %}
+              <div class="grid-item {% if settings.product_image_border %} grid-item-border{% endif %} ">
+                {% render 'product-grid-item-collection' with product as product %}
+              </div>
+              {% endunless %}
+            {% endfor %}
+          </div>
+        </div>
+       
+      </div>
+      
+      <div class="button-collections">
+        <a href="{{ collection.url }}" class="btn" title="{{ 'collections.general.link_title' | t: title: collection_title }}" {% if settings.enable_multilang %}data-translate="collections.general.link_title|title:{{collection_title}}" translate-item="title"{% endif %}>
+          View All {% render 'multilang' with collection.title %}
+         </a>
+      </div>
+
+    </div>
+    {% endfor %}
+
+
+  </div>
+</div>
+
+<style>
+  {% assign margin_bottom =  section.settings.margin_bottom %}
+
+    .custom-collection-products .button-collections a{
+      border: 1px solid {{ section.settings.border_collection_button }};;
+      color: {{ section.settings.color_collection_button }};
+      background: {{ section.settings.bg_collection_button }};
+      min-width: {{ section.settings.min_width_collection_button }};
+    } 
+
+    @media (max-width: 767px) {
+        #custom-collection-{{section.id}} {
+            margin-bottom: {{ section.settings.margin_bottom_mb }}px;
+        }
+    }
+
+    @media (min-width: 768px) and (max-width: 1199px) {
+        #custom-collection-{{section.id}} {
+            margin-bottom: {{ section.settings.margin_bottom_tab }}px;
+        }
+    }
+
+  @media (min-width: 1200px) {
+    #custom-collection-{{section.id}} {
+      margin-bottom: {{ margin_bottom }}px;
+    }
+  } 
+</style>
+
+{% schema %}
+  {
+    "name": "Custom Collection Product",
+    "class": "custom-collection-products-sections",
+    "settings": [ 
+        {
+        "type": "header",
+        "content": "Collection Products"
+        },
+        {
+          "type": "range",
+          "id": "slider_collection_limit",
+          "label": "Number of new products to show",
+          "min": 3,
+          "max": 20,
+          "step": 1,
+          "default": 5
+        },
+        {
+            "type" : "color",
+            "id" : "bg_collection_button",
+            "label" : "Background Button",
+            "default" : "#fff"
+        },
+        {
+            "type" : "color",
+            "id" : "border_collection_button",
+            "label" : "Border Button",
+            "default" : "#dadada"
+        },
+        {
+            "type" : "color",
+            "id" : "color_collection_button",
+            "label" : "Button Color",
+            "default" : "#27221b"
+        },
+        {
+            "type" : "text",
+            "id" : "min_width_collection_button",
+            "label" : "Collection Button Min Width",
+            "default" : "252px"
+        },
+        {
+            "type": "header",
+            "content": "Margin Bottom:"
+        },
+        {
+            "type": "range",
+            "id": "margin_bottom_mb",
+            "label": "Mobile",
+            "min": 0,
+            "max": 100,
+            "step": 1,
+            "default": 40
+        },
+        {
+            "type": "range",
+            "id": "margin_bottom_tab",
+            "label": "Tablet",
+            "min": 0,
+            "max": 100,
+            "step": 1,
+            "default": 40
+        },             
+        {
+            "type": "range",
+            "id": "margin_bottom",
+            "label": "Margin Bottom",
+            "min": 0,
+            "max": 100,
+            "step": 1,
+            "default": 0
+        }   
+  ]
+  }
+{% endschema %}
+
+

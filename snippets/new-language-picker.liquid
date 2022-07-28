@@ -1,0 +1,111 @@
+{% if settings.enable_multilang_shopify %}
+<div class="lang-block">
+  <label class="label-text"{% if settings.enable_multilang %} data-translate="general.language.language"{% endif %}>
+    {{ 'general.language.language' | t }}
+  </label> 
+  <div class="btn-group lang-dropdown">
+    <label class="dropdown-toggle dropdown-label" data-language-label>
+      
+    </label>
+    <div class="dropdown-menu lang-menu" id="lang-switcher" style="display: none">
+      
+    </div>
+  </div>
+</div>
+{% endif %}
+
+<script>
+
+  function buildLanguageList() {
+    return [
+      {%- for locale in shop.published_locales %}
+      {
+        name: '{{locale.name}}',
+        endonym_name: '{{locale.endonym_name}}',
+        iso_code: '{{locale.iso_code}}',
+        primary: {{locale.primary}},
+        {% for i in (1..6) %}
+        {% capture lang_unit %}lange_{{ i }}{% endcapture %}
+        {% capture i-lang_unit %}i-lang-{{ i }}.png{% endcapture %}
+        {% assign currency_length = settings[i-lang_unit] | size %}
+        {% if settings[lang_unit] == locale.iso_code %}
+        logo: '{{i-lang_unit | asset_url}}',
+        {% endif %}
+        {% endfor %}
+      }
+      
+      
+      {% unless forloop.last %},{% endunless -%}
+      
+      {%- endfor %}
+    ];
+  }
+
+  function findCurrentLocale(languages, defaultLocale) {
+    var p = window.location.pathname.split('/').filter(function (x) { return x; });
+    if (p && p.length > 0 && languages.find(function (x) { return x.iso_code === p[0]; })) {
+      return p[0];
+    } else {
+      return defaultLocale;
+    }
+  }
+
+  function createDropdown(t, i, s, l, logo) {
+    return function (container) {
+
+      if (l && l.length > 1) {
+        var select = $('.lang-menu');
+        l.forEach(function(lang) {
+          if (lang.logo == undefined) {
+            var option1 = '<a class="dropdown-item" href="javascript:void(0)" data-value="' + lang.iso_code + '"><span class="img-icon"></span><span class="text">' + lang.iso_code + '</span></a>';
+          } else {
+            var option1 = '<a class="dropdown-item" href="javascript:void(0)" data-value="' + lang.iso_code + '"><span class="img-icon"><img src="' + lang.logo + '" /></span>' + '<span class="text">' + lang.iso_code + '</span></a>';
+          }
+          
+          
+          $(option1).appendTo(select);
+          if (i === lang.iso_code) {
+            $('.lang-block [data-value="' + i + '"]').addClass('active');
+          }
+        });
+        if ($('.lang-block .dropdown-item').hasClass('active')) {
+          var html = $('.lang-block .dropdown-item.active').html();
+          $('[data-language-label]').html(html);
+        }
+        $('#lang-switcher [data-value]').on('click', function() {
+          var e = $(this).find('.text').text().replace(' ','');
+          var n = window.location.pathname;
+          if (e === t) {
+            var o = '' + s + n.replace('/' + i, '');
+            window.location.assign(o)
+          } else if (t === i) {
+            var r = s + '/' + e + n;
+            window.location.assign(r)
+          } else {
+            var a = s + '/' + n.replace('/' + i, e);
+            window.location.assign(a)
+          }
+        });    
+      }
+    };
+  }
+
+  function setupLanguageSwitcher() {
+    var languages = buildLanguageList();
+    var shopDomain = 'https://{{shop.domain}}';
+    var primaryLanguage = languages.find(function (x) { return x.primary; });
+    var logoLanguage = languages.find(function (x) { return x.logo; });
+    var defaultLocale = primaryLanguage ? primaryLanguage.iso_code : 'en';
+    var currentLocale = findCurrentLocale(languages, defaultLocale);
+    var containers = document.querySelectorAll('.lang-block');
+    if (containers && containers.length) {
+      containers.forEach(createDropdown(defaultLocale, currentLocale, shopDomain, languages, logoLanguage));
+    }
+  }
+
+  if (window.attachEvent) {
+    window.attachEvent('onload', setupLanguageSwitcher);
+  } else {
+    window.addEventListener('load', setupLanguageSwitcher, false);
+  }
+</script>

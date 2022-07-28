@@ -1,0 +1,62 @@
+<div class="header-mb">          
+    <div class="header-mb-left header-mb-items">
+        <div class="hamburger-icon svg-mb">
+            <a href="#" class="icon-nav" title="Menu Mobile Icon" data-menu-mb-toogle>
+                <span class="icon-line"></span>
+            </a>
+        </div>
+
+      	{% if settings.enable_search %}
+        <div class="search-mb svg-mb">
+            <a href="#" title="Search Icon" class="icon-search" data-search-mobile-toggle>
+                {% render 'icon-search' %}
+            </a>
+
+            <a href="javascript:void(0)" title="close" class="close close-search">
+                {% render 'icon-close' %}
+            </a>
+        
+            {% render 'search-bar' %}
+        </div>  
+      	{% endif %}
+    </div>
+
+  <div class="header-mb-middle header-mb-items">
+    <div class="header-logo">
+      {% if section.settings.brand_type == 'image' and section.settings.logo != bank %}
+      <a class="logo-img" href="{{ routes.cart_url | split: 'cart' | first }}" title="Logo">
+        <img data-src="{{ section.settings.logo | img_url: 'master' }}"
+             src="{{ section.settings.logo | img_url: 'master' }}"
+             alt="{{ section.settings.logo.alt | default: shop.name }}" itemprop="logo" class="lazyautosizes lazyloade" data-sizes="auto">
+      </a>
+      {% elsif section.settings.brand_text != '' %}
+      <a class="logo-title" href="{{ routes.cart_url | split: 'cart' | first }}">
+        {{ section.settings.brand_text }}
+      </a>
+      {% else %}
+      <a class="logo-title" href="{{ routes.cart_url | split: 'cart' | first }}">
+        {{ shop.name }}
+      </a>
+      {% endif %}
+    </div>
+  </div>
+
+  <div class="header-mb-right header-mb-items">
+    {% if shop.customer_accounts_enabled %}
+    <div class="acc-mb svg-mb">
+      <a href="#" title="User Icon" class="icon-user" data-user-mobile-toggle>
+        {% render 'icon-user' %}
+      </a>
+    </div>
+    {% endif %}
+    <div class="cart-icon svg-mb">
+      <a href="#" title="Cart Icon" data-cart-toggle>       
+        {% render 'icon-cart' %}
+
+        <span class="cartCount" data-cart-count>
+          {{ cart.item_count }}
+        </span>
+      </a>
+    </div>
+  </div>          
+</div>https://printverse-dev.myshopify.com/admin/themes/83286491221?key=assets%2Fslick.min.js

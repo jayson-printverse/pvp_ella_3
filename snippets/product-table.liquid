@@ -1,0 +1,281 @@
+<div class="product-table-guidelines {% if page.handle == "api-product-list-1" %} with_sidebar {% endif %}">
+</div>
+
+{% paginate collections.all.products by 150 %}
+  <div class="product_table" id="table-sort">
+      <table class="all_products {% if page.handle == "api-product-list-1" %} with_sidebar {% endif %}">
+          <tbody>
+            <tr class="product_table_header" id="tableHeader">
+              <th>Image</th>
+              <th>Name</th>
+              <th>SKU #</th>
+              <th>Imprint Dimensions:<br>Width x Height (px)</th>
+              <th>With-Bleed Dimensions:<br>Width x Height (px)</th>
+              <th>Price</th>
+              <th>Weight (lb)</th>
+              <th>Shipping US</th>
+              <th>Shipping International</th>
+              <th>Additional Shipping Cost (per item)</th>
+              <th>Template</th>
+            </tr>
+            {% for product in collections.all.products %}
+            	{% if product.variants.size > 1 %}
+            		 <tr class="item">
+                      <td class="product-with-variants">
+                        
+                        <div class="thumb filter-{{ media.alt | handle }}">
+                          <a {% if section.settings.enable_zoom_image %}data-zoom{% endif %} class="fancybox" rel="gallery1" href="{{ media | img_url: '1080x1080' }}" data-fancybox="images">
+                            <img id="product-featured-image-{{media.id}}" src="{{ media | img_url: '570x570' }}" alt="{{ media.alt | escape }}"
+                                 class="lazyload"
+                                 data-src="{{ media | img_url: '720x720' }}"
+                                 data-widths="[180, 360, 540, 720, 900, 1080, 1296, 1512, 1728, 2048]"
+                                 data-aspectratio="{{ media | img_url: 'master' }}"
+                                 data-sizes="auto">
+                          </a>
+                        </div>
+                        
+                        {% comment %}
+                        {% assign image = product.images.first %}
+                        <a
+                          href="{{ product.url }}"
+                          class="product-table-item"
+                          {%
+                            background: true,
+                            img: image,
+                            size: '300x300',
+                            lazy: false
+                           %}
+                          >
+                          {% endcomment %}
+                      </td>
+                      <td class="product-with-variants">
+                        {{ product.title }}
+                      </td>
+                      <td class="product-with-variants">
+                        {{ product.variants.size }} variants below
+                        {% comment %}
+                      {% assign productSku = product.variants.first.sku %}
+                      {% if product.variants.size > 1 %}
+                        {% for variant in product.variants %}
+                            {% assign color_url = variant.options[1] %}
+                            {% if product.handle == color_url %}
+                              {% assign productSku = variant.sku %}
+                            {% endif %}
+                        {% endfor %}
+                      {% endif %}
+                        {{ productSku }}
+                        {% endcomment %}
+                      </td>
+                      <td class="product-with-variants">
+                        
+                        {% comment %}
+                        {{ product.metafields.product_table.imprint_dimensions_width }}W x {{ product.metafields.product_table.imprint_dimensions_height }}H (px)
+                        {% endcomment %}
+                      </td>
+                      <td class="product-with-variants">
+                        
+                        {% comment %}
+                        {% if product.metafields.product_table.bleed_dimensions_width == blank or product.metafields.product_table.bleed_dimensions_width == "" or product.metafields.product_table.bleed_dimensions_width == "NULL" %}
+                          N/A
+                        {% else %}
+                          {{ product.metafields.product_table.bleed_dimensions_width }}W x {{ product.metafields.product_table.bleed_dimensions_height }}H (px)
+                        {% endif %}
+                        {% endcomment %}
+                      </td>
+                      <td class="product-with-variants">
+                        
+                        {% comment %}
+                        {{ product.price | money }}
+                        {% endcomment %}
+                      </td>
+                      <td class="product-with-variants">
+                        
+                        {% comment %}
+                        {{ product.variants.first.weight | weight_with_unit}}
+                        {% endcomment %}
+                      </td>
+                      <td class="product-with-variants">
+                        
+                        {% comment %}
+                        {{ product.metafields.global.shipping_us | money }}
+                        {% endcomment %}
+                      </td>
+                      <td class="product-with-variants">
+                        
+                        {% comment %}
+                        {{ product.metafields.global.shipping_international | money }}
+                        {% endcomment %}
+                      </td>
+                       <td class="product-with-variants">
+                         
+                         {% comment %}
+                        {{ product.metafields.global.additional_price | money }}
+                         {% endcomment %}
+                      </td>
+                      <td class="product-with-variants">
+                        
+                        {% comment %}
+                        {% if product.metafields.product_table.template_url %}
+                          <a href="{{ product.metafields.product_table.template_url }}"><svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
+      width="48" height="48"
+      viewBox="0 0 224 224"
+      style=" fill:#000000;"><g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><path d="M0,224v-224h224v224z" fill="none"></path><g><g id="surface1"><path d="M186.66667,210h-149.33333v-196h102.66667l46.66667,46.66667z" fill="#ff0065"></path><path d="M179.66667,65.33333h-44.33333v-44.33333z" fill="#fbe9e7"></path><path d="M73.77344,137.66667v16.33333h-9.36979v-46.44792h15.82292c4.59375,0 8.25782,1.42188 10.99219,4.28386c2.73438,2.84375 4.10156,6.54427 4.10156,11.10156c0,4.53906 -1.36718,8.13021 -4.0651,10.77344c-2.69792,2.64323 -6.4349,3.95573 -11.22917,3.95573zM73.77344,129.84636h6.45312c1.78646,0 3.17188,-0.58333 4.13802,-1.75c0.98438,-1.16667 1.47656,-2.86198 1.47656,-5.10417c0,-2.31511 -0.51042,-4.15625 -1.49479,-5.54167c-1.00261,-1.36719 -2.35156,-2.05989 -4.02864,-2.07813h-6.54427z" fill="#ffebee"></path><path d="M101.57292,154v-46.44792h12.26823c5.43229,0 9.75261,1.71354 12.97917,5.15886c3.20833,3.44531 4.86719,8.16667 4.92188,14.16406v7.52864c0,6.10677 -1.60417,10.90104 -4.83073,14.38282c-3.22657,3.48177 -7.65625,5.21354 -13.32552,5.21354zM110.94271,115.37239v30.84375h2.80729c3.13542,0 5.32292,-0.82031 6.59896,-2.47917c1.27604,-1.64062 1.95052,-4.48437 2.02343,-8.53125v-8.05729c0,-4.33854 -0.61979,-7.36458 -1.82292,-9.07813c-1.22135,-1.71354 -3.28125,-2.60677 -6.19792,-2.69792z" fill="#ffebee"></path><path d="M162.44011,135.04167h-14.58333v18.95833h-9.38802v-46.44792h25.72136v7.82031h-16.33333v11.90365h14.58333z" fill="#ffebee"></path></g></g></g></svg></a>
+                        {% endif %}
+                        {% endcomment %}
+                      </td>
+                    </tr>
+            		{% for variant in product.variants %}
+            		<tr class="variant">
+                      <td>
+                        
+                        {% if variant.metafields.product_image.imprint_url == blank %}
+                        	{% assign image = product.images.first %}
+                        <a
+                          href="{{ product.url }}"
+                          class="product-table-item"
+                          {%
+                            include 'rimg',
+                            background: true,
+                            img: image,
+                            size: '300x300',
+                            lazy: false
+                           %}
+                          >
+                        {% else %}
+                        <a
+                          href="{{ product.url }}?variant={{ variant.id }}"
+                          class="product-table-item"
+                          >
+                          <img src="{{ variant.metafields.product_image.imprint_url }}"
+                               max-width="600"
+                               max-height="600"
+                               >
+                        </a>
+                        {% endif %}
+                      </td>
+                      <td class="item-variant">
+                        <p>
+                        {{ product.title }}
+                        </p>
+                        <p>
+                          <strong>{{ variant.metafields.tech_specs.color }}</strong>
+                        </p>
+                      </td>
+                      <td class="item-variant">
+                        {{ variant.sku }}
+                      </td>
+                      <td class="item-variant">
+                        
+                        {{ product.metafields.product_table.imprint_dimensions_width }}W x {{ product.metafields.product_table.imprint_dimensions_height }}H (px)
+                      	
+                      </td>
+                      <td class="item-variant">
+                        
+                        {% if product.metafields.product_table.bleed_dimensions_width == blank or product.metafields.product_table.bleed_dimensions_width == "" or product.metafields.product_table.bleed_dimensions_width == "NULL" %}
+                          N/A
+                        {% else %}
+                          {{ product.metafields.product_table.bleed_dimensions_width }}W x {{ product.metafields.product_table.bleed_dimensions_height }}H (px)
+                        {% endif %}
+                        
+                      </td>
+                      <td class="item-variant">
+                        {{ product.price | money }}
+                      </td>
+                      <td class="item-variant">
+                        {{ product.variants.first.weight | weight_with_unit}}
+                      </td>
+                      <td class="item-variant">
+                        {{ product.metafields.global.shipping_us | money }}
+                      </td>
+                      <td class="item-variant">
+                        {{ product.metafields.global.shipping_international | money }}
+                      </td>
+                      <td class="item-variant">
+                        {{ product.metafields.global.additional_price | money }}
+                      </td>
+                      <td class="item-variant">
+                        
+                        {% if product.metafields.product_table.template_url %}
+                          <a href="{{ product.metafields.product_table.template_url }}"><svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
+      width="48" height="48"
+      viewBox="0 0 224 224"
+      style=" fill:#000000;"><g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><path d="M0,224v-224h224v224z" fill="none"></path><g><g id="surface1"><path d="M186.66667,210h-149.33333v-196h102.66667l46.66667,46.66667z" fill="#ff0065"></path><path d="M179.66667,65.33333h-44.33333v-44.33333z" fill="#fbe9e7"></path><path d="M73.77344,137.66667v16.33333h-9.36979v-46.44792h15.82292c4.59375,0 8.25782,1.42188 10.99219,4.28386c2.73438,2.84375 4.10156,6.54427 4.10156,11.10156c0,4.53906 -1.36718,8.13021 -4.0651,10.77344c-2.69792,2.64323 -6.4349,3.95573 -11.22917,3.95573zM73.77344,129.84636h6.45312c1.78646,0 3.17188,-0.58333 4.13802,-1.75c0.98438,-1.16667 1.47656,-2.86198 1.47656,-5.10417c0,-2.31511 -0.51042,-4.15625 -1.49479,-5.54167c-1.00261,-1.36719 -2.35156,-2.05989 -4.02864,-2.07813h-6.54427z" fill="#ffebee"></path><path d="M101.57292,154v-46.44792h12.26823c5.43229,0 9.75261,1.71354 12.97917,5.15886c3.20833,3.44531 4.86719,8.16667 4.92188,14.16406v7.52864c0,6.10677 -1.60417,10.90104 -4.83073,14.38282c-3.22657,3.48177 -7.65625,5.21354 -13.32552,5.21354zM110.94271,115.37239v30.84375h2.80729c3.13542,0 5.32292,-0.82031 6.59896,-2.47917c1.27604,-1.64062 1.95052,-4.48437 2.02343,-8.53125v-8.05729c0,-4.33854 -0.61979,-7.36458 -1.82292,-9.07813c-1.22135,-1.71354 -3.28125,-2.60677 -6.19792,-2.69792z" fill="#ffebee"></path><path d="M162.44011,135.04167h-14.58333v18.95833h-9.38802v-46.44792h25.72136v7.82031h-16.33333v11.90365h14.58333z" fill="#ffebee"></path></g></g></g></svg></a>
+                        {% endif %}
+                        
+                      </td>
+            		</tr>
+            		{% endfor %}
+            	{% else %}
+                    <tr class="item">
+                      <td>
+                        {% assign image = product.images.first %}
+                        <a
+                          href="{{ product.url }}"
+                          class="product-table-item"
+                          {%
+                            include 'rimg',
+                            background: true,
+                            img: image,
+                            size: '300x300',
+                            lazy: false
+                           %}
+                          >
+                      </td>
+                      <td>
+                        {{ product.title }}
+                      </td>
+                      <td>
+                      {% assign productSku = product.variants.first.sku %}
+                      {% if product.variants.size > 1 %}
+                        {% for variant in product.variants %}
+                            {% assign color_url = variant.options[1] %}
+                            {% if product.handle == color_url %}
+                              {% assign productSku = variant.sku %}
+                            {% endif %}
+                        {% endfor %}
+                      {% endif %}
+                        {{ productSku }}
+                      </td>
+                      <td>
+                        {{ product.metafields.product_table.imprint_dimensions_width }}W x {{ product.metafields.product_table.imprint_dimensions_height }}H (px)
+                      </td>
+                      <td>
+                        {% if product.metafields.product_table.bleed_dimensions_width == blank or product.metafields.product_table.bleed_dimensions_width == "" or product.metafields.product_table.bleed_dimensions_width == "NULL" %}
+                          N/A
+                        {% else %}
+                          {{ product.metafields.product_table.bleed_dimensions_width }}W x {{ product.metafields.product_table.bleed_dimensions_height }}H (px)
+                        {% endif %}
+                      </td>
+                      <td>
+                        {{ product.price | money }}
+                      </td>
+                      <td>
+                        {{ product.variants.first.weight | weight_with_unit}}
+                      </td>
+                      <td>
+                        {{ product.metafields.global.shipping_us | money }}
+                      </td>
+                      <td>
+                        {{ product.metafields.global.shipping_international | money }}
+                      </td>
+                      <td>
+                        {{ product.metafields.global.additional_price | money }}
+                      </td>
+                      <td>
+                        {% if product.metafields.product_table.template_url %}
+                          <a href="{{ product.metafields.product_table.template_url }}"><svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
+      width="48" height="48"
+      viewBox="0 0 224 224"
+      style=" fill:#000000;"><g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><path d="M0,224v-224h224v224z" fill="none"></path><g><g id="surface1"><path d="M186.66667,210h-149.33333v-196h102.66667l46.66667,46.66667z" fill="#ff0065"></path><path d="M179.66667,65.33333h-44.33333v-44.33333z" fill="#fbe9e7"></path><path d="M73.77344,137.66667v16.33333h-9.36979v-46.44792h15.82292c4.59375,0 8.25782,1.42188 10.99219,4.28386c2.73438,2.84375 4.10156,6.54427 4.10156,11.10156c0,4.53906 -1.36718,8.13021 -4.0651,10.77344c-2.69792,2.64323 -6.4349,3.95573 -11.22917,3.95573zM73.77344,129.84636h6.45312c1.78646,0 3.17188,-0.58333 4.13802,-1.75c0.98438,-1.16667 1.47656,-2.86198 1.47656,-5.10417c0,-2.31511 -0.51042,-4.15625 -1.49479,-5.54167c-1.00261,-1.36719 -2.35156,-2.05989 -4.02864,-2.07813h-6.54427z" fill="#ffebee"></path><path d="M101.57292,154v-46.44792h12.26823c5.43229,0 9.75261,1.71354 12.97917,5.15886c3.20833,3.44531 4.86719,8.16667 4.92188,14.16406v7.52864c0,6.10677 -1.60417,10.90104 -4.83073,14.38282c-3.22657,3.48177 -7.65625,5.21354 -13.32552,5.21354zM110.94271,115.37239v30.84375h2.80729c3.13542,0 5.32292,-0.82031 6.59896,-2.47917c1.27604,-1.64062 1.95052,-4.48437 2.02343,-8.53125v-8.05729c0,-4.33854 -0.61979,-7.36458 -1.82292,-9.07813c-1.22135,-1.71354 -3.28125,-2.60677 -6.19792,-2.69792z" fill="#ffebee"></path><path d="M162.44011,135.04167h-14.58333v18.95833h-9.38802v-46.44792h25.72136v7.82031h-16.33333v11.90365h14.58333z" fill="#ffebee"></path></g></g></g></svg></a>
+                        {% endif %}
+                      </td>
+                    </tr>
+            	{% endif %}
+            {% endfor %}
+        </tbody>
+    </table>
+  </div>
+  {% if paginate.previous or paginate.next %}
+    {% include 'pagination' %}
+  {% endif %}
+{% endpaginate %}

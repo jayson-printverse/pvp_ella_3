@@ -1,0 +1,249 @@
+<section class="homepage-reviews" id="section-{{section.id}}">
+  <div class="container">
+    {% if section.settings.title != blank %}
+    <div class="widget-title{% if section.settings.title_style == 'style_2' %} not-before{% endif %}">   
+      <h3 class="box-title">
+        <span class="title"> 
+          {% render 'multilang' with section.settings.title %}
+        </span>
+      </h3>
+    </div>
+    {% endif %}
+    <div class="row has-slick has-dots" data-review-slider data-row="{{section.settings.per_row}}" data-infinite="false" data-rowtb="3" data-rowtblg="2" data-rowbm="1" >
+      {% for block in section.blocks %}
+      <div class="col-6 col-md-4 col-lg-4">
+        <div class="item">
+          <div class="item-image">
+            {% if block.settings.reviews_image != blank %}
+              <img data-src="{{ block.settings.reviews_image | img_url: '115x' }}" alt="{{block.settings.reviews_title}}" {% render 'lazyload' %}>
+            {% else %}
+              <div class="not_img">90 x 90px</div>   
+            {% endif %}
+          </div>
+
+          {% if block.settings.reviews_heading != blank %}
+            <h2 class="heading-review">
+              {% render 'multilang' with block.settings.reviews_heading %}
+            </h2>
+          {% endif %}
+          
+          {% if block.settings.body_review != blank %}
+          <div class="body-review">
+            {% render 'multilang' with block.settings.body_review %}
+          </div>
+          {% endif %}
+
+          <div class="star-reviews {{block.settings.rating}}">
+            {% render 'icon-star' %}
+            {% render 'icon-star' %}
+            {% render 'icon-star' %}
+            {% render 'icon-star' %}
+            {% render 'icon-star' %}
+          </div>
+
+          {% if block.settings.reviews_title != blank or block.settings.reviews_purchased_text != blank %}
+          <div class="title-reviews">
+            {% if block.settings.reviews_purchased_text != blank %}
+              <span class="purchased-text">{% render 'multilang' with block.settings.reviews_purchased_text %}</span>
+            {% endif %}
+
+            {% if block.settings.reviews_title != blank %}
+              <a class="title" href="{{block.settings.reviews_link}}" title="{{block.settings.reviews_title}}">
+                <h4>
+                  {% render 'multilang' with block.settings.reviews_title %}
+                </h4>
+              </a>
+            {% endif %}
+          </div>
+          {% endif %}   
+
+          {% if block.settings.name != blank %}
+          <div class="name-review">
+            <h5>
+              {% render 'multilang' with block.settings.name %}
+            </h5>
+          </div>
+          {% endif %}
+          
+          {% if block.settings.date_review != blank %}
+            <p class="date-review">
+              {% render 'multilang' with block.settings.date_review %}
+            </p>
+          {% endif %}
+
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+
+<style>
+  #section-{{section.id}}{
+    margin-top: {{ section.settings.space_on }}px;
+    margin-bottom: {{ section.settings.space_below }}px;
+  }
+</style>
+
+{% schema %}
+  {
+    "name": "Customer Reviews",
+	"max_blocks": 10,
+    "settings": [
+      {
+        "type": "range",
+        "id": "space_on",
+        "label": "Space on",
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "default": 20
+      },
+      {
+        "type": "range",
+        "id": "space_below",
+        "label": "Space below",
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "default": 25
+      },
+	   {
+        "type": "text",
+        "id": "title",
+        "label": "Title",
+        "default": "Customer Reviews"
+      },
+      {
+        "type": "select",
+        "id": "title_style",
+        "label": "Title Style:",
+        "options": [
+            {
+                "value": "style_1",
+                "label": "Style 1" 
+            },
+            { 
+                "value": "style_2",
+                "label": "Style 2" 
+            }          
+        ],
+        "default": "style_1"
+      },
+	   {
+        "type": "select",
+        "id": "per_row",
+        "label": "Customer review per row",
+        "options": [
+         {
+            "value": "1",
+            "label": "1"
+          },
+         {
+            "value": "2",
+            "label": "2"
+          },
+          {
+            "value": "3",
+            "label": "3"
+          },
+          {
+            "value": "4",
+            "label": "4"
+          },
+          {
+            "value": "5",
+            "label": "5"
+          }
+        ],
+        "default": "3"
+     }
+	],
+    "blocks": [
+      {
+        "type": "Review",
+        "name": "Review",
+        "settings": [
+          {
+            "type" : "image_picker",
+            "id" : "reviews_image",
+            "label" : "Select Image"
+          },
+          {
+            "type" : "text",
+            "id" : "reviews_heading",
+            "label" : "Heading",
+            "default" : "Awesome..."
+          },
+          {
+            "type": "select",
+            "id": "rating",
+            "label": "Rating",
+            "options": [
+              { "value": "star0", "label": "0 star" },
+              { "value": "star1", "label": "1 star" },
+              { "value": "star2", "label": "2 star" },
+              { "value": "star3", "label": "3 star" },
+              { "value": "star4", "label": "4 star" },
+              { "value": "star5", "label": "5 star" }
+            ],
+            "default": "star5"
+          },
+          {
+            "type" : "text",
+            "id" : "reviews_purchased_text",
+            "label" : "Purchased text",
+            "default" : "Purchased:"
+          },
+		      {
+            "type" : "text",
+            "id" : "reviews_title",
+            "label" : "Title",
+            "default" : "Title"
+          },
+          {
+            "type" : "url",
+            "id" : "reviews_link",
+            "label" : "Link"
+          },
+          {
+            "type": "textarea",
+            "id": "body_review",
+            "label": "Content of Review",
+            "default": "Nam tempus turpis at metus scelerisque placerat nulla deumantos delo sollicitudin delos felis. Pellentesque diam dolor an elementum et lobortis at mollis ut risus. Curabitur semper sagittis mi condimentum..."
+          },
+		      {
+            "type" : "text",
+            "id" : "name",
+            "label" : "Customer Name",
+            "default" : "Customer Name"
+          },
+          {
+            "type" : "text",
+            "id" : "date_review",
+            "label" : "Date",
+            "default" : "Wednesday, Jan 26, 2019"
+          }
+        ]
+      }	
+    ],
+    "presets": [
+    {
+      "name": "Custom Block Reviews",
+      "category": "Reviews",
+  		"blocks": [
+          {
+            "type": "Review"
+          },
+          {
+            "type": "Review"
+          },        
+  		    {
+            "type": "Review"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

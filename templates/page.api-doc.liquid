@@ -1,0 +1,42 @@
+
+
+{% comment %}
+    <div class="page-tpl">
+      <div class="container">
+        {% render 'breadcrumb' %}
+
+        <header class="page-header">
+          <h2>
+            {% render 'multilang' with page.title %}
+          </h2>      
+        </header>
+
+        {% comment %}
+        Regular page content goes here.
+        {% endcomment %}
+
+        {% if page.title == 'API - Product List' %}
+        {% include 'product-table' %}
+        {% else %}
+        {% unless page.content == blank %}
+          <div class="module-body page-body rte clearfix">
+        {{ page.content }}
+      </div>
+      {% endunless %}
+      {% endif %}
+
+        {% if settings.enable_multilang and page.content contains '[lang2]' %}
+        <div class="rte lang1">
+          {{ page.content | split: '[lang2]' | first }}
+        </div>
+        <div class="rte lang2">
+          {{ page.content | split: '[lang2]' | last }}
+        </div>
+        {% else %}
+        <div class="rte">
+          {{ page.content | split: '[lang2]' | first }}
+        </div>
+        {% endif %}
+      </div>
+    </div>
+{% endcomment %}

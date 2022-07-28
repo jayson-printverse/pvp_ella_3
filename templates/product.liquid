@@ -1,0 +1,34 @@
+{% if settings.product_layout == "default" %} 
+
+{% render 'product-default' %}
+
+{% elsif settings.product_layout == "grouped" %}
+
+{% render 'product-grouped' %}
+
+{% elsif settings.product_layout == "slider" %}
+
+{% render 'product-slider' %}
+
+{% elsif settings.product_layout == "gallery" %}
+
+{% render 'product-gallery' %}
+
+{% elsif settings.product_layout == "full_with" %}
+
+{% render 'product-full-width' %}
+
+{% endif %}
+
+{% if template contains 'product' %}
+
+<div class="footbar-fixed footbar-fixed-product">
+    {% section 'someone-purchased' %}
+    {% section 'GDPR-modal' %}
+
+    {% if settings.display_sticky %} 
+        {% render 'sticky-add-to-cart' with product as product %}
+    {% endif %}
+</div>
+{% endif %}
+

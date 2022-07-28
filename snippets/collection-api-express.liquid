@@ -1,0 +1,25 @@
+<div class="collection-template collection-template-express-order translate-filter-pc">
+    <div class="reverse-mb">
+        {% section 'collection-header' %}
+        {% comment %}
+        <div class="container">
+            {% render 'breadcrumb' %}
+        </div>
+        {% endcomment %}
+    </div>
+        
+    <div class="container">
+        <div class="halo-collection-content">
+            <div class="row"> 
+                {% comment %}
+                  {% section 'sidebar-filter' %}
+              	{% endcomment %}
+                {% section 'collection-template-api-express' %}
+            </div>
+            
+          	{% comment %}
+            	{% section 'recently-viewed-products' %}
+          	{% endcomment %}
+        </div>   
+    </div>
+</div>

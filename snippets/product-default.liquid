@@ -1,0 +1,25 @@
+<div class="product-template product-template-default">
+  <div class="container">
+    {% if collection %}
+    <div class="next_prev-groups">
+      {% render 'breadcrumb' %}
+      {% render 'next-prev-product' %} 	
+    </div>
+    
+    {% else %}
+    {% render 'breadcrumb' %}
+    {% endif %}
+  	   
+    <div class="halo-product-content">
+      <div class="row pro-page">
+        {% section 'sidebar-section' %}
+        {% section 'product-template-default' %}
+
+        <div class="shopify-section col-12 searchanise-recommendations" id="9G6N2P6I9A7E9E4"></div>
+        
+      </div>
+      {% section 'product-recommendations-2' %}
+      {% section 'recently-viewed-products' %}
+    </div>   
+  </div>
+</div>

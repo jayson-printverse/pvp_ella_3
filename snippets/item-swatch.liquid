@@ -1,0 +1,69 @@
+<ul class="item-swatch">
+    {% for option in product.options %}
+  
+  	{% assign downcased_option = option | downcase %}
+    {% assign option_color_swatch = settings.option_color_swatch | downcase %}
+  
+    {% if option_color_swatch contains downcased_option %}
+    {% assign index = forloop.index0 %}
+    {% assign colorlist = '' %}
+    {% assign color = '' %}
+    {% assign option_count = 0 %}
+    {% for variant in product.variants %}
+    {% capture color %}
+    {{ variant.options[index] }}
+    {% endcapture %}
+    {% unless colorlist contains color %}
+    {% assign text = color | handleize %}
+
+    {% if option_count < 4 %}
+    <li>
+        <div class="tooltip">
+            {{color}}
+        </div>
+
+        <label data-value="{{ text }}" title="{{color}}" {% if variant.image != null %}  class="hex-{{ text | handle }}" {% endif %} style="
+          {%- if settings.color_swatch_style == 'variant' or settings.color_swatch_style == 'variant_grouped'-%}
+          {%- if variant.image != null -%}
+          {%- else -%}
+          background-color: {{ color | split: ' ' | last | handle }};
+          {%- endif -%}
+          {%- else -%}
+          {%- if text == 'white' -%}border: 1px solid #d1d1d1; {%- endif -%}
+          background-color: {{ color | split: ' ' | last | handle }};
+          {%- endif -%}
+        ">
+        
+        </label>
+
+        {% assign option_count = option_count | plus : 1 %}
+    </li>
+    {% endif %}
+
+    {% capture tempList %}
+    {{ colorlist | append: color | append: ' ' }}
+    {% endcapture %}
+
+    {% assign colorlist = tempList %}
+    {% endunless %}
+
+    {% endfor %}
+    {% endif %}
+    {% endfor %}
+
+    {% for product_option in product.options_with_values %}
+  
+  	{% assign downcased_option = product_option.name | downcase %}
+    {% assign option_color_swatch = settings.option_color_swatch | downcase %}
+  
+    {% if option_color_swatch contains downcased_option %}
+    {% if product_option.values.size > 4 %}
+    <li class="item-swatch-more">
+        <a href="{{ product.url}}" title="More Color">
+            + {{ product_option.values.size | minus : 4 }}
+        </a>
+    </li>
+    {% endif %}
+    {% endif %}
+    {% endfor %}
+</ul>

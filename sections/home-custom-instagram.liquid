@@ -1,0 +1,291 @@
+{% if section.settings.show_instagram %}
+
+<section class="home-instagram instagram home-custom-instagram" id="new-instagram-{{section.id}}">
+    <div class="container">
+        {% if section.settings.images_per_row == '5' %}
+        {% assign column_size = 5 %}
+        {% else %}
+        {% assign column_size = 12 | divided_by: section.settings.images_per_row %}
+        {% endif %}
+        
+        {% if section.settings.instagram_title != blank %}
+        <div class="widget-title{% if section.settings.title_style == 'style_2' %} not-before{% endif %}">   
+            <h3 class="box-title">
+                <span class="title"> 
+                <i class="fa fa-instagram fa-lg" aria-hidden="true"></i>
+                {% render 'multilang' with section.settings.instagram_title %}
+                </span>
+            </h3>
+            {% if section.settings.instagram_des != blank %}
+                <p>
+                    {% render 'multilang' with section.settings.instagram_des %}
+                </p>        
+            {% endif %}
+        </div>
+        {% endif %}
+        {% if section.settings.type_instagram == 'app' %}
+        <div class="caption-instagram">
+          {{ section.settings.embed_code }}
+        </div>
+        {% else %}
+
+        <div id="instafeed" class="row instagram-grid" data-instagram-feed-custom data-limit="{{ section.settings.limit }}" data-rows="{{ section.settings.images_per_row }}">
+          {% assign number = section.settings.images_per_row | plus: 0 %}
+          {% for block in section.blocks %}
+          {% if block.settings.enable and block.settings.image != blank %}
+          
+          <div class="item item-grid col-6 col-md-4 col-lg-{{column_size}} {{forloop.index}}" {% if forloop.index > number %}style="display: none"{% endif %}>
+            <a class="animate-hvr" {% if section.settings.type_instagram_by_gallery == 'link' %}href="{{ block.settings.link }}"{% else %}class="fancybox" rel="gallery1" href="{{ block.settings.image | img_url: 'master' }}" data-fancybox="images"{% endif %}>
+              <img {% render 'lazyload' %} data-srcset="{{ block.settings.image | img_url: '640x' }}" />
+            </a>
+          </div>
+          {% endif %}
+          {% endfor %}
+        </div>
+        <div class="infinite-scrolling-instagram">
+          <a href="javascript:void(0)">
+            <svg id="icon-plus-instagram" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                 viewBox="0 0 42 42" xml:space="preserve">
+              <polygon points="42,19 23,19 23,0 19,0 19,19 0,19 0,23 19,23 19,42 23,42 23,23 42,23 "/>
+            </svg>
+          </a>
+        </div>
+        {% endif %}
+        
+    </div>
+</section>
+
+<style>
+
+    {% assign instagram_bg =  section.settings.instagram_bg %}
+
+
+    #new-instagram-{{section.id}} {
+        padding-top: 40px;
+    }
+        
+    #new-instagram-{{section.id}},
+    #new-instagram-{{section.id}} .widget-title .box-title .title {
+        background-color: {{ instagram_bg }};
+    }
+    .home-custom-instagram .infinite-scrolling-instagram a svg{
+        fill: {{  section.settings.icon_plus_instagram }};
+    }
+
+</style>
+
+<script>
+    $(document).ready(function() {
+      var column = 'col-6 col-md-4 col-lg-{{column_size}}';
+      var toshow = '{{ section.settings.images_per_row }}';
+        var instagramBlock = $('[data-instagram-feed-custom]');
+
+        instagramBlock.each(function() {
+            
+            var self = $(this),
+                dataRows = self.data('rows'),
+                dataLimit = self.data('limit'),
+
+                item_instagram = self.find('.instagram-grid');
+
+            $('.infinite-scrolling-instagram a').click(function (e) {   
+                e.preventDefault();
+
+                if (self.find('.item-grid:hidden').length > 0) {
+                    self.find('.item-grid:hidden:lt(' + toshow + ')').each(function () {
+                        $(this).show();
+                    });
+                };
+
+                if(!self.find('.item-grid:hidden').length){
+                    $('.infinite-scrolling-instagram a').css('opacity','0.5');
+                };
+
+            });
+        });
+    });
+</script>
+
+{% endif %}
+
+{% schema %}
+  {
+    "name": "Home Custom Instagram",
+    "class": "home-instagram-sections",
+    "settings": [
+        {
+            "type": "checkbox",
+            "id": "show_instagram",
+            "label": "Enable",
+            "default": true
+        },
+        {
+            "type" : "color",
+            "id" : "instagram_bg",
+            "label" : "Background Color",
+            "default" : "#fff"
+        },
+        {
+            "type": "textarea",
+            "id": "instagram_title",
+            "label": "Title",
+            "default": "#Ella On Instagram"
+        },
+        {
+            "type": "textarea",
+            "id": "instagram_des",
+            "label": "Instagram Description",
+            "default": "Phasellus lorem malesuada ligula pulvinar commodo maecenas"
+        },
+        {
+            "type": "select",
+            "id": "title_style",
+            "label": "Title Style:",
+
+            "options": [
+                {
+                    "value": "style_1",
+                    "label": "Style 1" 
+                },
+                { 
+                    "value": "style_2",
+                    "label": "Style 2" 
+                }          
+            ],
+            "default": "style_1"
+        },
+        {
+            "type" : "radio",
+            "id" : "type_instagram",
+            "label" : "Show instagram by:",       
+            "options": [
+                {
+                    "value": "app",
+                    "label": "Embed Code App"
+                },
+                {
+                    "value": "default",
+                    "label": "Block image"
+                }
+            ],
+            "default": "default",
+            "info": "================="
+        },        		
+		{
+          "type" : "header",
+          "content" : "Settings For embed Code app"
+     	},
+		{
+		  "type" : "textarea",
+		  "id" : "embed_code",
+		  "label" : "Embed javascript Code"
+		},        		
+		{
+          "type" : "header",
+          "content" : "Settings For Image"
+     	},
+        {
+            "type" : "radio",
+            "id" : "type_instagram_by_gallery",
+            "label" : "Use gallery popup or Use link for image",       
+            "options": [
+                {
+                    "value": "link",
+                    "label": "Use link for image"
+                },
+                {
+                    "value": "popup_image",
+                    "label": "Use gallery popup"
+                }
+            ],
+            "default": "popup_image",
+            "info": "================="
+        },
+        {
+            "type": "text",
+            "id": "limit",
+            "label": "Limit the number of images to show",
+            "default": "100"
+        },
+        {
+            "type": "select",
+            "id": "images_per_row",
+            "label": "Images per row",
+            "options": [
+                {
+                    "value": "3",
+                    "label": "3"
+                },
+                {
+                    "value": "4",
+                    "label": "4"
+                },
+                {
+                    "value": "5",
+                    "label": "5"
+                },
+                {
+                    "value": "6",
+                    "label": "6"
+                }
+            ],
+            "default": "4"
+        },
+        {
+            "type": "select",
+            "id": "resolution_images",
+            "label": "Resolution of images",
+            "options": [
+            {
+                "value": "thumbnail",
+                "label": "Thumbnail"
+            },
+            {
+                "value": "low_resolution",
+                "label": "Low Resolution"
+            },
+            {
+                "value": "standard_resolution",
+                "label": "Standard Resolution"
+            }
+            ]
+        },
+        {
+            "type" : "color",
+            "id" : "icon_plus_instagram",
+            "label" : "Icon Plus Color",
+            "default" : "#3c3c3c"
+        }
+    ],
+    "blocks": [
+        {
+            "type": "instagram",
+            "name": "Instagram",
+			"settings": [
+				{
+                  "type": "checkbox",
+                  "id": "enable",
+                  "label" : "Enable?",
+                  "default" : true
+                },
+				{
+                  "type": "image_picker",
+                  "id": "image",
+                  "label" : "Image"
+                },
+				{
+                  "type": "url",
+                  "id": "link",
+                  "label" : "Link"
+                }
+			]
+        }
+    ],
+    "presets": [
+        {
+            "name": "Custom Instagram",
+            "category": "Instagram"
+        }
+    ]
+  }
+{% endschema %}

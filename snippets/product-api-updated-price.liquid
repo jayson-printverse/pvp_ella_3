@@ -1,0 +1,396 @@
+
+{% assign on_sale = false %}
+{% if product.variants[0].compare_at_price > product.variants[0].price %}
+  {% assign on_sale = true %}
+{% endif %}
+{% assign sold_out = true %}
+{% if product.available  %}
+  {% assign sold_out = false %}
+{% endif %}
+<div class="inner product-item{% if sold_out %} sold-out{% endif %}{% if on_sale %} on-sale{% endif %}" data-product-id="product-{{ product.id }}">
+	<div class="inner-top{% if product.has_only_default_variant %}{% else %} hide{% endif %}">
+        <div class="column col-img text-center">
+            <div class="product-top">
+                <div class="product-image{% if product.images.size > 1 and settings.image_swap %} image-swap{% endif %}">
+                    <a href="{{ product.url | within: collection }}" class="product-grid-image" data-collections-related="/collections/{{collection.handle}}?view=related">
+                        {%- assign img_pr = product.featured_image.src | product_img_url: '200x' -%}
+                        {%- assign img_0 = product.images[0].src | product_img_url: '200x' -%}
+                        {%- assign img_1 = product.images[1].src | product_img_url: '200x' -%}
+
+                        {% if product.images.size > 1 and settings.image_swap %}
+                        <img src="{{ img_0 }}" alt="{{ product.images[0].alt | escape }}"
+                            class="images-one lazyload"
+                            data-src="{{ img_0 }}"
+                            data-widths="[180, 360, 540, 720, 900, 1080, 1296, 1512, 1728, 2048]"
+                            data-aspectratio="{{ product.featured_image.aspect_ratio }}"
+                            data-sizes="auto">
+
+                        <span class="images-two">
+                        <img src="{{ img_1 }}" alt="{{ product.images[1].alt | escape }}"
+                            class="lazyload"
+                            data-src="{{ img_1 }}"
+                            data-widths="[180, 360, 540, 720, 900, 1080, 1296, 1512, 1728, 2048]"
+                            data-aspectratio="{{ product.featured_image.aspect_ratio }}"
+                            data-sizes="auto">
+
+                        </span>
+                        {% else %}
+                        <img src="{{ img_pr }}" alt="{{ product.featured_image.alt | escape }}"
+                            data-src="{{ img_pr }}"
+                            class="lazyload"
+                            data-widths="[180, 360, 540, 720, 900, 1080, 1296, 1512, 1728, 2048]"
+                            data-aspectratio="{{ product.featured_image.aspect_ratio }}"
+                            data-sizes="auto">
+                        {% endif %}
+                    </a>
+
+                  {% comment %}
+                    {% render 'product-label' with product as product %}
+                  {% endcomment %}  
+                  
+                </div>
+            </div>
+        </div>
+      
+        <div class="column col-price text-center col-sku">
+            {% if settings.show_vendor %}
+            <div class="product-vendor">
+                {{ product.vendor | link_to_vendor }}
+            </div>
+            {% endif %}
+
+            	{% if product.has_only_default_variant %}
+                  {% for variant in product.variants %}
+          			<div class="options-info">
+                      <div class="options-label">
+                          <div class="options-title">
+                              {{ variant.sku}}
+                          </div>
+                      </div>
+          			</div>
+                  
+
+  
+                  {% endfor %}
+          		{% else %}
+          		{% endif %}
+        </div>    
+
+        <div class="column col-prod">
+            {% if settings.show_vendor %}
+            <div class="product-vendor">
+                {{ product.vendor | link_to_vendor }}
+            </div>
+            {% endif %}
+
+            <a class="product-title" href="{{ product.url | within: collection }}">
+                {% render 'multilang' with product.title %}
+            </a>
+        </div>
+
+        <div class="column col-price text-center new_price">
+          {% if product.has_only_default_variant %}
+          	{% for variant in product.variants %}
+            	${{ variant.metafields.global['new__price'] | money_with_trailing_zeros | round: 2 }}
+          	{% endfor %}
+          	{% else %}
+          {% endif %} 
+
+     	</div>    
+      
+      
+      
+        <div class="column col-price text-center">
+            <div class="price-box">
+                {% if on_sale %}
+                <div class="price-sale">
+                    <span class="old-price">
+                        {{ product.compare_at_price_min | money }}
+                    </span>
+                    <span class="special-price">
+                        {% if product.price_varies %}
+                        {% render 'varies_from' %}
+                        {% endif %}
+                        {{ product.price_min | money }}
+                    </span>
+                </div>
+
+                {% else %}
+
+                <div class="price-regular">
+                    {% if product.price_varies %}
+                    <div class="group-prices">
+                        <span class="price-min">
+                            {{ product.price_min | money }}
+                        </span>
+                        <span class="symbol">-</span>
+                        <span class="price-max">
+                            {{ product.price_max | money }}
+                        </span>
+                    </div>
+                    {% else %}
+                  
+                 
+                        <span class="old-price">
+                            {{ product.price_min | money }}
+                        </span>
+                  		
+                    {% endif %}
+                  
+
+
+                        {% comment %} 
+                        {% if product.has_only_default_variant %}
+                          {% for variant in product.variants %}
+                            <span class="options-title">
+                                 <td>${{ product.metafields.global['shipping__us'] | money_with_trailing_zeros }}</td>
+                                 <td>${{ product.metafields.global['shipping__intl'] | money_with_trailing_zeros }}</td>
+                                 <td>${{ product.metafields.global['shipping__additional'] | money_with_trailing_zeros }}</td>
+                            </span>
+                          {% endfor %}
+                        {% else %}
+                        {% endif %}
+                        {% endcomment %}  
+                  
+                  
+                </div>
+                {% endif %}
+            </div>
+        </div>
+      
+
+          {% comment %}
+            <div class="column col-price text-center">
+              {% if product.has_only_default_variant %}
+                {% for variant in product.variants %}
+                    ${{ product.metafields.global['shipping__intl'] | money_with_trailing_zeros }}
+                {% endfor %}
+                {% else %}
+              {% endif %} 
+            </div>
+
+            <div class="column col-price text-center">
+              {% if product.has_only_default_variant %}
+                {% for variant in product.variants %}
+                    ${{ product.metafields.global['shipping__additional'] | money_with_trailing_zeros }}
+                {% endfor %}
+                {% else %}
+              {% endif %} 
+            </div>
+          {% endcomment %}      
+
+          {% comment %}
+            <div class="column col-price text-center">
+              {% if product.has_only_default_variant %}
+                {% for variant in product.variants %}
+                    {{ product.metafields.global['production__time'] }} days
+                {% endfor %}
+                {% else %}
+              {% endif %} 
+            </div>   
+          {% endcomment %}
+
+      
+		{% comment %}
+        <div class="column col-qtt text-center">
+          {% comment %}
+            {% assign variantCount = product.variants | size %}
+            {% unless variantCount > 1 %}
+            <div class="qty-group">
+                <a href="#" data-minus-quantity class="minus button"></a>
+                <input type="text" id="quantity__{{ product.id }}" name="quantity" value="1">
+                <a href="#" data-plus-quantity class="plus button"></a>
+            </div>
+            {% endunless %}
+          {% endcomment %}
+        </div>
+
+        <div class="column col-options text-center">
+            {% assign variantCount = product.variants | size %}
+            <form action="{{ routes.cart_url }}/add" method="post" class="variants" data-id="product-actions-{{ product.id }}" enctype="multipart/form-data">
+                {% if sold_out %}
+                <button class="btn add-to-cart-btn" type="submit" disabled="disabled" {% if settings.enable_multilang %}data-translate="products.product.unavailable"{% endif %}>
+                    {{ 'products.product.unavailable' | t }}
+                </button>
+
+                {% else %}
+
+                {% if variantCount > 1 %}
+               
+                    {{ 'products.product.show_options' | t }}
+             
+                {% else %}
+                <input type="hidden" name="id" value="{{ product.variants[0].id }}" />
+
+                <button data-express-addToCart class="btn add-to-cart-btn" type="submit" {% if settings.enable_multilang %}data-translate="products.product.add_to_cart"{% endif %}>
+                    {{ 'products.product.add_to_cart' | t }}
+                </button>
+                {% endif %}
+                {% endif %}
+            </form>
+            <div class="feedback-text" style="display:none;"></div>
+        </div>
+      {% endcomment %}
+    </div>
+</div>
+
+{% if product.has_only_default_variant %}
+	{% else %}
+        <div class="product-options" id="product-options-{{ product.id }}">
+            {% for variant in product.variants %}
+            <div class="options-items" id="variant-{{variant.id}}">
+                <div class="column col-img text-center">
+                  
+                  
+                <div class="product-image{% if product.images.size > 1 and settings.image_swap %} image-swap{% endif %}">
+                    <a href="{{ product.url | within: collection }}" class="product-grid-image" data-collections-related="/collections/{{collection.handle}}?view=related">
+                        {%- assign img_pr = variant.image.src | product_img_url: '200x' -%}
+                        {%- assign img_0 = variant.image.src | product_img_url: '200x' -%}
+                        {%- assign img_1 = variant.images[1].src | product_img_url: '56x' -%}
+
+                        {% if product.images.size > 1 and settings.image_swap %}
+                        <img src="{{ img_0 }}" alt="{{ variant.image.alt | escape }}"
+                            class="images-one lazyload"
+                            data-src="{{ img_0 }}"
+                            data-widths="[180, 360, 540, 720, 900, 1080, 1296, 1512, 1728, 2048]"
+                            data-aspectratio="{{ product.featured_image.aspect_ratio }}"
+                            data-sizes="auto">
+
+                        <span class="images-two">
+                        <img src="{{ img_1 }}" alt="{{ product.images[1].alt | escape }}"
+                            class="lazyload"
+                            data-src="{{ img_1 }}"
+                            data-widths="[180, 360, 540, 720, 900, 1080, 1296, 1512, 1728, 2048]"
+                            data-aspectratio="{{ product.featured_image.aspect_ratio }}"
+                            data-sizes="auto">
+
+                        </span>
+                        {% else %}
+                        <img src="{{ img_pr }}" alt="{{ product.featured_image.alt | escape }}"
+                            data-src="{{ img_pr }}"
+                            class="lazyload"
+                            data-widths="[180, 360, 540, 720, 900, 1080, 1296, 1512, 1728, 2048]"
+                            data-aspectratio="{{ product.featured_image.aspect_ratio }}"
+                            data-sizes="auto">
+                        {% endif %}
+                    </a>                  
+                    </div>
+                  </div>
+                  
+                  {% comment %}
+                    {% if variant.image.size != blank %}
+                    <img src="{{ variant.image.src | product_img_url: '56x' }}" alt="{{ variant.image.src | escape }}" >
+                    {% else %}
+                    <img src="{{ product.featured_image.src | product_img_url: '56x' }}" alt="{{ product.featured_image.src | escape }}" >
+                    {% endif %}
+                    <span class="options-title">
+                        {{ variant.title }}
+                    </span>
+                  {% endcomment %}
+              
+        <div class="column col-price text-center col-sku">
+            {% if settings.show_vendor %}
+            <div class="product-vendor">
+                {{ product.vendor | link_to_vendor }}
+            </div>
+            {% endif %}
+          
+                      	{% if product.has_only_default_variant %}
+                  {% else %}
+              
+          			<div class="options-info">
+                      <div class="options-label">
+                          <div class="options-title">
+                              {{ variant.sku}}
+                          </div>
+                      </div>
+
+          			</div>
+          		{% endif %}
+     </div>                
+                
+             
+              
+                <div class="column col-prod">
+                    <a class="product-title" href="{{ product.url | within: collection }}">
+                      {% render 'multilang' with product.title %} 
+                    </a>
+
+                </div>
+              
+                <div class="column col-price text-center">
+                  {% if product.has_only_default_variant %}
+                    {% else %}
+                      ${{ product.metafields.global['new__price']  }}                  
+                  {% endif %} 
+                  {% comment %}
+                  <span class="old-price">
+                    {{ product.price_min | money }}
+                  </span>
+                  {% endcomment %}
+                </div>
+              
+                <div class="column col-price text-center">
+                    <div class="price-box">
+                        {% if variant.compare_at_price > variant.price %}
+                        <span class="old-price">{{ variant.compare_at_price | money }}</span>
+                        <span class="special-price">
+                            {{ variant.price | money }}
+                        </span>
+                        {% else %}
+                        <span class="old-price">
+                            {{ variant.price | money }}
+                        </span>
+                        {% endif %}                     
+                    </div>
+                </div>
+              	
+              	
+				{% comment %}
+                <div class="column col-price text-center">
+                  {% if product.has_only_default_variant %}
+                    {% else %}    
+                        ${{ product.metafields.global['shipping__intl'] | money_with_trailing_zeros }}
+                  {% endif %} 
+                </div>
+
+                <div class="column col-price text-center">
+                  {% if product.has_only_default_variant %}
+                    {% else %}                 
+						${{ product.metafields.global['shipping__additional'] | money_with_trailing_zeros }}
+                  {% endif %}        
+                </div>  
+              
+				{% endcomment %}   
+
+              	{% comment %}
+                <div class="column col-qtt text-center">
+                    <div class="qty-group">
+                        <a href="#" data-minus-quantity class="minus button"></a>
+                        <input type="text" id="variant_{{ variant.id }}" name="quantity" value="1">
+                        <a href="#" data-plus-quantity class="plus button"></a>
+                    </div>
+                </div>
+
+                <div class="column col-options text-center">
+                    <form action="{{ routes.cart_url }}/add" method="post" class="variants" data-id="product-actions-{{ variant.id }}" enctype="multipart/form-data">
+                        {% if variant.available %}
+                        <button data-express-addToCart class="btn add-to-cart-btn" id="{{ variant.id }}" type="submit" {% if settings.enable_multilang %}data-translate="products.product.add_to_cart"{% endif %}>
+                            {{ 'products.product.add_to_cart' | t }}
+                        </button>
+                        <input type="hidden" name="id" value="{{ variant.id }}" />
+
+                        {% else %}
+                        <button class="btn add-to-cart-btn" type="submit" disabled="disabled" {% if settings.enable_multilang %}data-translate="products.product.unavailable"{% endif %}>
+                            {{ 'products.product.unavailable' | t }}
+                        </button>
+                        {% endif %}
+                    </form>
+                    <div class="feedback-text" style="display:none;"></div>
+                </div>
+              {% endcomment %}
+            </div>
+            {% endfor %}
+        </div>
+
+{% endif %}

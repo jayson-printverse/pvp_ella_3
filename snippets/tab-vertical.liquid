@@ -1,0 +1,335 @@
+<div class="tabs__product-page vertical-tabs">
+  <div class="wrapper-tab-content">
+    {% if section.settings.display_product_detail_description == false %}
+    {% assign tab2_active = true %}
+    {% elsif section.settings.display_product_detail_description == false and section.settings.display_product_reviews == false %}
+    {% assign tab3_active = true %}
+    {% elsif section.settings.display_product_detail_description == false and section.settings.display_product_reviews == false and section.settings.display_shipping_returns == false %}
+    {% assign tab4_active = true %}
+    {% endif %}
+
+    {% if section.settings.display_product_detail_description %}
+    
+    {% assign des = product.description %}
+    {% if des contains '[countdown]' or product.description contains '[custom tab]' %}            
+    {% assign des = product.description | split:'[/countdown]</p>' | last %}
+    {% assign des = des | split:'[custom tab]' | first | split:'<iframe' | first %}
+    {% endif %}
+    
+
+
+    <div class="tab-title">
+      <a href="#" data-tapTop data-target="#collapse-tab1" class="tab-links">
+        {% render 'multilang' with section.settings.product_description_title %}
+        <span class="icon-dropdown">
+          <i class="fa fa-angle-down"></i>
+        </span>
+      </a>
+    </div>
+    
+    <div class="tab-content" data-TabContent id="collapse-tab1" style="display: none;">
+     
+      <table class="table table-striped">
+        <tbody>
+          	<tr class="sku-product">
+              <th scope="row">Product SKU#</th>
+              <td><span>{{ current_variant.sku }}</span></td>
+            </tr>          
+          {% if product.metafields.tech_specs['show_pms'] != blank %}
+          	<tr class="pms-product">
+              <th scope="row">Pantone® Color</th>
+              <td><span>{{ current_variant.metafields.tech_specs['product__color-pms'] }}</span></td>
+            </tr>
+          {% endif %}
+          
+          {% if product.metafields.tech_specs['product__type'] != blank %}
+            <tr>
+              <th scope="row">Product Type</th>
+              <td>{{ product.metafields.tech_specs['product__type'] }}</td>
+            </tr>
+          {% endif %}
+          {% if product.metafields.tech_specs['product__material'] != blank %}
+            <tr>
+              <th scope="row">Material</th>
+              <td>{{ product.metafields.tech_specs['product__material'] }}</td>
+            </tr>
+          {% endif %}
+          
+          {% if product.metafields.tech_specs['product__volume'] != blank %}
+            <tr>
+              <th scope="row">Volume</th>
+              <td class="product-vol">{{ product.metafields.tech_specs['product__volume'] }}</td>
+            </tr>
+          {% endif %}
+          
+          {% if product.metafields.tech_specs['product__size'] != blank %}
+            <tr>
+              <th scope="row">Size</th>
+              <td class="product-size">{{ product.metafields.tech_specs['product__size'] }}</td>
+            </tr>
+          {% endif %}
+          
+          {% if product.metafields.tech_specs['product__height'] != blank %}
+            <tr>
+              <th scope="row">Height</th>
+              <td class="product-height">{{ product.metafields.tech_specs['product__height'] }}</td>
+            </tr>
+          {% endif %}
+          
+          {% if product.metafields.tech_specs['product__width'] != blank %}
+            <tr>
+              <th scope="row">Width</th>
+              <td class="product-width">{{ product.metafields.tech_specs['product__width'] }}</td>
+            </tr>
+          {% endif %}
+          
+          {% if product.metafields.tech_specs['product__diameter'] != blank %}
+            <tr>
+              <th scope="row">Diameter</th>
+              <td class="product-diameter">{{ product.metafields.tech_specs['product__diameter'] }}</td>
+            </tr>
+          {% endif %}
+          
+          {% if product.metafields.tech_specs['product__weight'] != blank %}
+            <tr>
+              <th scope="row">Weight</th>
+              <td>{{ product.metafields.tech_specs['product__weight'] }}</td>
+            </tr>
+          {% endif %}
+          
+          {% comment %}
+          {% if product.metafields.tech_specs['product__width'] != blank %}
+            <tr>
+              <th scope="row">Product Dimensions</th>
+              <td>{{ product.metafields.tech_specs['product__width'] }} in [w]/ {{ product.metafields.tech_specs['product__height'] }} in [h]
+                 {% if product.metafields.tech_specs['product__diameter'] != blank %}
+                 	/ {{ product.metafields.tech_specs['product__diameter'] }} in [d]</td>
+              	 {% endif %}
+            </tr>
+          {% endif %}
+          {% endcomment %}
+
+          {% if product.metafields.tech_specs['product__imprint-width'] != blank %}
+            <tr>
+              <th scope="row">Template Dimensions</th>
+              <td class="imprint-dim">{{ product.metafields.tech_specs['product__imprint-width'] }} px / {{ product.metafields.tech_specs['product__imprint-height'] }} px</td>
+            </tr>
+          {% endif %}
+          {% comment %}
+          {% if product.metafields.tech_specs['product__imprint-width'] != blank %}
+            <tr>
+              <th scope="row">Template Dimensions</th>
+              <td class="imprint-dim__in">{{ product.metafields.tech_specs['product__imprint-width'] | divided_by: 300.0 | round: 3 }} in. / {{ product.metafields.tech_specs['product__imprint-height'] | divided_by: 300.0  | round: 3 }} in.</td>
+            </tr>
+          {% endif %}  
+          
+          {% if product.metafields.tech_specs['product__imprint-width'] != blank %}
+            <tr>
+              <th scope="row">Template Dimensions</th>
+              <td class="imprint-dim__mm">{{ product.metafields.tech_specs['product__imprint-width'] | times: 25.4 | divided_by: 300.0 | round: 1 }} mm / {{ product.metafields.tech_specs['product__imprint-height'] | times: 25.4 | divided_by: 300.0| round: 1 }} mm</td>
+            </tr>
+          {% endif %}
+          {% endcomment %}
+                    
+          
+          
+
+        </tbody>
+      </table>
+      
+
+      
+{% comment %}      
+      {% if section.settings.display_product_sku %}
+          <div class="option-product">
+            <span>{{ variant.option1 }}</span>
+
+          </div>
+
+	  {% endif %}
+      
+      
+      <div class="pms-product">
+        <span>{{ current_variant.metafields.tech_specs['product__color-pms'] }}</span>
+      </div>
+      
+      <div class="product-desc">
+        <span>{{ current_variant.metafields.product_description['bullet__pts'] }}</span>
+      </div>      
+ {% endcomment %}
+
+
+      
+      
+      
+      										{% comment %}
+                                              {% if settings.enable_multilang and des contains '[lang2]' %}
+                                              <div class="lang1">
+                                                {{ des | split: '[lang2]' | first }}
+                                              </div>
+                                              <div class="lang2">
+                                                {{ des | split: '[lang2]' | last }}
+                                              </div>
+                                              {% else %}
+                                              <div>
+                                                {{ des | split: '[lang2]' | first }}
+                                              </div>
+                                              {% endif %}
+        									{% endcomment %}
+      
+      
+      {% render 'product-detail-gallery_lookbook' %}
+      
+      {% if settings.enable_ask_an_expert %}
+      <div class="theme-ask" data-toggle="modal" data-target="#ask_an_expert">
+        <h5 class="ask-an-expert-text">
+          {% render 'multilang' with settings.ask_an_expert %}
+        </h5>
+      </div>
+      {% endif %}
+    </div>
+    {% endif %}
+    
+    {% if section.settings.display_product_reviews %}
+    <div class="tab-title">
+      <a href="#" data-tapTop data-target="#collapse-tab2" class="tab-links {% if tab2_active%}active{% endif %}">
+      	{% render 'multilang' with section.settings.product_review_title %}
+        <span class="icon-dropdown">
+          <i class="fa fa-angle-down"></i>
+        </span>
+      </a>
+    </div>
+    
+    <div class="tab-content" data-TabContent id="collapse-tab2">
+      <div id="shopify-product-reviews" data-id="{{product.id}}">
+        {{ product.metafields.spr.reviews }}
+      </div>
+    </div>
+    {% endif %}
+    
+    {% if section.settings.display_shipping_returns %}
+    <div class="tab-title">
+      <a href="#" data-tapTop data-target="#collapse-tab3" class="tab-links {% if tab3_active%}active{% endif %}">
+      	{% render 'multilang' with section.settings.shipping_returns_title %}
+        <span class="icon-dropdown">
+          <i class="fa fa-angle-down"></i>
+        </span>
+      </a>
+    </div>
+    
+    <div class="tab-content" data-TabContent id="collapse-tab3">
+    
+    {% comment %}
+    Shipping Content  
+	{% endcomment %}
+    <div class="grid pb-5">
+      <div class="grid-item">
+
+   		{% comment %}
+        Pricing and shipping table
+        {% endcomment %}
+        <div style="overflow-x:auto;">
+          <table class="full">
+            <thead>
+              <tr>
+                {% comment %}
+                <th>Per Unit</th>
+                {% endcomment %}
+                <th>Domestic US</th>
+                <th>Intl Shipping</th>
+                <th>Additional Item</th>
+              </tr>
+            </thead>
+            
+            <tbody>
+
+              <tr>
+                {% comment %}
+                <td>{{ product.price | money_with_currency }}</td>
+                {% endcomment %}
+                <td>${{ product.metafields.global['shipping__us'] | money_with_trailing_zeros }}</td>
+                <td>${{ product.metafields.global['shipping__intl'] | money_with_trailing_zeros }}</td>
+                <td>${{ product.metafields.global['shipping__additional'] | money_with_trailing_zeros }}</td>
+              </tr>
+
+            </tbody>
+          </table>
+        </div>
+
+ 
+      </div>
+
+
+    </div>
+      
+      
+      {% comment %}   
+      
+      {% assign content = section.settings.shipping_returns_content %}
+      
+      {% if content != blank %}
+      {% if settings.enable_multilang and content contains '[lang2]' %}
+      <div class="lang1">
+        {{ content | split: '[lang2]' | first }}
+      </div>
+      <div class="lang2">
+        {{ content | split: '[lang2]' | last }}
+      </div>
+      {% else %}
+      <div>
+        {{ content | split: '[lang2]' | first }}
+      </div>
+      {% endif %}
+      {% endif %}
+      
+
+      Add Help center Link in Product Pages - Jayson Jan 27, 2021 10:52AM
+
+      
+      <div class="theme-ask">
+        <h5 class="ask-an-expert-text">
+          {% render 'multilang' with settings.ask_an_expert %}
+          <i class="fa fa-question-circle"></i>
+          <span class="text">Have Questions?<a href="javascript:void(0)" title="Ask An Expert" data-toggle="modal" data-target="#ask_an_expert">Ask An Expert</a> </span>
+        </h5>
+        <p>or visit our <a href="https://help.printversepro.com/" title="Help Center" class="help_center" target="_blank">Help Center</a><p>
+      </div>
+            {% endcomment %}
+      
+    </div>
+    {% endif %}
+    
+   {% if section.settings.display_custom_tab %}
+    <div class="tab-title">
+      <a href="#" data-tapTop data-target="#collapse-tab4" class="tab-links {% if tab2_active%}active{% endif %}">
+      	{% render 'multilang' with section.settings.custom_tab_title %}
+        <span class="icon-dropdown">
+          <i class="fa fa-angle-down"></i>
+        </span>
+      </a>
+    </div>
+    
+    <div class="tab-content" data-TabContent id="collapse-tab4">
+      {% if section.settings.custom_tab_type == 'all' %}
+        {% render 'multilang-block' with section.settings.custom_tab_content %}
+      {% elsif product.description contains '[custom tab]' %}
+        {% assign des = product.description | split:'[custom tab]' | last | split: '[/custom tab]' | first %}
+        
+        {% if settings.enable_multilang and des contains '[lang2]' %}
+        <div class="lang1">
+          {{ des | split: '[lang2]' | first }}
+        </div>
+        <div class="lang2">
+          {{ des | split: '[lang2]' | last }}
+        </div>
+        {% else %}
+        <div>
+          {{ des | split: '[lang2]' | first }}
+        </div>
+        {% endif %}
+        
+      {% endif %}
+      </div>
+  {% endif %} 
+  </div>
+</div>

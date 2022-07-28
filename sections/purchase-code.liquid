@@ -1,0 +1,56 @@
+<script>
+  var halo_app = {
+    url: '{{ shop.permanent_domain }}',
+    tid: '{{ section.settings.tid }}',
+    domain: '{{ shop.domain }}',
+    license: '48d02feb{{ section.settings.license }}cab14796',
+  };
+</script>
+{% schema %}
+  {
+    "name": "License Verification App",
+    "settings": [
+		{
+          "type": "header",
+          "content": "Please enter your envato purchase code here"
+        },
+        {
+          "type": "text",
+          "id": "license",
+          "label": "Purchase Code from Envato"
+        },
+        {
+          "type": "radio",
+          "id": "tid",
+          "options": [
+            {
+              "value": "9691007",
+              "label": "Always enable"
+            }
+          ],
+          "default": "9691007",
+          "label": "Theme ID"
+        },
+        {
+           "type": "header",
+           "content": "[How to find your purchase code](https:\/\/help.market.envato.com\/hc\/en-us\/articles\/202822600-Where-Is-My-Purchase-Code)"
+        },
+        {
+           "type": "paragraph",
+           "content": "Note for you:"
+        },
+        {
+           "type": "paragraph",
+           "content": "- Don't share your purchase code"
+        },
+        {
+           "type": "paragraph",
+           "content": "- Each license will have different purchase code. Our theme is single domain use. One license for one domain."
+        },
+        {
+           "type": "paragraph",
+           "content": "- Contact us at [support@halothemes.com](mailto:support@halothemes.com) if you need any helps"
+        }
+	]
+  }
+{% endschema %}

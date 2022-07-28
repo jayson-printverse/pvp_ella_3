@@ -1,0 +1,308 @@
+{% if section.settings.display_block_newsletter %}
+{% if section.blocks.size > 0 %}
+<div class="home2-custom-block footer-top-newsletter" id="custom-block-{{section.id}}">
+    {% for block in section.blocks %}
+  
+        <div class="{% comment %}custom-block-banner{% endcomment %} banner-large-img lazyload" {% comment %}data-bgset="{{ block.settings.image_new | img_url: '2048x' }}"{% endcomment %}>
+        
+            {% if block.settings.banner_title != blank or block.settings.banner_heading != blank  or block.settings.banner_button != blank %}
+            <div class="banner-content">
+
+                {% if block.settings.banner_title != blank %}
+                <h4 class="banner-title"
+                    style="{% if block.settings.font_size_banner_title != blank %}
+                        font-size: {{ block.settings.font_size_banner_title }};
+                        {% endif %}
+                        {% if block.settings.color_banner_title != blank %}
+                        color:{{ block.settings.color_banner_title }};
+                        {% endif %}">
+                {% render 'multilang' with block.settings.banner_title  %}
+                </h4>
+                {% endif %}
+
+                {% if block.settings.banner_heading != blank %}
+                <h2 class="banner-heading"
+                    style="{% if block.settings.font_size_banner_heading != blank %}
+                        font-size: {{ block.settings.font_size_banner_heading }};
+                        {% endif %}
+                        {% if block.settings.color_banner_heading != blank %}
+                        color:{{ block.settings.color_banner_heading }};
+                        {% endif %}">
+                {% render 'multilang' with block.settings.banner_heading  %}
+                </h2>
+
+                <div class="block-content">
+                    {% render 'newsletter-form-block' %}
+                </div>
+                {% endif %}
+               
+            </div>
+            {% endif %}  
+        </div>
+        <style>
+            .footer-top-newsletter .banner-large-img{
+                {% if block.settings.image_new != blank %}
+              background: linear-gradient(
+                256.96deg, #04CFEC 18.71%, rgba(143, 48, 198, 0.28125) 64.92%, rgba(101, 33, 221, 0) 88.89%);
+                background-image: -webkit-gradient(linear, left top, left bottom, from(#3c1384), to(#3c1384));
+                background-image: linear-gradient(
+                180deg, #3c1384, #3c1384);
+                z-index: -100;              
+                /* background: url({{ block.settings.image_new | img_url: '2048x' }}); */
+                background-position: center top;
+                background-repeat: repeat-x;
+                background-attachment: fixed;
+                background-size: cover;
+                text-align: center;
+                {% else %}
+                background: #232323;
+                background-position: center top;
+                background-repeat: repeat-x;
+                background-attachment: fixed;
+                background-size: cover;
+                text-align: center;
+                {% endif %}
+            }
+            .footer-top-newsletter .block-content .input-group-field{
+                color: {{ block.settings.ft_input_text }};
+                border: 1px solid {{ block.settings.ft_input_br }};
+                background: {{ block.settings.ft_input }};
+            }
+            .footer-top-newsletter .banner-large-img .block-content .content-input i{
+                color: {{ block.settings.ft_input_text }};
+            }
+            .footer-top-newsletter .block-content .input-group-field::-webkit-input-placeholder {
+              color: {{ block.settings.ft_input_text }} !important;
+              opacity: 1;
+            }
+            .footer-top-newsletter .block-content .input-group-field::-moz-placeholder {
+              color: {{ block.settings.ft_input_text }} !important;
+            }
+            .footer-top-newsletter .block-content .input-group-field::-ms-input-placeholder {
+              color: {{ block.settings.ft_input_text }} !important;
+            }
+            .footer-top-newsletter .block-content .input-group-field::-moz-placeholder {
+              color: {{ block.settings.ft_input_text }} !important;
+            }
+            .footer-top-newsletter .block-content .btn{
+                background: {{ block.settings.ft_submit }};
+                color: {{ block.settings.ft_submit_text }};
+                border: 1px solid {{ block.settings.ft_submit_br }};
+            }
+            .footer-top-newsletter .block-content .btn:hover{
+                background: {{ block.settings.ft_submit_hover }};
+                color: {{ block.settings.ft_submit_text_hover }};
+                border: 1px solid {{ block.settings.ft_submit_br_hover }};
+            }
+            .footer-top-newsletter .social-icons li a{
+                color: {{ block.settings.color_social }};
+            }
+            @media (max-width: 767px) {
+                .footer-top-newsletter .banner-content .banner-title{
+                    color: {{ block.settings.color_banner_title }} !important;
+                }
+                .footer-top-newsletter .banner-content .banner-heading{
+                    color: {{ block.settings.color_banner_heading }} !important;
+                }
+            }
+
+        </style>
+    {% endfor %}
+</div>
+
+<style>
+  {% assign margin_bottom =  section.settings.margin_bottom %}  
+
+    @media (max-width: 767px) {
+        #custom-block-{{ section.id }} {
+            margin-bottom: {{ section.settings.margin_bottom_mb }}px;
+        }
+    }
+
+    @media (min-width: 768px) and (max-width: 1199px) {
+        #custom-block-{{ section.id }} {
+            margin-bottom: {{ section.settings.margin_bottom_tab }}px;
+        }
+    }
+  
+    @media (min-width: 1200px) {
+        #custom-block-{{ section.id }} {
+        margin-bottom: {{ margin_bottom }}px;
+        }
+    } 
+
+</style>
+{% endif %}
+{% endif %}
+
+{% schema %}
+  {
+    "name": "Custom Block Newsletter",
+    "class": "custom-block-newsletter",
+    "max_blocks": 1,
+    "settings": [
+        {
+            "type": "header",
+            "content": "Header"
+        },
+        {
+            "type": "checkbox",
+            "id": "display_block_newsletter",
+            "label": "Display Block Newsletter?",
+            "default": true
+        },
+        {
+            "type": "header",
+            "content": "Margin Bottom:"
+        },
+        {
+            "type": "range",
+            "id": "margin_bottom_mb",
+            "label": "Mobile",
+            "min": 0,
+            "max": 100,
+            "step": 1,
+            "default": 0
+        },
+        {
+            "type": "range",
+            "id": "margin_bottom_tab",
+            "label": "Tablet",
+            "min": 0,
+            "max": 100,
+            "step": 1,
+            "default": 0
+        },             
+        {
+            "type": "range",
+            "id": "margin_bottom",
+            "label": "Margin Bottom",
+            "min": 0,
+            "max": 100,
+            "step": 1,
+            "default": 0
+        }    
+    ],
+    "blocks": [
+        {
+            "type": "image",
+            "name": "Newsletter Block",
+            "settings": [           
+                {
+                    "type": "image_picker",
+                    "id": "image_new",
+                    "label" : "Select Image"
+                },
+                {
+                    "type": "header",
+                    "content": "Banner Content"
+                },
+                {
+                    "type" : "text",
+                    "id" : "banner_title",
+                    "label" : "Banner Title",
+                    "default" : "Newsletter Sign Up"
+                },
+                {
+                    "type" : "text",
+                    "id" : "font_size_banner_title",
+                    "label" : "Title Font Size ",
+                    "default" : "20px"
+                },
+                {
+                    "type" : "color",
+                    "id" : "color_banner_title",
+                    "label" : "Title Color",
+                    "default" : "#ffffff"
+                },
+
+                {
+                    "type" : "text",
+                    "id" : "banner_heading",
+                    "label" : "Banner Heading",
+                    "default" : "Receive our latest updates about our products and promotions."
+                },
+                {
+                    "type" : "text",
+                    "id" : "font_size_banner_heading",
+                    "label" : "Heading Font Size ",
+                    "default" : "12px"
+                },
+                {
+                    "type" : "color",
+                    "id" : "color_banner_heading",
+                    "label" : "Heading Color",
+                    "default" : "#ffffff",
+                    "info": "======================="
+                },
+                {
+                    "type" : "color",
+                    "id" : "ft_input",
+                    "label" : "Input Button Background",
+                    "default" : "#ffffff"
+                },
+                {
+                    "type" : "color",
+                    "id" : "ft_input_br",
+                    "label" : "Input Button Border Color",
+                    "default" : "#ffffff"
+                },
+                {
+                    "type" : "color",
+                    "id" : "ft_input_text",
+                    "label" : "Input Button Text Color",
+                    "default" : "#5f5f5f"
+                },
+                {
+                    "type" : "color",
+                    "id" : "ft_submit",
+                    "label" : "Submit Button Background",
+                    "default" : "#0f0f0f"
+                },
+                {
+                    "type" : "color",
+                    "id" : "ft_submit_br",
+                    "label" : "Submit Button Border",
+                    "default" : "#0f0f0f"
+                },
+                {
+                    "type" : "color",
+                    "id" : "ft_submit_text",
+                    "label" : "Submit Button Text Color",
+                    "default" : "#ffffff"
+                },
+                {
+                    "type" : "color",
+                    "id" : "ft_submit_hover",
+                    "label" : "Submit Button Background Hover",
+                    "default" : "#fff"
+                },
+                {
+                    "type" : "color",
+                    "id" : "ft_submit_br_hover",
+                    "label" : "Submit Button Border Hover",
+                    "default" : "#232323"
+                },
+                {
+                    "type" : "color",
+                    "id" : "ft_submit_text_hover",
+                    "label" : "Submit Button Text Color Hover",
+                    "default" : "#232323",
+                    "info": "======================="
+                }
+            ]
+        }
+    ],
+    "presets": [
+        {
+            "name": "Custom Block Newsletter",
+            "category": "Newsletter",
+            "blocks": [
+                {
+                    "type": "image"
+                }         
+            ]
+        }
+    ]
+  }
+{% endschema %}

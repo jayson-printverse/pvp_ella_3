@@ -1,0 +1,22 @@
+<div class="countdown-progressbar">
+  <div class="progressbar">
+    {% if section.settings.progressbar_1 != blank or section.settings.progressbar_2 != blank %}
+    <p class="progressbar-text">
+      {% render 'multilang' with section.settings.progressbar_1 %} 
+      <span class="count"></span>
+      {% render 'multilang' with section.settings.progressbar_2 %} 
+    </p>
+    {% endif %}
+    <div id="progressbar">
+      <span></span>
+    </div>
+  </div>
+
+  <div class="countdown-table">
+    <label>
+      {% render 'multilang' with section.settings.text_countdown %}
+    </label>
+
+    <div class="countdown-item" data-countdown data-countdown-value="{{ count_down_final }}"></div>
+  </div>
+</div>

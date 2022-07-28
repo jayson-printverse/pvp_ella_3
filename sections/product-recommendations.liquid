@@ -1,0 +1,100 @@
+{% assign number_of_related_products = section.settings.number_of_related_products | times:1 %}
+
+{% if settings.product_layout == "gallery" or template.suffix == 'gallery' or settings.product_layout == "full_with" or template.suffix == 'full-width' %}
+    {%- assign class = 'four-items verticle' -%}
+    {%- assign rows = '4' -%}
+    {%- assign grid_item_width = 'col-6 col-md-4 col-lg-3 col-xl-12' -%}
+
+{% elsif settings.product_layout == "grouped" or template.suffix == 'grouped' %}
+    {%- assign class = 'five-items' -%}
+    {%- assign rows = '5' -%}
+    {%- assign grid_item_width = 'col-6 col-md-4 col-lg-3 col5' -%}
+{% else %}
+
+  {% if section.settings.style_moreview == 'horizontal' or settings.product_layout == 'default' %}
+    {%- assign class = 'four-items' -%}
+    {%- assign rows = '4' -%}
+    {%- assign grid_item_width = 'col-6 col-md-4 col-lg-3' -%}
+
+  {% else %}
+    {%- assign class = 'five-items' -%}
+    {%- assign rows = '5' -%}
+    {%- assign grid_item_width = 'col-6 col-md-4 col-lg-3 col5' -%}
+  {% endif %}
+{% endif %}
+{% if section.settings.display_related_products %}
+<div id="product-recommendations">
+  <div class="container">
+    <div class="related-products page-width product-recommendations js-product-recomendation" data-template="{% if template.suffix == 'gallery' or template.suffix == 'full-width' %}{{ template.suffix }}{% endif %}" data-product-id="{{ product.id }}" data-limit="{{ number_of_related_products }}" data-section-id="{{ section.id }}" data-section-type="product-recommendations" data-featured-products>
+      {% if recommendations.products_count > 0 %}
+      {% if section.settings.related_products_title %}
+      <div class="widget-title not-before">   
+        <h3 class="box-title">
+          <span class="title"> 
+            {% render 'multilang' with section.settings.related_products_title %}
+          </span>
+        </h3>    
+      </div>
+      {% endif %}
+      <div class="widget-product">
+        <div class="products-grid grid grid--uniform grid--view-items row {{ class }}" data-row="{{ rows }}">
+          {% for product in recommendations.products %}
+          <div class="grid-item small--one-half medium-up--one-quarter col-12 {% if settings.product_image_border %} grid-item-border{% endif %}">
+            {% render 'product-grid-item' with product as product %}
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+      {% endif %}
+    </div>
+  </div>
+</div>
+{% endif %}
+{% schema %}
+  {
+    "name": "Products Recomendation",
+	"class": "col-12",
+    "settings": [
+        {
+            "type": "checkbox",
+            "id": "display_related_products",
+            "label": "Display Related Products?",
+            "default": true
+        },
+        {
+            "type": "text",
+            "id": "related_products_title",
+            "label": "Title of related products block",
+            "default": "Related Products"
+        },
+        {
+            "type": "text",
+            "id": "number_of_related_products",
+            "label": "Number of related products",
+            "default": "8"
+        }
+  ]
+  }
+{% endschema %}
+{% if settings.product_layout == "gallery" or template.suffix == 'gallery' or settings.product_layout == "full_with" or template.suffix == 'full-width' %}
+<script>
+    $(document).ready(function() {
+        if (window.innerWidth >= 1200) {
+            var relatedBlock = $('.relate-verticle'),
+                productItem = relatedBlock.find('.products-grid .grid-item');
+
+            var maxHeight = -1;
+            productItem.each(function() {
+                if ($(this).height() > maxHeight) {
+                    maxHeight = $(this).height();
+                };
+            });
+            productItem.each(function() {
+                if ($(this).height() < maxHeight) {
+                    $(this).css('margin', Math.ceil((maxHeight-$(this).height())/2) + 'px 0');
+                };
+            }); 
+        };          
+    });
+</script>
+{% endif %}
