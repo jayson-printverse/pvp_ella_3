@@ -1851,7 +1851,7 @@
           "1545637133729"
         ],
         "settings": {
-          "style_moreview": "left_vertical",
+          "style_moreview": "horizontal",
           "enable_zoom_image": false,
           "video_product": false,
           "video_product_icon": "#c1c1c1",
