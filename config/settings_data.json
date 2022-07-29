@@ -3687,7 +3687,7 @@
       "product-recommendations-2": {
         "type": "product-recommendations-2",
         "settings": {
-          "show_related_products": true,
+          "show_related_products": false,
           "related_title": "More Products",
           "related_grid_num": "4",
           "related_grid_row": "1"
