@@ -85,7 +85,7 @@
     "enable_hover_product_image": false,
     "use_color_swatch": true,
     "option_color_swatch": "Color, Couleur, Màu Sắc",
-    "color_swatch_style": "normal",
+    "color_swatch_style": "variant_grouped",
     "enable_checkbox": false,
     "checkbox_text": "I agree with the terms and conditions",
     "btn_1_bg_color": "#282e32",
