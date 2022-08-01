@@ -582,6 +582,17 @@ $color_slick_arrow: #323232;
             margin-bottom: 0.25rem;
         }
     }
+
+    .swatch {
+        
+        .swatch-element {
+
+            label {
+                min-width: 2rem;
+                height: 2rem;
+            }
+        }
+    }
 }
 
 @media (max-width: 359px) {
@@ -8489,7 +8500,8 @@ $color_slick_arrow: #323232;
             }
           	
             .btn-sign-in {
-				background-color: rgba(255, 255, 255, 0.2);              
+				background-color: rgba(0, 0, 0, 0.1); 
+                background-blend-mode: difference;             
                 color: #fff;
                 //font-weight: 500;
                 border-radius: 30px;

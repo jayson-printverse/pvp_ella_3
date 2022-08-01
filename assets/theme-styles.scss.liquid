@@ -815,7 +815,7 @@ input[type="checkbox"] + label {
         border-right: none;
         background: rgba(255, 255, 255, 0);
         @include rotate(-45);
-        @include transition(all .1s);
+        @include transition(all .1s cubic-bezier(0.215,0.61,0.355,1));
     }
 }
 
@@ -1824,7 +1824,7 @@ table {
     @include transform(translateY(-50%));
     z-index: 1;
     outline: none;
-    @include transition(all .5s ease);
+    @include transition(all .5s cubic-bezier(0.215,0.61,0.355,1));
     @include border-radius(50%);
 
     .fa {
@@ -2192,7 +2192,7 @@ table {
 
     .images-one,
     .images-two {
-        @include transition(all .5s ease);
+        @include transition(all .5s cubic-bezier(0.215,0.61,0.355,1));
     }
 
     .images-two {
@@ -2785,7 +2785,7 @@ table {
         right: 0;
         z-index: 2;
         @include opacity(0);
-        @include transition(opacity .5s ease);
+        @include transition(opacity .5s cubic-bezier(0.215,0.61,0.355,1));
         visibility: hidden;
 
         &.abs-center {
@@ -4604,7 +4604,7 @@ table {
         height: 100%;
         background-color: rgba(255, 255, 255, .7);
         @include opacity(0);
-        @include transition(opacity .5s ease);
+        @include transition(opacity .5s cubic-bezier(0.215,0.61,0.355,1));
     }
 }
 
