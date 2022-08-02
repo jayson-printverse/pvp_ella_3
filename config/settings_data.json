@@ -3353,9 +3353,9 @@
               "border_banner_button": "#ff0050",
               "color_banner_button": "#ffffff",
               "min_width_banner_button": "",
-              "padding_banner_button": "16px 32px",
+              "padding_banner_button": "0.75rem 1.5rem",
               "border_radius_banner_button": "55px",
-              "font_size_banner_button": "14px"
+              "font_size_banner_button": "15px"
             }
           }
         },
