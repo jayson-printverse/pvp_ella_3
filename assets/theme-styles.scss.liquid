@@ -14168,11 +14168,40 @@ table {
     width: 32vw;
   
   	.badge {
-      	text-transform: Uppercase;
-        padding: .625em 0.875em;
-        margin-bottom: 2em;
+      	//text-transform: Uppercase;
+        padding: 0.625em 0.875em;
+        margin-bottom: 1rem;
         letter-spacing: 0.0875em;
-        font-weight: 900;
+        letter-spacing: 0.0125em;
+        font-weight: 600;
+        font-size: 0.875rem;
+        border-radius: 55px;
+
+        .caption__content {
+            color: #fff;
+            z-index: 2;
+        }
+    }
+
+    .badge-secondary {
+        background: none;
+        position: relative;
+        display: inline-flex;
+
+    }
+
+    .badge-secondary::before {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 2;
+        background: $N800;
+        border-radius: inherit;
+        opacity: .3;
+        mix-blend-mode: multiply;
+        content: "";
     }
   
     .banner-heading-hero, 

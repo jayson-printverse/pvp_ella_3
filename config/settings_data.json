@@ -3364,6 +3364,7 @@
         ],
         "settings": {
           "layout": "full",
+          "banner_h1": "Design your own customized products",
           "widget_title": "",
           "widget_des": "",
           "title_style": "style_1",
@@ -3466,6 +3467,7 @@
         ],
         "settings": {
           "layout": "full",
+          "banner_h1": "",
           "widget_title": "",
           "widget_des": "",
           "title_style": "style_1",
