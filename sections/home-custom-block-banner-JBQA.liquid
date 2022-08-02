@@ -244,9 +244,29 @@
                                   		
                                     	{% if block.settings.banner_heading != blank or block.settings.banner_des != blank or block.settings.countdown!= blank or block.settings.banner_button != blank %}
                                         <div class="banner-content-custom inner {% if block.settings.alignment == 'left' %}abs_left{% elsif block.settings.alignment == 'right' %}abs_right{% else %}abs_center{% endif %}">
+ 
+
+                                            {% if section.settings.banner_h1 != blank %}
+                                                <h2 class="banner-heading-hero"
+                                                    
+                                                    {% comment %}
+                                                    style="{% if block.settings.font_size_banner_heading != blank %}
+                                                        font-size: {{ block.settings.font_size_banner_heading }};
+                                                        {% endif %}
+                                                        {% if block.settings.color_banner_heading != blank %}
+                                                        color:{{ block.settings.color_banner_heading }};
+                                                        {% endif %}"
+                                                    {% endcomment %}
+                                                    >
+                                                  
+                                                <span class="line" style="background-color: {{ block.settings.color_banner_heading }};"></span>
+                                                {% render 'multilang' with section.settings.banner_h1 %}
+                                                </h2>
+                                            {% endif %}
+
+                                            
                                             {% if block.settings.banner_heading != blank %}
                                             <h2 class="banner-heading-hero"
-                                                
                                                 
                                                 {% comment %}
                                                 style="{% if block.settings.font_size_banner_heading != blank %}
@@ -258,11 +278,11 @@
                                                 {% endcomment %}
                                                 >
                                               
-                                              
                                             <span class="line" style="background-color: {{ block.settings.color_banner_heading }};"></span>
                                             {% render 'multilang' with block.settings.banner_heading  %}
                                             </h2>
                                             {% endif %}
+
 
                                             {% if block.settings.banner_des != blank %}
                                             <p class="banner-des{% if block.settings.countdown != blank %} has-coundown{% endif %}"
@@ -526,6 +546,11 @@
         {
             "type": "header",
             "content": "Header"
+        },
+        {
+            "type": "text",
+            "id": "banner_h1",
+            "label": "Banner H1"
         },
         {
             "type": "text",
