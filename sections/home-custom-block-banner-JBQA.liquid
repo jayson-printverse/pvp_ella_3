@@ -264,24 +264,25 @@
                                                 </h2>
                                             {% endif %}
 
-                                            
+                                            {% comment %}
                                             {% if block.settings.banner_heading != blank %}
                                             <h2 class="banner-heading-hero"
                                                 
-                                                {% comment %}
+                                                
                                                 style="{% if block.settings.font_size_banner_heading != blank %}
                                                     font-size: {{ block.settings.font_size_banner_heading }};
                                                     {% endif %}
                                                     {% if block.settings.color_banner_heading != blank %}
                                                     color:{{ block.settings.color_banner_heading }};
                                                     {% endif %}"
-                                                {% endcomment %}
+                                               
                                                 >
                                               
                                             <span class="line" style="background-color: {{ block.settings.color_banner_heading }};"></span>
                                             {% render 'multilang' with block.settings.banner_heading  %}
                                             </h2>
                                             {% endif %}
+                                            {% endcomment %}
 
 
                                             {% if block.settings.banner_des != blank %}
