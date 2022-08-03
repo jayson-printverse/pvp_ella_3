@@ -14211,9 +14211,21 @@ table {
     .button-cta-arrow {
         font-size: 110%;
         display: inline-block;
-        margin-left: 0.75rem;
+        margin-left: 0.5rem;
         transition: transform .6s cubic-bezier(.075,.82,.165,1);
         -webkit-transition: transform .6s cubic-bezier(.075,.82,.165,1);
+    }
+
+    .banner-button {
+        //width: 100%;
+        max-width: 300px;
+        background: $background_2;
+        color: $color_2;
+        border-color: #727272;
+
+        &:hover {
+            @include button_1();
+        }
     }
 }
 
