@@ -14211,20 +14211,33 @@ table {
     .button-cta-arrow {
         font-size: 110%;
         display: inline-block;
-        margin-left: 0.5rem;
+        margin-left: 0.75rem;
         transition: transform .6s cubic-bezier(.075,.82,.165,1);
         -webkit-transition: transform .6s cubic-bezier(.075,.82,.165,1);
     }
-
+    
     .banner-button {
-        //width: 100%;
-        max-width: 300px;
-        background: $background_2;
-        color: $color_2;
-        border-color: #727272;
+        background-color: $SR500;
+        border-color: $SR500;
+        color: #ffffff;
+        padding: 0.75rem 1.5rem;
+        border-radius: 55px;
+        font-size: 0.9375rem;
 
         &:hover {
             @include button_1();
+        }
+
+    }
+
+    .banner-button:nth-child(2) {
+        background-color: transparent;
+        border-color: transparent;
+
+        &:hover {
+            //@include button_1();
+            background: #282e3278;
+            border-color: #282e328c;
         }
     }
 }

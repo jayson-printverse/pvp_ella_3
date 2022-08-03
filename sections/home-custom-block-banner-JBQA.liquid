@@ -314,30 +314,9 @@
 																								</style>
 																						{% endif %}
 																						
-																						<div class="d-inline-flex flex-wrap align-items-center">
+																						<div class="d-inline-flex align-items-center">
 																							{% if block.settings.banner_button != blank %}
-																							<a href="{{ block.settings.link }}" class="banner-button btn mr-3"
-																							style="{% if block.settings.bg_banner_button != blank %}
-																											background-color:{{ block.settings.bg_banner_button }};
-																											{% endif %}
-																											{% if block.settings.border_banner_button != blank %}
-																											border-color:{{ block.settings.border_banner_button }};
-																											{% endif %}
-																											{% if block.settings.color_banner_button != blank %}
-																											color:{{ block.settings.color_banner_button }};
-																											{% endif %}
-																											{% if block.settings.min_width_banner_button != blank %}
-																											min-width:{{ block.settings.min_width_banner_button }};
-																											{% endif %}
-																											{% if block.settings.padding_banner_button != blank %}
-																											padding:{{ block.settings.padding_banner_button }};
-																											{% endif %}
-																											{% if block.settings.border_radius_banner_button != blank %}
-																											border-radius:{{ block.settings.border_radius_banner_button }};
-																											{% endif %}
-																											{% if block.settings.font_size_banner_button != blank %}
-																											font-size:{{ block.settings.font_size_banner_button }};
-																											{% endif %}">
+																							<a href="{{ block.settings.link }}" class="banner-button btn mr-3">
 																												
 																							{% render 'multilang' with block.settings.banner_button %}
 																							</a>
@@ -347,28 +326,7 @@
 																							{% endif %}
 
 																							{% if block.settings.banner_button-2 != blank %}
-																								<a href="{{ block.settings.link-2 }}" class="banner-button btn btn-outline-primary"
-																								style="{% if block.settings.bg_banner_button-2 != blank %}
-																												background-color:{{ block.settings.bg_banner_button-2 }};
-																												{% endif %}
-																												{% if block.settings.border_banner_button-2 != blank %}
-																												border-color:{{ block.settings.border_banner_button-2 }};
-																												{% endif %}
-																												{% if block.settings.color_banner_button-2 != blank %}
-																												color:{{ block.settings.color_banner_button-2 }};
-																												{% endif %}
-																												{% if block.settings.min_width_banner_button-2 != blank %}
-																												min-width:{{ block.settings.min_width_banner_button-2 }};
-																												{% endif %}
-																												{% if block.settings.padding_banner_button-2 != blank %}
-																												padding:{{ block.settings.padding_banner_button-2 }};
-																												{% endif %}
-																												{% if block.settings.border_radius_banner_button-2 != blank %}
-																												border-radius:{{ block.settings.border_radius_banner_button-2 }};
-																												{% endif %}
-																												{% if block.settings.font_size_banner_button-2 != blank %}
-																												font-size:{{ block.settings.font_size_banner_button-2 }};
-																												{% endif %}">
+																								<a href="{{ block.settings.link-2 }}" class="banner-button btn btn-outline-primary">
 																													
 																								{% render 'multilang' with block.settings.banner_button-2 %}
 																								<span class="button-cta-arrow ">→</span>

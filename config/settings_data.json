@@ -3359,10 +3359,10 @@
               "font_size_banner_button": "15px",
               "banner_button-2": "Browse Products",
               "link-2": "shopify:\/\/collections\/best-sellers",
-              "bg_banner_button-2": "#232323",
-              "border_banner_button-2": "#232323",
+              "bg_banner_button-2": "rgba(0,0,0,0)",
+              "border_banner_button-2": "rgba(0,0,0,0)",
               "color_banner_button-2": "#ffffff",
-              "min_width_banner_button-2": "180",
+              "min_width_banner_button-2": "100",
               "padding_banner_button-2": "0.75rem 1.5rem",
               "border_radius_banner_button-2": "55px",
               "font_size_banner_button-2": "15px"
