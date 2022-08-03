@@ -1,1054 +1,1059 @@
 {% if section.blocks.size > 0 %}
 <div class="home-custom-block hi" id="custom-block-{{section.id}}">
-    <div class="{% if section.settings.layout == 'default' %}container{% else %}container-fluid{% endif %}">
-        {% if section.settings.widget_title != blank %}
-        <div class="widget-title{% if section.settings.title_style == 'style_2' %} not-before{% endif %}">   
-            <h3 class="box-title">
-                <span class="title"> 
-                    {% render 'multilang' with section.settings.widget_title %}
-                </span>
-            </h3>
-            {% if section.settings.widget_des != blank %}
-            <p>
-                {% render 'multilang' with section.settings.widget_des %}
-            </p>        
-            {% endif %}
-        </div>
-        {% endif %}
+		<div class="{% if section.settings.layout == 'default' %}container{% else %}container-fluid{% endif %}">
+				{% if section.settings.widget_title != blank %}
+				<div class="widget-title{% if section.settings.title_style == 'style_2' %} not-before{% endif %}">   
+						<h3 class="box-title">
+								<span class="title"> 
+										{% render 'multilang' with section.settings.widget_title %}
+								</span>
+						</h3>
+						{% if section.settings.widget_des != blank %}
+						<p>
+								{% render 'multilang' with section.settings.widget_des %}
+						</p>        
+						{% endif %}
+				</div>
+				{% endif %}
 
-        <div class="row">
-            {% for block in section.blocks %}
-            
-            {% if block.type == 'smallImg' %}
-            <div class="col-12 no-padd">
-                <div class="custom-block-banner banner-large-img{% if block.settings.display_parallax %} banner-parallax{% endif %}">
-                  	<div class="section__container">
-                    	<div class="section__layoutContainer">
-                        	<div class="section__layout">
-                              	<div class="columnLayout" data-columns="2,2">
-                                  
-                                  <section class="homepageHero__title">
-                                  		
-                                    	{% if block.settings.banner_heading != blank or block.settings.banner_des != blank or block.settings.countdown!= blank or block.settings.banner_button != blank %}
-                                        <div class="banner-content-custom inner {% if block.settings.alignment == 'left' %}abs_left{% elsif block.settings.alignment == 'right' %}abs_right{% else %}abs_center{% endif %}">
-                                            {% if block.settings.banner_heading != blank %}
-                                            <div class="badge badge-secondary">
-                                                <span class="caption__content">{{ block.settings.badge_title }}</span>
-                                            </div>
-                                            <h2 class="banner-h2-hero"
-                                                
-                                                
-                                                {% comment %}
-                                                style="{% if block.settings.font_size_banner_heading != blank %}
-                                                    font-size: {{ block.settings.font_size_banner_heading }};
-                                                    {% endif %}
-                                                    {% if block.settings.color_banner_heading != blank %}
-                                                    color:{{ block.settings.color_banner_heading }};
-                                                    {% endif %}"
-                                                {% endcomment %}
-                                                >
-                                              
-                                              
-                                            <span class="line" style="background-color: {{ block.settings.color_banner_heading }};"></span>
-                                            {% render 'multilang' with block.settings.banner_heading  %}
-                                            </h2>
-                                            {% endif %}
+				<div class="row">
+						{% for block in section.blocks %}
+						
+						{% if block.type == 'smallImg' %}
+						<div class="col-12 no-padd">
+								<div class="custom-block-banner banner-large-img{% if block.settings.display_parallax %} banner-parallax{% endif %}">
+											<div class="section__container">
+												<div class="section__layoutContainer">
+														<div class="section__layout">
+																	<div class="columnLayout" data-columns="2,2">
+																	
+																	<section class="homepageHero__title">
+																					
+																				{% if block.settings.banner_heading != blank or block.settings.banner_des != blank or block.settings.countdown!= blank or block.settings.banner_button != blank %}
+																				<div class="banner-content-custom inner {% if block.settings.alignment == 'left' %}abs_left{% elsif block.settings.alignment == 'right' %}abs_right{% else %}abs_center{% endif %}">
+																						{% if block.settings.banner_heading != blank %}
+																						<div class="badge badge-secondary">
+																								<span class="caption__content">{{ block.settings.badge_title }}</span>
+																						</div>
+																						<h2 class="banner-h2-hero"
+																								
+																								
+																								{% comment %}
+																								style="{% if block.settings.font_size_banner_heading != blank %}
+																										font-size: {{ block.settings.font_size_banner_heading }};
+																										{% endif %}
+																										{% if block.settings.color_banner_heading != blank %}
+																										color:{{ block.settings.color_banner_heading }};
+																										{% endif %}"
+																								{% endcomment %}
+																								>
+																							
+																							
+																						<span class="line" style="background-color: {{ block.settings.color_banner_heading }};"></span>
+																						{% render 'multilang' with block.settings.banner_heading  %}
+																						</h2>
+																						{% endif %}
 
-                                            {% if block.settings.banner_des != blank %}
-                                            <p class="banner-des{% if block.settings.countdown != blank %} has-coundown{% endif %}"
-                                                style="{% if block.settings.font_size_banner_des != blank %}
-                                                        font-size: {{ block.settings.font_size_banner_des }};
-                                                        {% endif %}
-                                                        {% if block.settings.color_banner_des != blank %}
-                                                        color: {{ block.settings.color_banner_des }};
-                                                        {% endif %}">
-                                            {% render 'multilang' with block.settings.banner_des  %}
-                                            </p>
-                                            {% endif %}
+																						{% if block.settings.banner_des != blank %}
+																						<p class="banner-des{% if block.settings.countdown != blank %} has-coundown{% endif %}"
+																								style="{% if block.settings.font_size_banner_des != blank %}
+																												font-size: {{ block.settings.font_size_banner_des }};
+																												{% endif %}
+																												{% if block.settings.color_banner_des != blank %}
+																												color: {{ block.settings.color_banner_des }};
+																												{% endif %}">
+																						{% render 'multilang' with block.settings.banner_des  %}
+																						</p>
+																						{% endif %}
 
-                                            {% if block.settings.countdown != blank %}
-                                                <div class="sub-banner-countdown countdown-{{ block.id }}" data-countdown data-countdown-value="{{ block.settings.countdown }}">
-                                                </div>
+																						{% if block.settings.countdown != blank %}
+																								<div class="sub-banner-countdown countdown-{{ block.id }}" data-countdown data-countdown-value="{{ block.settings.countdown }}">
+																								</div>
 
-                                                <style>
-                                                .custom-block-banner .clock-item {
-                                                    border-color: {{ block.settings.color_banner_heading | color_modify: 'alpha', 0.7 }};
-                                                    color: {{ block.settings.color_banner_heading }};
-                                                }
-                                                </style>
-                                            {% endif %}
+																								<style>
+																								.custom-block-banner .clock-item {
+																										border-color: {{ block.settings.color_banner_heading | color_modify: 'alpha', 0.7 }};
+																										color: {{ block.settings.color_banner_heading }};
+																								}
+																								</style>
+																						{% endif %}
 
-                                            {% if block.settings.banner_button != blank %}
-                                            <a href="{{ block.settings.link }}" class="banner-button btn"
-                                            style="{% if block.settings.bg_banner_button != blank %}
-                                                    background-color:{{ block.settings.bg_banner_button }};
-                                                    {% endif %}
-                                                    {% if block.settings.border_banner_button != blank %}
-                                                    border-color:{{ block.settings.border_banner_button }};
-                                                    {% endif %}
-                                                    {% if block.settings.color_banner_button != blank %}
-                                                    color:{{ block.settings.color_banner_button }};
-                                                    {% endif %}
-                                                    {% if block.settings.min_width_banner_button != blank %}
-                                                    min-width:{{ block.settings.min_width_banner_button }};
-                                                    {% endif %}
-                                                    {% if block.settings.padding_banner_button != blank %}
-                                                    padding:{{ block.settings.padding_banner_button }};
-                                                    {% endif %}
-                                                    {% if block.settings.border_radius_banner_button != blank %}
-                                                    border-radius:{{ block.settings.border_radius_banner_button }};
-                                                    {% endif %}
-                                                    {% if block.settings.font_size_banner_button != blank %}
-                                                    font-size:{{ block.settings.font_size_banner_button }};
-                                                    {% endif %}">
-                                              		
-                                            {% render 'multilang' with block.settings.banner_button %}
-                                            </a>
-                                            {% endif %}
-                                        </div>
-                                        {% endif %}
-                                    
-                                  </section>
-                                  
-                                  <div class="homepageHero__graphic">
-								  	  <div class="mugHero__graphic">
+																						{% if block.settings.banner_button != blank %}
+																						<a href="{{ block.settings.link }}" class="banner-button btn"
+																						style="{% if block.settings.bg_banner_button != blank %}
+																										background-color:{{ block.settings.bg_banner_button }};
+																										{% endif %}
+																										{% if block.settings.border_banner_button != blank %}
+																										border-color:{{ block.settings.border_banner_button }};
+																										{% endif %}
+																										{% if block.settings.color_banner_button != blank %}
+																										color:{{ block.settings.color_banner_button }};
+																										{% endif %}
+																										{% if block.settings.min_width_banner_button != blank %}
+																										min-width:{{ block.settings.min_width_banner_button }};
+																										{% endif %}
+																										{% if block.settings.padding_banner_button != blank %}
+																										padding:{{ block.settings.padding_banner_button }};
+																										{% endif %}
+																										{% if block.settings.border_radius_banner_button != blank %}
+																										border-radius:{{ block.settings.border_radius_banner_button }};
+																										{% endif %}
+																										{% if block.settings.font_size_banner_button != blank %}
+																										font-size:{{ block.settings.font_size_banner_button }};
+																										{% endif %}">
+																											
+																						{% render 'multilang' with block.settings.banner_button %}
+																						</a>
+																						{% endif %}
+																				</div>
+																				{% endif %}
+																		
+																	</section>
+																	
+																	<div class="homepageHero__graphic">
+																				<div class="mugHero__graphic">
 
-                                        <div class="img-box img-block-shadow">
-                                            <a href="{{ block.settings.link }}">
-                                                {%- assign img_url = block.settings.image | img_url: '720x', scale: 2 -%}
+																				<div class="img-box img-block-shadow">
+																						<a href="{{ block.settings.link }}">
+																								{%- assign img_url = block.settings.image | img_url: '720x', scale: 2 -%}
 
-                                                {% if block.settings.display_parallax %}
-                                                <div class="parallax-image" style="background-image: url({{img_url}});"></div> 
-                                                {% endif %}
+																								{% if block.settings.display_parallax %}
+																								<div class="parallax-image" style="background-image: url({{img_url}});"></div> 
+																								{% endif %}
 
-                                                {% if block.settings.image != blank %}
-                                                <img data-srcset="{{ img_url }}" alt="{{ block.settings.image.alt | default: shop.name }}" itemprop="logo"
-                                                    class="lazyload custom-hero-banner" data-sizes="auto">
-                                                
-                                                {% else %}
-                                                <div class="not_img_temp">
-                                                1880 x 720px
-                                                </div>   
-                                                {% endif %}                        
-                                            </a>
+																								{% if block.settings.image != blank %}
+																								<img data-srcset="{{ img_url }}" alt="{{ block.settings.image.alt | default: shop.name }}" itemprop="logo"
+																										class="lazyload custom-hero-banner" data-sizes="auto">
+																								
+																								{% else %}
+																								<div class="not_img_temp">
+																								1880 x 720px
+																								</div>   
+																								{% endif %}                        
+																						</a>
 
-                                            {% if block.settings.countdown != blank %}
-                                            <div class="sub-banner-countdown countdown-{{ block.id }}" data-countdown data-countdown-value="{{ block.settings.countdown }}">
-                                            </div>
+																						{% if block.settings.countdown != blank %}
+																						<div class="sub-banner-countdown countdown-{{ block.id }}" data-countdown data-countdown-value="{{ block.settings.countdown }}">
+																						</div>
 
-                                            <style>
-                                            .custom-block-banner .clock-item {
-                                                border-color: {{ block.settings.color_banner_heading | color_modify: 'alpha', 0.7 }};
-                                                color: {{ block.settings.color_banner_heading }};
-                                            }
-                                            </style>
-                                        	{% endif %}
-                                    	</div>
-                                      </div>
-                                    
-                                  </div>
+																						<style>
+																						.custom-block-banner .clock-item {
+																								border-color: {{ block.settings.color_banner_heading | color_modify: 'alpha', 0.7 }};
+																								color: {{ block.settings.color_banner_heading }};
+																						}
+																						</style>
+																						{% endif %}
+																				</div>
+																			</div>
+																		
+																	</div>
 
-                                  {% comment %}
-                                        {% if block.settings.banner_heading != blank or block.settings.banner_des != blank or block.settings.countdown!= blank or block.settings.banner_button != blank %}
-                                        <div class="banner-content-custom inner {% if block.settings.alignment == 'left' %}abs_left{% elsif block.settings.alignment == 'right' %}abs_right{% else %}abs_center{% endif %}">
-                                            {% if block.settings.banner_heading != blank %}
-                                            <h2 class="banner-heading-hero"
-                                                style="{% if block.settings.font_size_banner_heading != blank %}
-                                                    font-size: {{ block.settings.font_size_banner_heading }};
-                                                    {% endif %}
-                                                    {% if block.settings.color_banner_heading != blank %}
-                                                    color:{{ block.settings.color_banner_heading }};
-                                                    {% endif %}">
-                                            <span class="line" style="background-color: {{ block.settings.color_banner_heading }};"></span>
-                                            {% render 'multilang' with block.settings.banner_heading  %}
-                                            </h2>
-                                            {% endif %}
+																	{% comment %}
+																				{% if block.settings.banner_heading != blank or block.settings.banner_des != blank or block.settings.countdown!= blank or block.settings.banner_button != blank %}
+																				<div class="banner-content-custom inner {% if block.settings.alignment == 'left' %}abs_left{% elsif block.settings.alignment == 'right' %}abs_right{% else %}abs_center{% endif %}">
+																						{% if block.settings.banner_heading != blank %}
+																						<h2 class="banner-heading-hero"
+																								style="{% if block.settings.font_size_banner_heading != blank %}
+																										font-size: {{ block.settings.font_size_banner_heading }};
+																												{% endif %}
+																										{% if block.settings.color_banner_heading != blank %}
+																										color:{{ block.settings.color_banner_heading }};
+																										{% endif %}">
+																						<span class="line" style="background-color: {{ block.settings.color_banner_heading }};"></span>
+																						{% render 'multilang' with block.settings.banner_heading  %}
+																						</h2>
+																						{% endif %}
 
-                                            {% if block.settings.banner_des != blank %}
-                                            <p class="banner-des{% if block.settings.countdown != blank %} has-coundown{% endif %}"
-                                                style="{% if block.settings.font_size_banner_des != blank %}
-                                                        font-size: {{ block.settings.font_size_banner_des }};
-                                                        {% endif %}
-                                                        {% if block.settings.color_banner_des != blank %}
-                                                        color: {{ block.settings.color_banner_des }};
-                                                        {% endif %}">
-                                            {% render 'multilang' with block.settings.banner_des  %}
-                                            </p>
-                                            {% endif %}
+																						{% if block.settings.banner_des != blank %}
+																						<p class="banner-des{% if block.settings.countdown != blank %} has-coundown{% endif %}"
+																								style="{% if block.settings.font_size_banner_des != blank %}
+																												font-size: {{ block.settings.font_size_banner_des }};
+																												{% endif %}
+																												{% if block.settings.color_banner_des != blank %}
+																												color: {{ block.settings.color_banner_des }};
+																												{% endif %}">
+																						{% render 'multilang' with block.settings.banner_des  %}
+																						</p>
+																						{% endif %}
 
-                                            {% if block.settings.countdown != blank %}
-                                                <div class="sub-banner-countdown countdown-{{ block.id }}" data-countdown data-countdown-value="{{ block.settings.countdown }}">
-                                                </div>
+																						{% if block.settings.countdown != blank %}
+																								<div class="sub-banner-countdown countdown-{{ block.id }}" data-countdown data-countdown-value="{{ block.settings.countdown }}">
+																								</div>
 
-                                                <style>
-                                                .custom-block-banner .clock-item {
-                                                    border-color: {{ block.settings.color_banner_heading | color_modify: 'alpha', 0.7 }};
-                                                    color: {{ block.settings.color_banner_heading }};
-                                                }
-                                                </style>
-                                            {% endif %}
+																								<style>
+																								.custom-block-banner .clock-item {
+																										border-color: {{ block.settings.color_banner_heading | color_modify: 'alpha', 0.7 }};
+																										color: {{ block.settings.color_banner_heading }};
+																								}
+																								</style>
+																						{% endif %}
 
-                                            {% if block.settings.banner_button != blank %}
-                                            <a href="{{ block.settings.link }}" class="banner-button btn"
-                                            style="{% if block.settings.bg_banner_button != blank %}
-                                                    background-color:{{ block.settings.bg_banner_button }};
-                                                    {% endif %}
-                                                    {% if block.settings.border_banner_button != blank %}
-                                                    border-color:{{ block.settings.border_banner_button }};
-                                                    {% endif %}
-                                                    {% if block.settings.color_banner_button != blank %}
-                                                    color:{{ block.settings.color_banner_button }};
-                                                    {% endif %}
-                                                    {% if block.settings.min_width_banner_button != blank %}
-                                                    min-width:{{ block.settings.min_width_banner_button }};
-                                                    {% endif %}">
-                                            {% render 'multilang' with block.settings.banner_button %}
-                                            </a>
-                                            {% endif %}
-                                        </div>
-                                        {% endif %}
-                                  {% endcomment %}
-                                  
-                              </div>
-                          </div>
-                      	</div>
-                  	</div>
-                    {% comment%}
-                        <div class="background-layer-img"> </div> {% endcomment %}
-                        <div class="background-layer-05"> </div>
-                        <div class="background-layer-04"> </div>
-                        <div class="background-layer-03"> </div>
-                        <div class="background-layer-02"> </div>
-                        <div class="bg-layer-01"> </div>
-                </div>
+																						{% if block.settings.banner_button != blank %}
+																						<a href="{{ block.settings.link }}" class="banner-button btn"
+																						style="{% if block.settings.bg_banner_button != blank %}
+																										background-color:{{ block.settings.bg_banner_button }};
+																										{% endif %}
+																										{% if block.settings.border_banner_button != blank %}
+																										border-color:{{ block.settings.border_banner_button }};
+																										{% endif %}
+																										{% if block.settings.color_banner_button != blank %}
+																										color:{{ block.settings.color_banner_button }};
+																										{% endif %}
+																										{% if block.settings.min_width_banner_button != blank %}
+																										min-width:{{ block.settings.min_width_banner_button }};
+																										{% endif %}">
+																						{% render 'multilang' with block.settings.banner_button %}
+																						</a>
+																						{% endif %}
+																				</div>
+																				{% endif %}
+																	{% endcomment %}
+																	
+															</div>
+													</div>
+													</div>
+											</div>
+										{% comment%}
+												<div class="background-layer-img"> </div> {% endcomment %}
+												<div class="background-layer-05"> </div>
+												<div class="background-layer-04"> </div>
+												<div class="background-layer-03"> </div>
+												<div class="background-layer-02"> </div>
+												<div class="bg-layer-01"> </div>
+								</div>
 
-                {% if block.settings.display_parallax and block.settings.dpl_down_arrow %}
-                <a href="#" class="scroll-down" data-scroll-down style="color: {{ block.settings.color_banner_heading }};">
-                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_1" zoomAndPan="disable" x="0px" y="0px" viewBox="0 0 36 18" xml:space="preserve">
-                        <style type="text/css">
-                            .st0{fill:none;stroke:#fff;stroke-width:1.5;}
-                        </style>
-                        <line class="st0" x1="36" y1="0" x2="18" y2="18"></line>
-                        <line class="st0" x1="0" y1="0" x2="18" y2="18"></line>
-                    </svg>
-                </a>
-                {% endif %}
-            </div>
-            
-            {% elsif block.type == 'largeImg' %}
-            <div class="col-12 no-padd">
-                <div class="custom-block-banner banner-large-img{% if block.settings.display_parallax %} banner-parallax{% endif %}">
-                  	<div class="section__container">
-                    	<div class="section__layoutContainer">
-                        	<div class="section__layout">
-                              	<div class="columnLayout" data-columns="2,2">
-                                  
-                                  <section class="homepageHero__title">
-                                  		
-                                    	{% if block.settings.banner_heading != blank or block.settings.banner_des != blank or block.settings.countdown!= blank or block.settings.banner_button != blank %}
-                                        <div class="banner-content-custom inner {% if block.settings.alignment == 'left' %}abs_left{% elsif block.settings.alignment == 'right' %}abs_right{% else %}abs_center{% endif %}">
-                                            <div class="badge badge-secondary">
-                                                <span class="caption__content">{{ block.settings.badge_title }}</span>
-                                            </div>
+								{% if block.settings.display_parallax and block.settings.dpl_down_arrow %}
+								<a href="#" class="scroll-down" data-scroll-down style="color: {{ block.settings.color_banner_heading }};">
+										<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_1" zoomAndPan="disable" x="0px" y="0px" viewBox="0 0 36 18" xml:space="preserve">
+												<style type="text/css">
+														.st0{fill:none;stroke:#fff;stroke-width:1.5;}
+												</style>
+												<line class="st0" x1="36" y1="0" x2="18" y2="18"></line>
+												<line class="st0" x1="0" y1="0" x2="18" y2="18"></line>
+										</svg>
+								</a>
+								{% endif %}
+						</div>
+						
+						{% elsif block.type == 'largeImg' %}
+						<div class="col-12 no-padd">
+								<div class="custom-block-banner banner-large-img{% if block.settings.display_parallax %} banner-parallax{% endif %}">
+											<div class="section__container">
+												<div class="section__layoutContainer">
+														<div class="section__layout">
+																	<div class="columnLayout" data-columns="2,2">
+																	
+																	<section class="homepageHero__title">
+																					
+																				{% if block.settings.banner_heading != blank or block.settings.banner_des != blank or block.settings.countdown!= blank or block.settings.banner_button != blank %}
+																				<div class="banner-content-custom inner {% if block.settings.alignment == 'left' %}abs_left{% elsif block.settings.alignment == 'right' %}abs_right{% else %}abs_center{% endif %}">
+																						<div class="badge badge-secondary">
+																								<span class="caption__content">{{ block.settings.badge_title }}</span>
+																						</div>
 
-                                            {% if section.settings.banner_h1 != blank %}
-                                                <h1 class="banner-heading-hero"
-                                                    
-                                                    {% comment %}
-                                                    style="{% if block.settings.font_size_banner_heading != blank %}
-                                                        font-size: {{ block.settings.font_size_banner_heading }};
-                                                        {% endif %}
-                                                        {% if block.settings.color_banner_heading != blank %}
-                                                        color:{{ block.settings.color_banner_heading }};
-                                                        {% endif %}"
-                                                    {% endcomment %}
-                                                    >
-                                                  
-                                                <span class="line" style="background-color: {{ block.settings.color_banner_heading }};"></span>
-                                                {% render 'multilang' with section.settings.banner_h1 %}
-                                                </h1>
-                                            {% endif %}
+																						{% if section.settings.banner_h1 != blank %}
+																								<h1 class="banner-heading-hero"
+																										
+																										{% comment %}
+																										style="{% if block.settings.font_size_banner_heading != blank %}
+																												font-size: {{ block.settings.font_size_banner_heading }};
+																												{% endif %}
+																												{% if block.settings.color_banner_heading != blank %}
+																												color:{{ block.settings.color_banner_heading }};
+																												{% endif %}"
+																										{% endcomment %}
+																										>
+																									
+																								<span class="line" style="background-color: {{ block.settings.color_banner_heading }};"></span>
+																								{% render 'multilang' with section.settings.banner_h1 %}
+																								</h1>
+																						{% endif %}
 
-                                            {% comment %}
-                                            {% if block.settings.banner_heading != blank %}
-                                            <h2 class="banner-heading-hero"
-                                                
-                                                
-                                                style="{% if block.settings.font_size_banner_heading != blank %}
-                                                    font-size: {{ block.settings.font_size_banner_heading }};
-                                                    {% endif %}
-                                                    {% if block.settings.color_banner_heading != blank %}
-                                                    color:{{ block.settings.color_banner_heading }};
-                                                    {% endif %}"
-                                               
-                                                >
-                                              
-                                            <span class="line" style="background-color: {{ block.settings.color_banner_heading }};"></span>
-                                            {% render 'multilang' with block.settings.banner_heading  %}
-                                            </h2>
-                                            {% endif %}
-                                            {% endcomment %}
+																						{% comment %}
+																						{% if block.settings.banner_heading != blank %}
+																						<h2 class="banner-heading-hero"
+																								
+																								
+																								style="{% if block.settings.font_size_banner_heading != blank %}
+																										font-size: {{ block.settings.font_size_banner_heading }};
+																										{% endif %}
+																										{% if block.settings.color_banner_heading != blank %}
+																										color:{{ block.settings.color_banner_heading }};
+																										{% endif %}"
+																							 
+																								>
+																							
+																						<span class="line" style="background-color: {{ block.settings.color_banner_heading }};"></span>
+																						{% render 'multilang' with block.settings.banner_heading  %}
+																						</h2>
+																						{% endif %}
+																						{% endcomment %}
 
 
-                                            {% if block.settings.banner_des != blank %}
-                                            <p class="banner-des{% if block.settings.countdown != blank %} has-coundown{% endif %}"
-                                                style="{% if block.settings.font_size_banner_des != blank %}
-                                                        font-size: {{ block.settings.font_size_banner_des }};
-                                                        {% endif %}
-                                                        {% if block.settings.color_banner_des != blank %}
-                                                        color: {{ block.settings.color_banner_des }};
-                                                        {% endif %}">
-                                            {% render 'multilang' with block.settings.banner_des  %}
-                                            </p>
-                                            {% endif %}
+																						{% if block.settings.banner_des != blank %}
+																						<p class="banner-des{% if block.settings.countdown != blank %} has-coundown{% endif %}"
+																								style="{% if block.settings.font_size_banner_des != blank %}
+																												font-size: {{ block.settings.font_size_banner_des }};
+																												{% endif %}
+																												{% if block.settings.color_banner_des != blank %}
+																												color: {{ block.settings.color_banner_des }};
+																												{% endif %}">
+																						{% render 'multilang' with block.settings.banner_des  %}
+																						</p>
+																						{% endif %}
 
-                                            {% if block.settings.countdown != blank %}
-                                                <div class="sub-banner-countdown countdown-{{ block.id }}" data-countdown data-countdown-value="{{ block.settings.countdown }}">
-                                                </div>
+																						{% if block.settings.countdown != blank %}
+																								<div class="sub-banner-countdown countdown-{{ block.id }}" data-countdown data-countdown-value="{{ block.settings.countdown }}">
+																								</div>
 
-                                                <style>
-                                                .custom-block-banner .clock-item {
-                                                    border-color: {{ block.settings.color_banner_heading | color_modify: 'alpha', 0.7 }};
-                                                    color: {{ block.settings.color_banner_heading }};
-                                                }
-                                                </style>
-                                            {% endif %}
+																								<style>
+																								.custom-block-banner .clock-item {
+																										border-color: {{ block.settings.color_banner_heading | color_modify: 'alpha', 0.7 }};
+																										color: {{ block.settings.color_banner_heading }};
+																								}
+																								</style>
+																						{% endif %}
+																						
+																						<div class="d-inline-flex">
+																							{% if block.settings.banner_button != blank %}
+																							<a href="{{ block.settings.link }}" class="banner-button btn"
+																							style="{% if block.settings.bg_banner_button != blank %}
+																											background-color:{{ block.settings.bg_banner_button }};
+																											{% endif %}
+																											{% if block.settings.border_banner_button != blank %}
+																											border-color:{{ block.settings.border_banner_button }};
+																											{% endif %}
+																											{% if block.settings.color_banner_button != blank %}
+																											color:{{ block.settings.color_banner_button }};
+																											{% endif %}
+																											{% if block.settings.min_width_banner_button != blank %}
+																											min-width:{{ block.settings.min_width_banner_button }};
+																											{% endif %}
+																											{% if block.settings.padding_banner_button != blank %}
+																											padding:{{ block.settings.padding_banner_button }};
+																											{% endif %}
+																											{% if block.settings.border_radius_banner_button != blank %}
+																											border-radius:{{ block.settings.border_radius_banner_button }};
+																											{% endif %}
+																											{% if block.settings.font_size_banner_button != blank %}
+																											font-size:{{ block.settings.font_size_banner_button }};
+																											{% endif %}">
+																												
+																							{% render 'multilang' with block.settings.banner_button %}
+																							</a>
+																								{% comment %}  
+																									<!--HubSpot Call-to-Action Code --><span class="hs-cta-wrapper" id="hs-cta-wrapper-f70a6557-18f0-4df5-95b6-5c418e3604ba"><span class="hs-cta-node hs-cta-f70a6557-18f0-4df5-95b6-5c418e3604ba" id="hs-cta-f70a6557-18f0-4df5-95b6-5c418e3604ba"><!--[if lte IE 8]><div id="hs-cta-ie-element"></div><![endif]--><a href="https://cta-redirect.hubspot.com/cta/redirect/7014658/f70a6557-18f0-4df5-95b6-5c418e3604ba" ><img class="hs-cta-img" id="hs-cta-img-f70a6557-18f0-4df5-95b6-5c418e3604ba" style="border-width:0px;" src="https://no-cache.hubspot.com/cta/default/7014658/f70a6557-18f0-4df5-95b6-5c418e3604ba.png"  alt="Schedule a Demo"/></a></span><script charset="utf-8" src="https://js.hscta.net/cta/current.js"></script><script type="text/javascript"> hbspt.cta.load(7014658, 'f70a6557-18f0-4df5-95b6-5c418e3604ba', {}); </script></span><!-- end HubSpot Call-to-Action Code -->
+																								{% endcomment %}
+																							{% endif %}
 
-                                            {% if block.settings.banner_button != blank %}
-                                            <a href="{{ block.settings.link }}" class="banner-button btn"
-                                            style="{% if block.settings.bg_banner_button != blank %}
-                                                    background-color:{{ block.settings.bg_banner_button }};
-                                                    {% endif %}
-                                                    {% if block.settings.border_banner_button != blank %}
-                                                    border-color:{{ block.settings.border_banner_button }};
-                                                    {% endif %}
-                                                    {% if block.settings.color_banner_button != blank %}
-                                                    color:{{ block.settings.color_banner_button }};
-                                                    {% endif %}
-                                                    {% if block.settings.min_width_banner_button != blank %}
-                                                    min-width:{{ block.settings.min_width_banner_button }};
-                                                    {% endif %}
-                                                    {% if block.settings.padding_banner_button != blank %}
-                                                    padding:{{ block.settings.padding_banner_button }};
-                                                    {% endif %}
-                                                    {% if block.settings.border_radius_banner_button != blank %}
-                                                    border-radius:{{ block.settings.border_radius_banner_button }};
-                                                    {% endif %}
-                                                    {% if block.settings.font_size_banner_button != blank %}
-                                                    font-size:{{ block.settings.font_size_banner_button }};
-                                                    {% endif %}">
-                                              		
-                                            {% render 'multilang' with block.settings.banner_button %}
-                                            </a>
-                                          
-                                            {% if block.settings.banner_button-2 != blank %}
-                                                <a href="{{ block.settings.link-2 }}" class="banner-button-2 btn"
-                                                style="{% if block.settings.bg_banner_button-2 != blank %}
-                                                        background-color:{{ block.settings.bg_banner_button-2 }};
-                                                        {% endif %}
-                                                        {% if block.settings.border_banner_button-2 != blank %}
-                                                        border-color:{{ block.settings.border_banner_button-2 }};
-                                                        {% endif %}
-                                                        {% if block.settings.color_banner_button-2 != blank %}
-                                                        color:{{ block.settings.color_banner_button-2 }};
-                                                        {% endif %}
-                                                        {% if block.settings.min_width_banner_button-2 != blank %}
-                                                        min-width:{{ block.settings.min_width_banner_button-2 }};
-                                                        {% endif %}
-                                                        {% if block.settings.padding_banner_button-2 != blank %}
-                                                        padding:{{ block.settings.padding_banner_button-2 }};
-                                                        {% endif %}
-                                                        {% if block.settings.border_radius_banner_button-2 != blank %}
-                                                        border-radius:{{ block.settings.border_radius_banner_button-2 }};
-                                                        {% endif %}
-                                                        {% if block.settings.font_size_banner_button-2 != blank %}
-                                                        font-size:{{ block.settings.font_size_banner_button-2 }};
-                                                        {% endif %}">
-                                                          
-                                                {% render 'multilang' with block.settings.banner_button-2 %}
-                                                </a>
+																							{% if block.settings.banner_button-2 != blank %}
+																								<a href="{{ block.settings.link-2 }}" class="banner-button btn btn-outline-primary"
+																								style="{% if block.settings.bg_banner_button-2 != blank %}
+																												background-color:{{ block.settings.bg_banner_button-2 }};
+																												{% endif %}
+																												{% if block.settings.border_banner_button-2 != blank %}
+																												border-color:{{ block.settings.border_banner_button-2 }};
+																												{% endif %}
+																												{% if block.settings.color_banner_button-2 != blank %}
+																												color:{{ block.settings.color_banner_button-2 }};
+																												{% endif %}
+																												{% if block.settings.min_width_banner_button-2 != blank %}
+																												min-width:{{ block.settings.min_width_banner_button-2 }};
+																												{% endif %}
+																												{% if block.settings.padding_banner_button-2 != blank %}
+																												padding:{{ block.settings.padding_banner_button-2 }};
+																												{% endif %}
+																												{% if block.settings.border_radius_banner_button-2 != blank %}
+																												border-radius:{{ block.settings.border_radius_banner_button-2 }};
+																												{% endif %}
+																												{% if block.settings.font_size_banner_button-2 != blank %}
+																												font-size:{{ block.settings.font_size_banner_button-2 }};
+																												{% endif %}">
+																													
+																								{% render 'multilang' with block.settings.banner_button-2 %}
+																								</a>
+																									{% comment %}  
+																										<!--HubSpot Call-to-Action Code --><span class="hs-cta-wrapper" id="hs-cta-wrapper-f70a6557-18f0-4df5-95b6-5c418e3604ba"><span class="hs-cta-node hs-cta-f70a6557-18f0-4df5-95b6-5c418e3604ba" id="hs-cta-f70a6557-18f0-4df5-95b6-5c418e3604ba"><!--[if lte IE 8]><div id="hs-cta-ie-element"></div><![endif]--><a href="https://cta-redirect.hubspot.com/cta/redirect/7014658/f70a6557-18f0-4df5-95b6-5c418e3604ba" ><img class="hs-cta-img" id="hs-cta-img-f70a6557-18f0-4df5-95b6-5c418e3604ba" style="border-width:0px;" src="https://no-cache.hubspot.com/cta/default/7014658/f70a6557-18f0-4df5-95b6-5c418e3604ba.png"  alt="Schedule a Demo"/></a></span><script charset="utf-8" src="https://js.hscta.net/cta/current.js"></script><script type="text/javascript"> hbspt.cta.load(7014658, 'f70a6557-18f0-4df5-95b6-5c418e3604ba', {}); </script></span><!-- end HubSpot Call-to-Action Code -->
+																									{% endcomment %}
+																								{% endif %}
+																							</div>
 
-                                        {% comment %}  
-                                          <!--HubSpot Call-to-Action Code --><span class="hs-cta-wrapper" id="hs-cta-wrapper-f70a6557-18f0-4df5-95b6-5c418e3604ba"><span class="hs-cta-node hs-cta-f70a6557-18f0-4df5-95b6-5c418e3604ba" id="hs-cta-f70a6557-18f0-4df5-95b6-5c418e3604ba"><!--[if lte IE 8]><div id="hs-cta-ie-element"></div><![endif]--><a href="https://cta-redirect.hubspot.com/cta/redirect/7014658/f70a6557-18f0-4df5-95b6-5c418e3604ba" ><img class="hs-cta-img" id="hs-cta-img-f70a6557-18f0-4df5-95b6-5c418e3604ba" style="border-width:0px;" src="https://no-cache.hubspot.com/cta/default/7014658/f70a6557-18f0-4df5-95b6-5c418e3604ba.png"  alt="Schedule a Demo"/></a></span><script charset="utf-8" src="https://js.hscta.net/cta/current.js"></script><script type="text/javascript"> hbspt.cta.load(7014658, 'f70a6557-18f0-4df5-95b6-5c418e3604ba', {}); </script></span><!-- end HubSpot Call-to-Action Code -->
-                                        {% endcomment %}
-                                          
-                                            {% endif %}
-                                        </div>
-                                        {% endif %}
-                                    
-                                  </section>
-                                  
-                                  <div class="homepageHero__graphic">
-								  	  <div class="mugHero__graphic">
+																				</div>
+																				{% endif %}
+																		
+																	</section>
+																	
+																	<div class="homepageHero__graphic">
+																				<div class="mugHero__graphic">
 
-                                        <div class="img-box largeImg">
-                                            <a href="{{ block.settings.link }}">
-                                                {%- assign img_url = block.settings.image | img_url: '640x', scale: 2 -%}
+																				<div class="img-box largeImg">
+																						<a href="{{ block.settings.link }}">
+																								{%- assign img_url = block.settings.image | img_url: '640x', scale: 2 -%}
 
-                                                {% if block.settings.display_parallax %}
-                                                <div class="parallax-image" style="background-image: url({{img_url}});"></div> 
-                                                {% endif %}
+																								{% if block.settings.display_parallax %}
+																								<div class="parallax-image" style="background-image: url({{img_url}});"></div> 
+																								{% endif %}
 
-                                                {% if block.settings.image != blank %}
-                                              
-                                                <img data-srcset="{{ img_url }}" alt="{{ block.settings.image.alt | default: shop.name }}" itemprop="logo"
-                                                    class="lazyload custom-hero-banner" data-sizes="auto">
-                                                
-                                                {%- assign img_url = block.settings.image_shadow | img_url: '640x', scale: 2 -%}
-                                                <img data-srcset="{{ img_url }}" alt="{{ block.settings.image.alt | default: shop.name }}" itemprop="logo"
-                                                    class="lazyload custom-hero-banner hero-shadow" data-sizes="auto">
-                                                {% else %}
-                                              
-                                              	{% comment %}{% endcomment %}
-                                                <div class="not_img_temp">
-                                                
-                                                </div>
-                                                
-                                              
-                                                {% endif %}                        
-                                            </a>
+																								{% if block.settings.image != blank %}
+																							
+																								<img data-srcset="{{ img_url }}" alt="{{ block.settings.image.alt | default: shop.name }}" itemprop="logo"
+																										class="lazyload custom-hero-banner" data-sizes="auto">
+																								
+																								{%- assign img_url = block.settings.image_shadow | img_url: '640x', scale: 2 -%}
+																								<img data-srcset="{{ img_url }}" alt="{{ block.settings.image.alt | default: shop.name }}" itemprop="logo"
+																										class="lazyload custom-hero-banner hero-shadow" data-sizes="auto">
+																								{% else %}
+																							
+																									{% comment %}{% endcomment %}
+																								<div class="not_img_temp">
+																								
+																								</div>
+																								
+																							
+																								{% endif %}                        
+																						</a>
 
-                                            {% if block.settings.countdown != blank %}
-                                            <div class="sub-banner-countdown countdown-{{ block.id }}" data-countdown data-countdown-value="{{ block.settings.countdown }}">
-                                            </div>
+																						{% if block.settings.countdown != blank %}
+																						<div class="sub-banner-countdown countdown-{{ block.id }}" data-countdown data-countdown-value="{{ block.settings.countdown }}">
+																						</div>
 
-                                            <style>
-                                            .custom-block-banner .clock-item {
-                                                border-color: {{ block.settings.color_banner_heading | color_modify: 'alpha', 0.7 }};
-                                                color: {{ block.settings.color_banner_heading }};
-                                            }
-                                            </style>
-                                        	{% endif %}
-                                    	</div>
-                                      </div>
-                                    
-                                  </div>
+																						<style>
+																						.custom-block-banner .clock-item {
+																								border-color: {{ block.settings.color_banner_heading | color_modify: 'alpha', 0.7 }};
+																								color: {{ block.settings.color_banner_heading }};
+																						}
+																						</style>
+																						{% endif %}
+																				</div>
+																			</div>
+																		
+																	</div>
 
-                                  {% comment %}
-                                        {% if block.settings.banner_heading != blank or block.settings.banner_des != blank or block.settings.countdown!= blank or block.settings.banner_button != blank %}
-                                        <div class="banner-content-custom inner {% if block.settings.alignment == 'left' %}abs_left{% elsif block.settings.alignment == 'right' %}abs_right{% else %}abs_center{% endif %}">
-                                            {% if block.settings.banner_heading != blank %}
-                                            <h2 class="banner-heading-hero"
-                                                style="{% if block.settings.font_size_banner_heading != blank %}
-                                                    font-size: {{ block.settings.font_size_banner_heading }};
-                                                    {% endif %}
-                                                    {% if block.settings.color_banner_heading != blank %}
-                                                    color:{{ block.settings.color_banner_heading }};
-                                                    {% endif %}">
-                                            <span class="line" style="background-color: {{ block.settings.color_banner_heading }};"></span>
-                                            {% render 'multilang' with block.settings.banner_heading  %}
-                                            </h2>
-                                            {% endif %}
+																	{% comment %}
+																				{% if block.settings.banner_heading != blank or block.settings.banner_des != blank or block.settings.countdown!= blank or block.settings.banner_button != blank %}
+																				<div class="banner-content-custom inner {% if block.settings.alignment == 'left' %}abs_left{% elsif block.settings.alignment == 'right' %}abs_right{% else %}abs_center{% endif %}">
+																						{% if block.settings.banner_heading != blank %}
+																						<h2 class="banner-heading-hero"
+																								style="{% if block.settings.font_size_banner_heading != blank %}
+																										font-size: {{ block.settings.font_size_banner_heading }};
+																										{% endif %}
+																										{% if block.settings.color_banner_heading != blank %}
+																										color:{{ block.settings.color_banner_heading }};
+																										{% endif %}">
+																						<span class="line" style="background-color: {{ block.settings.color_banner_heading }};"></span>
+																						{% render 'multilang' with block.settings.banner_heading  %}
+																						</h2>
+																						{% endif %}
 
-                                            {% if block.settings.banner_des != blank %}
-                                            <p class="banner-des{% if block.settings.countdown != blank %} has-coundown{% endif %}"
-                                                style="{% if block.settings.font_size_banner_des != blank %}
-                                                        font-size: {{ block.settings.font_size_banner_des }};
-                                                        {% endif %}
-                                                        {% if block.settings.color_banner_des != blank %}
-                                                        color: {{ block.settings.color_banner_des }};
-                                                        {% endif %}">
-                                            {% render 'multilang' with block.settings.banner_des  %}
-                                            </p>
-                                            {% endif %}
+																						{% if block.settings.banner_des != blank %}
+																						<p class="banner-des{% if block.settings.countdown != blank %} has-coundown{% endif %}"
+																								style="{% if block.settings.font_size_banner_des != blank %}
+																												font-size: {{ block.settings.font_size_banner_des }};
+																												{% endif %}
+																												{% if block.settings.color_banner_des != blank %}
+																												color: {{ block.settings.color_banner_des }};
+																												{% endif %}">
+																						{% render 'multilang' with block.settings.banner_des  %}
+																						</p>
+																						{% endif %}
 
-                                            {% if block.settings.countdown != blank %}
-                                                <div class="sub-banner-countdown countdown-{{ block.id }}" data-countdown data-countdown-value="{{ block.settings.countdown }}">
-                                                </div>
+																						{% if block.settings.countdown != blank %}
+																								<div class="sub-banner-countdown countdown-{{ block.id }}" data-countdown data-countdown-value="{{ block.settings.countdown }}">
+																								</div>
 
-                                                <style>
-                                                .custom-block-banner .clock-item {
-                                                    border-color: {{ block.settings.color_banner_heading | color_modify: 'alpha', 0.7 }};
-                                                    color: {{ block.settings.color_banner_heading }};
-                                                }
-                                                </style>
-                                            {% endif %}
+																								<style>
+																								.custom-block-banner .clock-item {
+																										border-color: {{ block.settings.color_banner_heading | color_modify: 'alpha', 0.7 }};
+																										color: {{ block.settings.color_banner_heading }};
+																								}
+																								</style>
+																						{% endif %}
 
-                                            {% if block.settings.banner_button != blank %}
-                                            <a href="{{ block.settings.link }}" class="banner-button btn"
-                                            style="{% if block.settings.bg_banner_button != blank %}
-                                                    background-color:{{ block.settings.bg_banner_button }};
-                                                    {% endif %}
-                                                    {% if block.settings.border_banner_button != blank %}
-                                                    border-color:{{ block.settings.border_banner_button }};
-                                                    {% endif %}
-                                                    {% if block.settings.color_banner_button != blank %}
-                                                    color:{{ block.settings.color_banner_button }};
-                                                    {% endif %}
-                                                    {% if block.settings.min_width_banner_button != blank %}
-                                                    min-width:{{ block.settings.min_width_banner_button }};
-                                                    {% endif %}">
-                                            {% render 'multilang' with block.settings.banner_button %}
-                                            </a>
-                                            {% endif %}
-                                        </div>
-                                        {% endif %}
-                                  {% endcomment %}
-                                  
-                              </div>
-                          </div>
-                      	</div>
-                  	</div>
-                        <div class="background-layer-05"> </div>
-                        <div class="background-layer-04"> </div>
-                        <div class="background-layer-03"> </div>
-                        <div class="background-layer-02"> </div>
-                        <div class="bg-layer-01"> </div>
-                </div>
+																						{% if block.settings.banner_button != blank %}
+																						<a href="{{ block.settings.link }}" class="banner-button btn"
+																						style="{% if block.settings.bg_banner_button != blank %}
+																										background-color:{{ block.settings.bg_banner_button }};
+																										{% endif %}
+																										{% if block.settings.border_banner_button != blank %}
+																										border-color:{{ block.settings.border_banner_button }};
+																										{% endif %}
+																										{% if block.settings.color_banner_button != blank %}
+																										color:{{ block.settings.color_banner_button }};
+																										{% endif %}
+																										{% if block.settings.min_width_banner_button != blank %}
+																										min-width:{{ block.settings.min_width_banner_button }};
+																										{% endif %}">
+																						{% render 'multilang' with block.settings.banner_button %}
+																						</a>
+																						{% endif %}
+																				</div>
+																				{% endif %}
+																	{% endcomment %}
+																	
+															</div>
+													</div>
+													</div>
+											</div>
+												<div class="background-layer-05"> </div>
+												<div class="background-layer-04"> </div>
+												<div class="background-layer-03"> </div>
+												<div class="background-layer-02"> </div>
+												<div class="bg-layer-01"> </div>
+								</div>
 
-                {% if block.settings.display_parallax and block.settings.dpl_down_arrow %}
-                <a href="#" class="scroll-down" data-scroll-down style="color: {{ block.settings.color_banner_heading }};">
-                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_1" zoomAndPan="disable" x="0px" y="0px" viewBox="0 0 36 18" xml:space="preserve">
-                        <style type="text/css">
-                            .st0{fill:none;stroke:#fff;stroke-width:1.5;}
-                        </style>
-                        <line class="st0" x1="36" y1="0" x2="18" y2="18"></line>
-                        <line class="st0" x1="0" y1="0" x2="18" y2="18"></line>
-                    </svg>
-                </a>
-                {% endif %}
-            </div>
+								{% if block.settings.display_parallax and block.settings.dpl_down_arrow %}
+								<a href="#" class="scroll-down" data-scroll-down style="color: {{ block.settings.color_banner_heading }};">
+										<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_1" zoomAndPan="disable" x="0px" y="0px" viewBox="0 0 36 18" xml:space="preserve">
+												<style type="text/css">
+														.st0{fill:none;stroke:#fff;stroke-width:1.5;}
+												</style>
+												<line class="st0" x1="36" y1="0" x2="18" y2="18"></line>
+												<line class="st0" x1="0" y1="0" x2="18" y2="18"></line>
+										</svg>
+								</a>
+								{% endif %}
+						</div>
 
-            {% if block.settings.display_parallax %}
-            <style>
-            @media (min-width: 1200px) {
-                .banner-parallax .parallax-image {
-                    height: {{ block.settings.height_img_parallax }};
-                }
-            }            
-            </style>
-            {% endif %}
+						{% if block.settings.display_parallax %}
+						<style>
+						@media (min-width: 1200px) {
+								.banner-parallax .parallax-image {
+										height: {{ block.settings.height_img_parallax }};
+								}
+						}            
+						</style>
+						{% endif %}
 
-            {% endif %}        
-            {% endfor %}
-        </div>
-    </div>
+						{% endif %}        
+						{% endfor %}
+				</div>
+		</div>
 </div>
 
 <style>
-  {% assign margin_bottom =  section.settings.margin_bottom %}  
+	{% assign margin_bottom =  section.settings.margin_bottom %}  
 
-    @media (max-width: 767px) {
-        #custom-block-{{ section.id }} {
-            margin-bottom: {{ section.settings.margin_bottom_mb }}px;
-        }
-    }
+		@media (max-width: 767px) {
+				#custom-block-{{ section.id }} {
+						margin-bottom: {{ section.settings.margin_bottom_mb }}px;
+				}
+		}
 
-    @media (min-width: 768px) and (max-width: 1199px) {
-        #custom-block-{{ section.id }} {
-            margin-bottom: {{ section.settings.margin_bottom_tab }}px;
-        }
-    }
-  
-    @media (min-width: 1200px) {
-        #custom-block-{{ section.id }} {
-        margin-bottom: {{ margin_bottom }}px;
-        }
-    }	
+		@media (min-width: 768px) and (max-width: 1199px) {
+				#custom-block-{{ section.id }} {
+						margin-bottom: {{ section.settings.margin_bottom_tab }}px;
+				}
+		}
+	
+		@media (min-width: 1200px) {
+				#custom-block-{{ section.id }} {
+				margin-bottom: {{ margin_bottom }}px;
+				}
+		}	
 
-    #custom-block-{{ section.id }} .img-box {
-        text-align: {{ section.settings.img_align }};
-    }
+		#custom-block-{{ section.id }} .img-box {
+				text-align: {{ section.settings.img_align }};
+		}
 </style>
 {% endif %}
 
 
 {% schema %}
-  {
-    "name": "Custom Block Banners JBQA",
-	"class": "home-custom-block-baner-sections",
-    "max_blocks": 3,
-    "settings": [
-        {
-            "type": "select",
-            "id": "layout",
-            "label": "Banner Layout:",
-            "options": [
-                {
-                    "value": "default",
-                    "label": "Default"
-                },
-                {
-                    "value": "full",
-                    "label": "Full Width"
-                }
-            ],
-            "default": "full"
-        },
-        {
-            "type": "header",
-            "content": "Header"
-        },
-        {
-            "type": "text",
-            "id": "banner_h1",
-            "label": "Banner H1"
-        },
-        {
-            "type": "text",
-            "id": "widget_title",
-            "label": "Widget Title"
-        },
-        {
-            "type" : "textarea",
-            "id" : "widget_des",
-            "label" : "Description"
-        },
-        {
-            "type": "select",
-            "id": "title_style",
-            "label": "Title Style:",
-            "options": [
-                {
-                    "value": "style_1",
-                    "label": "Style 1" 
-                },
-                { 
-                    "value": "style_2",
-                    "label": "Style 2" 
-                }          
-            ],
-            "default": "style_1"
-        },
-        {
-            "type": "select",
-            "id": "img_align",
-            "label": "Image Align:",
-            "default": "center",
-            "options": [
-                {
-                    "value": "center",
-                    "label": "Center"
-                },
-                {
-                    "value": "left",
-                    "label": "Left"
-                },              
-                {
-                    "value": "right",
-                    "label": "Right"
-                }
-            ]
-        }, 
-        {
-            "type": "header",
-            "content": "Margin Bottom:"
-        },
-        {
-            "type": "range",
-            "id": "margin_bottom_mb",
-            "label": "Mobile",
-            "min": 0,
-            "max": 100,
-            "step": 1,
-            "default": 25
-        },
-        {
-            "type": "range",
-            "id": "margin_bottom_tab",
-            "label": "Tablet",
-            "min": 0,
-            "max": 100,
-            "step": 1,
-            "default": 30
-        },             
-        {
-            "type": "range",
-            "id": "margin_bottom",
-            "label": "Margin Bottom",
-            "min": 0,
-            "max": 100,
-            "step": 1,
-            "default": 30
-        }	    
-    ],
-    "blocks": [
-        {
-            "type": "smallImg",
-            "name": "Small Image",
-            "settings": [           
-                {
-                    "type": "image_picker",
-                    "id": "image",
-                    "label" : "Select Image"
-                },
-                {
-                    "type": "header",
-                    "content": "Parallax"
-                },
-                {
-                    "type": "checkbox",
-                    "id": "display_parallax",
-                    "label": "Display Parallax",
-                    "default": false
-                },
-                {
-                    "type" : "checkbox",
-                    "id" : "dpl_down_arrow",
-                    "label" : "Display icon Scroll Down",
-                    "default" : false
-                },                
-                {
-                    "type" : "text",
-                    "id" : "height_img_parallax",
-                    "label" : "Height Parallax Image",
-                    "default" : "970px"
-                },
-                {
-                    "type": "header",
-                    "content": "Banner Content"
-                },
-                {
-                    "type": "select",
-                    "id": "alignment",
-                    "label": "Text alignment",
-                    "default": "left",
-                    "options": [
-                        {
-                            "value": "left",
-                            "label": "Left"
-                        },
-                        {
-                            "value": "center",
-                            "label": "Center"
-                        },
-                        {
-                            "value": "right",
-                            "label": "Right"
-                        }
-                    ]
-                },
-                {
-                    "type" : "text",
-                    "id" : "badge_title",
-                    "label" : "Badge Title",
-                    "default" : "Integration"
-                },
+	{
+		"name": "Custom Block Banners JBQA",
+		"class": "home-custom-block-baner-sections",
+		"max_blocks": 3,
+		"settings": [
 				{
-                    "type" : "text",
-                    "id" : "banner_heading",
-                    "label" : "Banner Heading",
-                    "default" : "Metropólis"
-                },
-                {
-                    "type" : "text",
-                    "id" : "font_size_banner_heading",
-                    "label" : "Heading Font Size ",
-                    "default" : "40px"
-                },
-                {
-                    "type" : "color",
-                    "id" : "color_banner_heading",
-                    "label" : "Heading Color",
-                    "default" : "#232323"
-                },
-                {
-                    "type" : "textarea",
-                    "id" : "banner_des",
-                    "label" : "Banner Description",
-                    "default": "Pellentesque posuere orci lobortis scelerisque blandit. Donec id tellus lacinia an tincidunt risus an consequat delit quisquemos."
-                },
-                {
-                    "type" : "text",
-                    "id" : "font_size_banner_des",
-                    "label" : "Description Font Size",
-                    "default" : "16px"
-                },
-                {
-                    "type" : "color",
-                    "id" : "color_banner_des",
-                    "label" : "Description Color",
-                    "default" : "#232323"
-                },
-                {
-                    "type" : "textarea",
-                    "id" : "countdown",
-                    "label" : "Countdown"
-                },
-                {
-                    "type" : "text",
-                    "id" : "banner_button",
-                    "label" : "Button Banner",
-                    "default" : "Shop The Looks"
-                },
-                {
-                    "type" : "url",
-                    "id" : "link",
-                    "label" : "Banner Link"
-                },
-                {
-                    "type" : "color",
-                    "id" : "bg_banner_button",
-                    "label" : "Background Button",
-                    "default" : "#232323"
-                },
-                {
-                    "type" : "color",
-                    "id" : "border_banner_button",
-                    "label" : "Border Button",
-                    "default" : "#232323"
-                },
-                {
-                    "type" : "color",
-                    "id" : "color_banner_button",
-                    "label" : "Button Color",
-                    "default" : "#fff"
-                },
-                {
-                    "type" : "text",
-                    "id" : "min_width_banner_button",
-                    "label" : "Banner Button Min Width",
-                    "default" : "237px"
-                },
-                {
-                    "type" : "text",
-                    "id" : "padding_banner_button",
-                    "label" : "Padding Banner Button",
-                    "default" : "16px 32px"
-                },
-                {
-                    "type" : "text",
-                    "id" : "border_radius_banner_button",
-                    "label" : "Border Radius Banner Button",
-                    "default" : "12px"
-                }
-				,
-                {
-                    "type" : "text",
-                    "id" : "font_size_banner_button",
-                    "label" : "Font Size Banner Button",
-                    "default" : "16px"
-                },
-                {
-                    "type" : "text",
-                    "id" : "banner_button-2",
-                    "label" : "Button-2 Banner",
-                    "default" : "Shop The Looks"
-                },
-                {
-                    "type" : "url",
-                    "id" : "link-2",
-                    "label" : "Banner Link"
-                },
-                {
-                    "type" : "color",
-                    "id" : "bg_banner_button-2",
-                    "label" : "Background Button-2",
-                    "default" : "#232323"
-                },
-                {
-                    "type" : "color",
-                    "id" : "border_banner_button-2",
-                    "label" : "Border Button-2",
-                    "default" : "#232323"
-                },
-                {
-                    "type" : "color",
-                    "id" : "color_banner_button-2",
-                    "label" : "Button-2 Color",
-                    "default" : "#fff"
-                },
-                {
-                    "type" : "text",
-                    "id" : "min_width_banner_button-2",
-                    "label" : "Banner Button-2 Min Width",
-                    "default" : "237px"
-                },
-                {
-                    "type" : "text",
-                    "id" : "padding_banner_button-2",
-                    "label" : "Padding Banner Button-2",
-                    "default" : "16px 32px"
-                },
-                {
-                    "type" : "text",
-                    "id" : "border_radius_banner_button-2",
-                    "label" : "Border Radius Banner Button-2",
-                    "default" : "12px"
-                }
-				,
-                {
-                    "type" : "text",
-                    "id" : "font_size_banner_button-2",
-                    "label" : "Font Size Banner Button-2",
-                    "default" : "16px"
-                }	  
-        ]
-    },
-        {
-            "type": "largeImg",
-            "name": "Large Image",
-            "settings": [           
-                {
-                    "type": "image_picker",
-                    "id": "image",
-                    "label" : "Select Image"
-                },
+						"type": "select",
+						"id": "layout",
+						"label": "Banner Layout:",
+						"options": [
+								{
+										"value": "default",
+										"label": "Default"
+								},
+								{
+										"value": "full",
+										"label": "Full Width"
+								}
+						],
+						"default": "full"
+				},
 				{
-                    "type": "image_picker",
-                    "id": "image_shadow",
-                    "label" : "Select Image"
-                },
-                {
-                    "type": "header",
-                    "content": "Parallax"
-                },
-                {
-                    "type": "checkbox",
-                    "id": "display_parallax",
-                    "label": "Display Parallax",
-                    "default": false
-                },
-                {
-                    "type" : "checkbox",
-                    "id" : "dpl_down_arrow",
-                    "label" : "Display icon Scroll Down",
-                    "default" : false
-                },                
-                {
-                    "type" : "text",
-                    "id" : "height_img_parallax",
-                    "label" : "Height Parallax Image",
-                    "default" : "970px"
-                },
-                {
-                    "type": "header",
-                    "content": "Banner Content"
-                },
-                {
-                    "type": "select",
-                    "id": "alignment",
-                    "label": "Text alignment",
-                    "default": "left",
-                    "options": [
-                        {
-                            "value": "left",
-                            "label": "Left"
-                        },
-                        {
-                            "value": "center",
-                            "label": "Center"
-                        },
-                        {
-                            "value": "right",
-                            "label": "Right"
-                        }
-                    ]
-                },
-                {
-                    "type" : "text",
-                    "id" : "badge_title",
-                    "label" : "Badge Title",
-                    "default" : "Print on Demand + Drop-Shipping"
-                },
-                {
-                    "type" : "text",
-                    "id" : "banner_heading",
-                    "label" : "Banner Heading",
-                    "default" : "Metropólis"
-                },
-                {
-                    "type" : "text",
-                    "id" : "font_size_banner_heading",
-                    "label" : "Heading Font Size ",
-                    "default" : "40px"
-                },
-                {
-                    "type" : "color",
-                    "id" : "color_banner_heading",
-                    "label" : "Heading Color",
-                    "default" : "#232323"
-                },
-                {
-                    "type" : "textarea",
-                    "id" : "banner_des",
-                    "label" : "Banner Description",
-                    "default": "Pellentesque posuere orci lobortis scelerisque blandit. Donec id tellus lacinia an tincidunt risus an consequat delit quisquemos."
-                },
-                {
-                    "type" : "text",
-                    "id" : "font_size_banner_des",
-                    "label" : "Description Font Size",
-                    "default" : "16px"
-                },
-                {
-                    "type" : "color",
-                    "id" : "color_banner_des",
-                    "label" : "Description Color",
-                    "default" : "#232323"
-                },
-                {
-                    "type" : "textarea",
-                    "id" : "countdown",
-                    "label" : "Countdown"
-                },
-                {
-                    "type" : "text",
-                    "id" : "banner_button",
-                    "label" : "Button Banner",
-                    "default" : "Shop The Looks"
-                },
-                {
-                    "type" : "url",
-                    "id" : "link",
-                    "label" : "Banner Link"
-                },
-                {
-                    "type" : "color",
-                    "id" : "bg_banner_button",
-                    "label" : "Background Button",
-                    "default" : "#232323"
-                },
-                {
-                    "type" : "color",
-                    "id" : "border_banner_button",
-                    "label" : "Border Button",
-                    "default" : "#232323"
-                },
-                {
-                    "type" : "color",
-                    "id" : "color_banner_button",
-                    "label" : "Button Color",
-                    "default" : "#fff"
-                },
-                {
-                    "type" : "text",
-                    "id" : "min_width_banner_button",
-                    "label" : "Banner Button Min Width",
-                    "default" : "237px"
-                },
-                {
-                    "type" : "text",
-                    "id" : "padding_banner_button",
-                    "label" : "Padding Banner Button",
-                    "default" : "16px 32px"
-                },
-                {
-                    "type" : "text",
-                    "id" : "border_radius_banner_button",
-                    "label" : "Border Radius Banner Button",
-                    "default" : "12px"
-                }
-				,
-                {
-                    "type" : "text",
-                    "id" : "font_size_banner_button",
-                    "label" : "Font Size Banner Button",
-                    "default" : "16px"
-                }
-            ]
-        }
-    ],
-    "presets": [
-        {
-            "name": "Custom Block Banners JBQA",
-            "category": "Banner",
-            "blocks": [
-                {
-                    "type": "largeImg"
-                }         
-            ]
-        }
-    ]
-  }
+						"type": "header",
+						"content": "Header"
+				},
+				{
+						"type": "text",
+						"id": "banner_h1",
+						"label": "Banner H1"
+				},
+				{
+						"type": "text",
+						"id": "widget_title",
+						"label": "Widget Title"
+				},
+				{
+						"type" : "textarea",
+						"id" : "widget_des",
+						"label" : "Description"
+				},
+				{
+						"type": "select",
+						"id": "title_style",
+						"label": "Title Style:",
+						"options": [
+								{
+										"value": "style_1",
+										"label": "Style 1" 
+								},
+								{ 
+										"value": "style_2",
+										"label": "Style 2" 
+								}          
+						],
+						"default": "style_1"
+				},
+				{
+						"type": "select",
+						"id": "img_align",
+						"label": "Image Align:",
+						"default": "center",
+						"options": [
+								{
+										"value": "center",
+										"label": "Center"
+								},
+								{
+										"value": "left",
+										"label": "Left"
+								},              
+								{
+										"value": "right",
+										"label": "Right"
+								}
+						]
+				}, 
+				{
+						"type": "header",
+						"content": "Margin Bottom:"
+				},
+				{
+						"type": "range",
+						"id": "margin_bottom_mb",
+						"label": "Mobile",
+						"min": 0,
+						"max": 100,
+						"step": 1,
+						"default": 25
+				},
+				{
+						"type": "range",
+						"id": "margin_bottom_tab",
+						"label": "Tablet",
+						"min": 0,
+						"max": 100,
+						"step": 1,
+						"default": 30
+				},             
+				{
+						"type": "range",
+						"id": "margin_bottom",
+						"label": "Margin Bottom",
+						"min": 0,
+						"max": 100,
+						"step": 1,
+						"default": 30
+				}	    
+		],
+		"blocks": [
+				{
+						"type": "smallImg",
+						"name": "Small Image",
+						"settings": [           
+								{
+										"type": "image_picker",
+										"id": "image",
+										"label" : "Select Image"
+								},
+								{
+										"type": "header",
+										"content": "Parallax"
+								},
+								{
+										"type": "checkbox",
+										"id": "display_parallax",
+										"label": "Display Parallax",
+										"default": false
+								},
+								{
+										"type" : "checkbox",
+										"id" : "dpl_down_arrow",
+										"label" : "Display icon Scroll Down",
+										"default" : false
+								},                
+								{
+										"type" : "text",
+										"id" : "height_img_parallax",
+										"label" : "Height Parallax Image",
+										"default" : "970px"
+								},
+								{
+										"type": "header",
+										"content": "Banner Content"
+								},
+								{
+										"type": "select",
+										"id": "alignment",
+										"label": "Text alignment",
+										"default": "left",
+										"options": [
+												{
+														"value": "left",
+														"label": "Left"
+												},
+												{
+														"value": "center",
+														"label": "Center"
+												},
+												{
+														"value": "right",
+														"label": "Right"
+												}
+										]
+								},
+								{
+										"type" : "text",
+										"id" : "badge_title",
+										"label" : "Badge Title",
+										"default" : "Integration"
+								},
+								{
+										"type" : "text",
+										"id" : "banner_heading",
+										"label" : "Banner Heading",
+										"default" : "Metropólis"
+								},
+								{
+										"type" : "text",
+										"id" : "font_size_banner_heading",
+										"label" : "Heading Font Size ",
+										"default" : "40px"
+								},
+								{
+										"type" : "color",
+										"id" : "color_banner_heading",
+										"label" : "Heading Color",
+										"default" : "#232323"
+								},
+								{
+										"type" : "textarea",
+										"id" : "banner_des",
+										"label" : "Banner Description",
+										"default": "Pellentesque posuere orci lobortis scelerisque blandit. Donec id tellus lacinia an tincidunt risus an consequat delit quisquemos."
+								},
+								{
+										"type" : "text",
+										"id" : "font_size_banner_des",
+										"label" : "Description Font Size",
+										"default" : "16px"
+								},
+								{
+										"type" : "color",
+										"id" : "color_banner_des",
+										"label" : "Description Color",
+										"default" : "#232323"
+								},
+								{
+										"type" : "textarea",
+										"id" : "countdown",
+										"label" : "Countdown"
+								},
+								{
+										"type" : "text",
+										"id" : "banner_button",
+										"label" : "Button Banner",
+										"default" : "Shop The Looks"
+								},
+								{
+										"type" : "url",
+										"id" : "link",
+										"label" : "Banner Link"
+								},
+								{
+										"type" : "color",
+										"id" : "bg_banner_button",
+										"label" : "Background Button",
+										"default" : "#232323"
+								},
+								{
+										"type" : "color",
+										"id" : "border_banner_button",
+										"label" : "Border Button",
+										"default" : "#232323"
+								},
+								{
+										"type" : "color",
+										"id" : "color_banner_button",
+										"label" : "Button Color",
+										"default" : "#fff"
+								},
+								{
+										"type" : "text",
+										"id" : "min_width_banner_button",
+										"label" : "Banner Button Min Width",
+										"default" : "237px"
+								},
+								{
+										"type" : "text",
+										"id" : "padding_banner_button",
+										"label" : "Padding Banner Button",
+										"default" : "16px 32px"
+								},
+								{
+										"type" : "text",
+										"id" : "border_radius_banner_button",
+										"label" : "Border Radius Banner Button",
+										"default" : "12px"
+								}
+								,
+								{
+										"type" : "text",
+										"id" : "font_size_banner_button",
+										"label" : "Font Size Banner Button",
+										"default" : "16px"
+								}	  
+				]
+		},
+				{
+						"type": "largeImg",
+						"name": "Large Image",
+						"settings": [           
+								{
+										"type": "image_picker",
+										"id": "image",
+										"label" : "Select Image"
+								},
+								{
+										"type": "image_picker",
+										"id": "image_shadow",
+										"label" : "Select Image"
+								},
+								{
+										"type": "header",
+										"content": "Parallax"
+								},
+								{
+										"type": "checkbox",
+										"id": "display_parallax",
+										"label": "Display Parallax",
+										"default": false
+								},
+								{
+										"type" : "checkbox",
+										"id" : "dpl_down_arrow",
+										"label" : "Display icon Scroll Down",
+										"default" : false
+								},                
+								{
+										"type" : "text",
+										"id" : "height_img_parallax",
+										"label" : "Height Parallax Image",
+										"default" : "970px"
+								},
+								{
+										"type": "header",
+										"content": "Banner Content"
+								},
+								{
+										"type": "select",
+										"id": "alignment",
+										"label": "Text alignment",
+										"default": "left",
+										"options": [
+												{
+														"value": "left",
+														"label": "Left"
+												},
+												{
+														"value": "center",
+														"label": "Center"
+												},
+												{
+														"value": "right",
+														"label": "Right"
+												}
+										]
+								},
+								{
+										"type" : "text",
+										"id" : "badge_title",
+										"label" : "Badge Title",
+										"default" : "Print on Demand + Drop-Shipping"
+								},
+								{
+										"type" : "text",
+										"id" : "banner_heading",
+										"label" : "Banner Heading",
+										"default" : "Metropólis"
+								},
+								{
+										"type" : "text",
+										"id" : "font_size_banner_heading",
+										"label" : "Heading Font Size ",
+										"default" : "40px"
+								},
+								{
+										"type" : "color",
+										"id" : "color_banner_heading",
+										"label" : "Heading Color",
+										"default" : "#232323"
+								},
+								{
+										"type" : "textarea",
+										"id" : "banner_des",
+										"label" : "Banner Description",
+										"default": "Pellentesque posuere orci lobortis scelerisque blandit. Donec id tellus lacinia an tincidunt risus an consequat delit quisquemos."
+								},
+								{
+										"type" : "text",
+										"id" : "font_size_banner_des",
+										"label" : "Description Font Size",
+										"default" : "16px"
+								},
+								{
+										"type" : "color",
+										"id" : "color_banner_des",
+										"label" : "Description Color",
+										"default" : "#232323"
+								},
+								{
+										"type" : "textarea",
+										"id" : "countdown",
+										"label" : "Countdown"
+								},
+								{
+										"type" : "text",
+										"id" : "banner_button",
+										"label" : "Button Banner",
+										"default" : "Shop The Looks"
+								},
+								{
+										"type" : "url",
+										"id" : "link",
+										"label" : "Banner Link"
+								},
+								{
+										"type" : "color",
+										"id" : "bg_banner_button",
+										"label" : "Background Button",
+										"default" : "#232323"
+								},
+								{
+										"type" : "color",
+										"id" : "border_banner_button",
+										"label" : "Border Button",
+										"default" : "#232323"
+								},
+								{
+										"type" : "color",
+										"id" : "color_banner_button",
+										"label" : "Button Color",
+										"default" : "#fff"
+								},
+								{
+										"type" : "text",
+										"id" : "min_width_banner_button",
+										"label" : "Banner Button Min Width",
+										"default" : "237px"
+								},
+								{
+										"type" : "text",
+										"id" : "padding_banner_button",
+										"label" : "Padding Banner Button",
+										"default" : "16px 32px"
+								},
+								{
+										"type" : "text",
+										"id" : "border_radius_banner_button",
+										"label" : "Border Radius Banner Button",
+										"default" : "12px"
+								}
+								,
+								{
+										"type" : "text",
+										"id" : "font_size_banner_button",
+										"label" : "Font Size Banner Button",
+										"default" : "16px"
+								},
+								{
+									"type" : "text",
+									"id" : "banner_button-2",
+									"label" : "Button Banner-2",
+									"default" : "Browse Products"
+							},
+							{
+									"type" : "url",
+									"id" : "link-2",
+									"label" : "Banner Link"
+							},
+							{
+									"type" : "color",
+									"id" : "bg_banner_button-2",
+									"label" : "Background Button-2",
+									"default" : "#232323"
+							},
+							{
+									"type" : "color",
+									"id" : "border_banner_button-2",
+									"label" : "Border Button-2",
+									"default" : "#232323"
+							},
+							{
+									"type" : "color",
+									"id" : "color_banner_button-2",
+									"label" : "Button-2 Color",
+									"default" : "#fff"
+							},
+							{
+									"type" : "text",
+									"id" : "min_width_banner_button-2",
+									"label" : "Banner Button-2 Min Width",
+									"default" : "237px"
+							},
+							{
+									"type" : "text",
+									"id" : "padding_banner_button-2",
+									"label" : "Padding Banner-2 Button",
+									"default" : "0.75rem 1.5rem"
+							},
+							{
+									"type" : "text",
+									"id" : "border_radius_banner_button-2",
+									"label" : "Border Radius Banner-2 Button",
+									"default" : "55px"
+							}
+							,
+							{
+									"type" : "text",
+									"id" : "font_size_banner_button-2",
+									"label" : "Font Size Banner-2 Button",
+									"default" : "16px"
+							}
+						]
+				}
+		],
+		"presets": [
+				{
+						"name": "Custom Block Banner-2s JBQA",
+						"category": "Banner",
+						"blocks": [
+								{
+										"type": "largeImg"
+								}         
+						]
+				}
+		]
+	}
 {% endschema %}
