@@ -213,7 +213,8 @@
                           </div>
                       	</div>
                   	</div>
-                        <div class="background-layer-img"> </div>
+                    {% comment%}
+                        <div class="background-layer-img"> </div> {% endcomment %}
                         <div class="background-layer-05"> </div>
                         <div class="background-layer-04"> </div>
                         <div class="background-layer-03"> </div>
@@ -340,6 +341,33 @@
                                             {% render 'multilang' with block.settings.banner_button %}
                                             </a>
                                           
+                                            {% if block.settings.banner_button-2 != blank %}
+                                                <a href="{{ block.settings.link-2 }}" class="banner-button-2 btn"
+                                                style="{% if block.settings.bg_banner_button-2 != blank %}
+                                                        background-color:{{ block.settings.bg_banner_button-2 }};
+                                                        {% endif %}
+                                                        {% if block.settings.border_banner_button-2 != blank %}
+                                                        border-color:{{ block.settings.border_banner_button-2 }};
+                                                        {% endif %}
+                                                        {% if block.settings.color_banner_button-2 != blank %}
+                                                        color:{{ block.settings.color_banner_button-2 }};
+                                                        {% endif %}
+                                                        {% if block.settings.min_width_banner_button-2 != blank %}
+                                                        min-width:{{ block.settings.min_width_banner_button-2 }};
+                                                        {% endif %}
+                                                        {% if block.settings.padding_banner_button-2 != blank %}
+                                                        padding:{{ block.settings.padding_banner_button-2 }};
+                                                        {% endif %}
+                                                        {% if block.settings.border_radius_banner_button-2 != blank %}
+                                                        border-radius:{{ block.settings.border_radius_banner_button-2 }};
+                                                        {% endif %}
+                                                        {% if block.settings.font_size_banner_button-2 != blank %}
+                                                        font-size:{{ block.settings.font_size_banner_button-2 }};
+                                                        {% endif %}">
+                                                          
+                                                {% render 'multilang' with block.settings.banner_button-2 %}
+                                                </a>
+
                                         {% comment %}  
                                           <!--HubSpot Call-to-Action Code --><span class="hs-cta-wrapper" id="hs-cta-wrapper-f70a6557-18f0-4df5-95b6-5c418e3604ba"><span class="hs-cta-node hs-cta-f70a6557-18f0-4df5-95b6-5c418e3604ba" id="hs-cta-f70a6557-18f0-4df5-95b6-5c418e3604ba"><!--[if lte IE 8]><div id="hs-cta-ie-element"></div><![endif]--><a href="https://cta-redirect.hubspot.com/cta/redirect/7014658/f70a6557-18f0-4df5-95b6-5c418e3604ba" ><img class="hs-cta-img" id="hs-cta-img-f70a6557-18f0-4df5-95b6-5c418e3604ba" style="border-width:0px;" src="https://no-cache.hubspot.com/cta/default/7014658/f70a6557-18f0-4df5-95b6-5c418e3604ba.png"  alt="Schedule a Demo"/></a></span><script charset="utf-8" src="https://js.hscta.net/cta/current.js"></script><script type="text/javascript"> hbspt.cta.load(7014658, 'f70a6557-18f0-4df5-95b6-5c418e3604ba', {}); </script></span><!-- end HubSpot Call-to-Action Code -->
                                         {% endcomment %}
@@ -461,7 +489,6 @@
                           </div>
                       	</div>
                   	</div>
-                        <div class="background-layer-img"> </div>
                         <div class="background-layer-05"> </div>
                         <div class="background-layer-04"> </div>
                         <div class="background-layer-03"> </div>
@@ -790,6 +817,60 @@
                     "type" : "text",
                     "id" : "font_size_banner_button",
                     "label" : "Font Size Banner Button",
+                    "default" : "16px"
+                },
+                {
+                    "type" : "text",
+                    "id" : "banner_button-2",
+                    "label" : "Button-2 Banner",
+                    "default" : "Shop The Looks"
+                },
+                {
+                    "type" : "url",
+                    "id" : "link-2",
+                    "label" : "Banner Link"
+                },
+                {
+                    "type" : "color",
+                    "id" : "bg_banner_button-2",
+                    "label" : "Background Button-2",
+                    "default" : "#232323"
+                },
+                {
+                    "type" : "color",
+                    "id" : "border_banner_button-2",
+                    "label" : "Border Button-2",
+                    "default" : "#232323"
+                },
+                {
+                    "type" : "color",
+                    "id" : "color_banner_button-2",
+                    "label" : "Button-2 Color",
+                    "default" : "#fff"
+                },
+                {
+                    "type" : "text",
+                    "id" : "min_width_banner_button-2",
+                    "label" : "Banner Button-2 Min Width",
+                    "default" : "237px"
+                },
+                {
+                    "type" : "text",
+                    "id" : "padding_banner_button-2",
+                    "label" : "Padding Banner Button-2",
+                    "default" : "16px 32px"
+                },
+                {
+                    "type" : "text",
+                    "id" : "border_radius_banner_button-2",
+                    "label" : "Border Radius Banner Button-2",
+                    "default" : "12px"
+                }
+				,
+                {
+                    "type" : "text",
+                    "id" : "font_size_banner_button-2",
+                    "label" : "Font Size Banner Button-2",
                     "default" : "16px"
                 }	  
         ]
