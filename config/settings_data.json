@@ -1675,11 +1675,11 @@
       "collection-template-default": {
         "type": "collection-template-default",
         "settings": {
-          "display_collection_image": true,
+          "display_collection_image": false,
           "display_collection_des": true,
-          "limited_view": true,
+          "limited_view": false,
           "view_as_enable": true,
-          "sort_enable": true,
+          "sort_enable": false,
           "collection_results_per_row": "4",
           "collection_results_per_page": "24"
         }
