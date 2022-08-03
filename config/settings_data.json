@@ -2236,78 +2236,6 @@
           "accept_cookies_text": "accept"
         }
       },
-      "1540952363851": {
-        "type": "home-slideshow",
-        "disabled": true,
-        "blocks": {
-          "1540952363851-0": {
-            "type": "image",
-            "settings": {
-              "dpl_slide_img": true,
-              "image_slide": "shopify:\/\/shop_images\/Hero__slideshow-banner.png",
-              "alignment": "left",
-              "heading": "Print on<p>Demand &<\/p>Drop Ship<p><\/p>",
-              "font_size_heading": "54px",
-              "color_heading": "#ffffff",
-              "bg_heading_mb": "#ffffff",
-              "sub_heading": "",
-              "font_size_sub_heading": "30px",
-              "color_sub_heading": "#ffffff",
-              "slide-des": "PrintversePro brings all your Dye Sub Print on Demand needs together with vertical integration, low base cost, and 48 hour turn around.",
-              "font_size_des": "18px",
-              "color_des": "#ffffff",
-              "button_slide": "Get Started",
-              "link": "",
-              "bg_button": "#232323",
-              "border_button": "#232323",
-              "color_button": "#ffffff",
-              "lb_product_1": "",
-              "top_position_1": "10",
-              "left_position_1": "10",
-              "dots_color_1": "#ffffff",
-              "dots_bg_color_1": "#323232",
-              "dots_shadow_color_1": "#ffffff",
-              "lb_product_2": "",
-              "top_position_2": "10",
-              "left_position_2": "10",
-              "dots_color_2": "#ffffff",
-              "dots_bg_color_2": "#323232",
-              "dots_shadow_color_2": "#ffffff",
-              "lb_product_3": "",
-              "top_position_3": "10",
-              "left_position_3": "10",
-              "dots_color_3": "#ffffff",
-              "dots_bg_color_3": "#323232",
-              "dots_shadow_color_3": "#ffffff"
-            }
-          }
-        },
-        "block_order": [
-          "1540952363851-0"
-        ],
-        "settings": {
-          "layout": "full",
-          "margin_bottom_mb": 20,
-          "margin_bottom_tab": 20,
-          "margin_bottom": 30,
-          "autoplay": true,
-          "slideshow_speed": "10000",
-          "slideshow_transition": "true",
-          "dots": "true",
-          "dots_color": "#707979",
-          "dots_active_color": "#747d7d",
-          "dots_opacity": true,
-          "arrow_color": "#636a6a",
-          "arrow_border_color": "#636a6a",
-          "arrow_bg_color": "rgba(0,0,0,0)",
-          "position_slick_arrow": "9.5%",
-          "min_width_banner_button": "",
-          "bg_video": "#866965",
-          "bg_overlay_opacity": 40,
-          "video_height": "38.3%",
-          "auto_playvideo": true
-        }
-      },
       "1541065669115": {
         "type": "home-new-arrivals",
         "settings": {
@@ -3710,12 +3638,11 @@
       "1600377572674",
       "1600286593373",
       "1600362764280",
-      "161406558627cbccba",
-      "1601936080654",
       "1541065669115",
+      "1601936080654",
+      "161406558627cbccba",
       "1602523437920729ed",
       "1600298681349",
-      "1540952363851",
       "1599847286811",
       "1600293233186",
       "1541402822593",
