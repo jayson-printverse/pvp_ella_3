@@ -179,9 +179,9 @@
     {% if template contains 'product' %}
     {% render 'ask_an_expert' %}  
     {% endif %}
-               
+               {% comment %}
                 {% render 'recently-viewed-products'%}
-              
+               {% endcomment %}
     <div class="wrapper-overlay"></div> 
 
 {{ '//cdn.shopify.com/s/files/1/0194/1736/6592/t/1/assets/booster-page-speed-optimizer.js?23' | script_tag }}
