@@ -669,7 +669,7 @@ body {
     {% endif %}
     margin: 0 auto;
     font-family: $fonts_name, 'Arial', 'sans-serif';
-    line-height: $font_size + 8;
+    line-height: 1.5;
     letter-spacing: normal;
     scroll-behavior: smooth;
     font-feature-settings: "ss02";
@@ -14087,24 +14087,24 @@ table {
 }
 /* Home Custom Block BAnner Gradients from Webflow */
 
-.background-layer-05, .background-layer-04, .background-layer-03, .background-layer-02, .bg-layer-01 {
+.bg__l-05, .bg__l-04, .bg__l-03, .bg__l-02, .bg__l-01 {
 	position: absolute;
     left: 0%;
     top: 0%;
     right: 0%;
     bottom: 0%;
 }
-.background-layer-05 {
+.bg__l-05 {
     background: linear-gradient(256.96deg, #04CFEC 18.71%, rgba(143, 48, 198, 0.28125) 64.92%, rgba(101, 33, 221, 0) 88.89%);
     background-blend-mode: lighten;
     mix-blend-mode: lighten;
     z-index: -96;
 }
-.background-layer-04 {
+.bg__l-04 {
     background: linear-gradient(180deg, #6521DD 0%, rgba(101, 33, 221, 0) 100%);
     z-index: -97;
 }
-.background-layer-03 {
+.bg__l-03 {
     background: linear-gradient(318.15deg, #FF0050 5.12%, rgba(255, 0, 80, 0.511128) 15.11%, rgba(255, 0, 80, 0) 21.77%);
     background-blend-mode: screen;
     mix-blend-mode: screen;
@@ -14113,7 +14113,7 @@ table {
 .backgroud-layer-01 {
     background-color: #3C1384;
 }
-.background-layer-02 {
+.bg__l-02 {
     background: linear-gradient(285.41deg, #FFFFFF 0%, rgba(196, 196, 196, 0) 54.17%);
     background-blend-mode: overlay;
     mix-blend-mode: overlay;
@@ -14124,26 +14124,10 @@ table {
     background-image: linear-gradient(180deg, #3c1384, #3c1384);
     z-index: -100;
 }
-.bg-layer-01 {
+.bg__l-01 {
     background-image: -webkit-gradient(linear, left top, left bottom, from(#3c1384), to(#3c1384));
     background-image: linear-gradient(180deg, #3c1384, #3c1384);
     z-index: -100;
-}
-.background-layer-img {
-    /* position: absolute; */
-    left: 0%;
-    top: 10%;
-    right: 0%;
-    bottom: 0%;
-    z-index: -95;
-    height: 100%;
-    /* background-image: url(https://uploads-ssl.webflow.com/5f319e0…/5f31b85…_3x%20Mugs%203D%20Render%20-3-o.png); */
-    background-position: 92% 50%;
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-attachment: scroll;
-    -webkit-transition: all 200ms ease-in-out;
-    transition: all 200ms ease-in-out;
 }
 
 .not_img_temp {
@@ -14165,7 +14149,7 @@ table {
     margin-left: auto;
     margin-right: auto;
     padding: 25px 15px 30px;
-    width: 32vw;
+    width: 50vw;
   
   	.badge {
       	//text-transform: Uppercase;
@@ -14223,6 +14207,13 @@ table {
         margin-left: 0;
         margin-right: auto;
     	margin-bottom: 48px;
+    }
+    .button-cta-arrow {
+        font-size: 110%;
+        display: inline-block;
+        margin-left: 0.75rem;
+        transition: transform .6s cubic-bezier(.075,.82,.165,1);
+        -webkit-transition: transform .6s cubic-bezier(.075,.82,.165,1);
     }
 }
 

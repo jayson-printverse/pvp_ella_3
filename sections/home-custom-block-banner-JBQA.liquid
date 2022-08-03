@@ -314,9 +314,9 @@
 																								</style>
 																						{% endif %}
 																						
-																						<div class="d-inline-flex">
+																						<div class="d-inline-flex align-items-center">
 																							{% if block.settings.banner_button != blank %}
-																							<a href="{{ block.settings.link }}" class="banner-button btn"
+																							<a href="{{ block.settings.link }}" class="banner-button btn mr-3"
 																							style="{% if block.settings.bg_banner_button != blank %}
 																											background-color:{{ block.settings.bg_banner_button }};
 																											{% endif %}
@@ -371,6 +371,7 @@
 																												{% endif %}">
 																													
 																								{% render 'multilang' with block.settings.banner_button-2 %}
+																								<span class="button-cta-arrow ">→</span>
 																								</a>
 																									{% comment %}  
 																										<!--HubSpot Call-to-Action Code --><span class="hs-cta-wrapper" id="hs-cta-wrapper-f70a6557-18f0-4df5-95b6-5c418e3604ba"><span class="hs-cta-node hs-cta-f70a6557-18f0-4df5-95b6-5c418e3604ba" id="hs-cta-f70a6557-18f0-4df5-95b6-5c418e3604ba"><!--[if lte IE 8]><div id="hs-cta-ie-element"></div><![endif]--><a href="https://cta-redirect.hubspot.com/cta/redirect/7014658/f70a6557-18f0-4df5-95b6-5c418e3604ba" ><img class="hs-cta-img" id="hs-cta-img-f70a6557-18f0-4df5-95b6-5c418e3604ba" style="border-width:0px;" src="https://no-cache.hubspot.com/cta/default/7014658/f70a6557-18f0-4df5-95b6-5c418e3604ba.png"  alt="Schedule a Demo"/></a></span><script charset="utf-8" src="https://js.hscta.net/cta/current.js"></script><script type="text/javascript"> hbspt.cta.load(7014658, 'f70a6557-18f0-4df5-95b6-5c418e3604ba', {}); </script></span><!-- end HubSpot Call-to-Action Code -->
@@ -492,13 +493,14 @@
 																	
 															</div>
 													</div>
-													</div>
+												</div>
+											
+												<div class="bg__l-05"> </div>
+												<div class="bg__l-04"> </div>
+												<div class="bg__l-03"> </div>
+												<div class="bg__l-02"> </div>
+												<div class="bg__l-01"> </div>
 											</div>
-												<div class="background-layer-05"> </div>
-												<div class="background-layer-04"> </div>
-												<div class="background-layer-03"> </div>
-												<div class="background-layer-02"> </div>
-												<div class="bg-layer-01"> </div>
 								</div>
 
 								{% if block.settings.display_parallax and block.settings.dpl_down_arrow %}
