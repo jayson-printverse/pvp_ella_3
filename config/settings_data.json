@@ -1526,7 +1526,7 @@
           "bg_icon_answer": "#16f3af",
           "color_icon_answer": "#086146",
           "color_question_answer": "#3c3c3c",
-          "font_size_answer": "13",
+          "font_size_answer": "0.875rem",
           "color_question_link": "#0688e2",
           "icon_show": "Show",
           "icon_hide": "Hide"
