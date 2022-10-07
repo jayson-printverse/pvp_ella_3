@@ -1254,7 +1254,7 @@
             "type": "text",
             "settings": {
               "question_faqs": "Can I change or cancel my order?",
-              "answer_faqs": "Contact our customer support to change or cancel orders.  If the order is <strong>InProduction<\/strong>, it may not be possible to change or cancel."
+              "answer_faqs": "Contact our customer support to change or cancel orders.  If the order is <strong>InProduction<\/strong>, it may not be possible to change or cancel. If you ordered through <a href=\"https:\/\/www.orderdesk.com\/integrations\/printverse\/\" target=\"_self\" title=\"Link to Printverse + Order Desk Integrations Page\">Order Desk<\/a>, there is a <strong>Cancel Order<\/strong> button in your dashboard."
             }
           },
           "b6d2146f-6f27-4149-bf55-761dec342171": {
