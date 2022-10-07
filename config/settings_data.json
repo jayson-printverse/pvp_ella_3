@@ -1519,7 +1519,7 @@
           "color_icon_qs": "#ffffff",
           "bg_question": "#f8f9f9",
           "color_question": "#3d454c",
-          "font_size_qs": "12",
+          "font_size_qs": "1rem",
           "bg_question_acitve": "#e9ebec",
           "color_question_acitve": "#141719",
           "icon_answer": "Answer",
