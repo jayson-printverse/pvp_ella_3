@@ -1250,6 +1250,13 @@
       "faq-page": {
         "type": "faq-page",
         "blocks": {
+          "5bf7ce44-a3e3-48d3-a3dd-a23b459e42d9": {
+            "type": "text",
+            "settings": {
+              "question_faqs": "Can I change or cancel my order?",
+              "answer_faqs": "Contact our customer support to change or cancel orders.  If the order is <strong>InProduction<\/strong>, it may not be possible to change or cancel."
+            }
+          },
           "b6d2146f-6f27-4149-bf55-761dec342171": {
             "type": "text",
             "settings": {
@@ -1425,13 +1432,6 @@
               "answer_faqs": "Yes, unless specified otherwise"
             }
           },
-          "5bf7ce44-a3e3-48d3-a3dd-a23b459e42d9": {
-            "type": "text",
-            "settings": {
-              "question_faqs": "Can I change or cancel my order?",
-              "answer_faqs": "Contact our customer support to change or cancel orders.  If the order is already made or shipped, it may not be possible to change or cancel."
-            }
-          },
           "823eda05-c387-4422-ac70-227b34b55eb9": {
             "type": "text",
             "settings": {
@@ -1476,6 +1476,7 @@
           }
         },
         "block_order": [
+          "5bf7ce44-a3e3-48d3-a3dd-a23b459e42d9",
           "b6d2146f-6f27-4149-bf55-761dec342171",
           "1507878888245",
           "1507879452149",
@@ -1501,7 +1502,6 @@
           "f46c55e2-d028-4cbf-bf71-2dadccf24eab",
           "e966f2e4-ed78-4614-9f43-91572faa3f93",
           "32629727-5f50-4362-a2fe-801f467b7747",
-          "5bf7ce44-a3e3-48d3-a3dd-a23b459e42d9",
           "823eda05-c387-4422-ac70-227b34b55eb9",
           "26372617-e331-4af2-8d97-d358282b342e",
           "6f5c227b-338c-40f5-b98d-d6d7485d4225",
