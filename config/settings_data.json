@@ -2498,16 +2498,28 @@
               "title_featured_product_2": "Featured Products 2",
               "featured_product_2": "32-oz-summit-water-bottle"
             }
+          },
+          "b8ec4a2e-a8f2-47cb-9119-a41aa0a16849": {
+            "type": "style_5",
+            "disabled": true,
+            "settings": {
+              "megamenu_items_1": "Products",
+              "title_featured_product": "Featured Products",
+              "featured_product": "",
+              "title_featured_product_2": "Featured Products 2",
+              "featured_product_2": ""
+            }
           }
         },
         "block_order": [
-          "8234f48b-510d-4fd4-a321-142c9417f4ba"
+          "8234f48b-510d-4fd4-a321-142c9417f4ba",
+          "b8ec4a2e-a8f2-47cb-9119-a41aa0a16849"
         ],
         "settings": {
-          "display_header_top": false,
-          "top_message_text": "Please view our updated <a href=\"\/collections\/updated-price-list\"><strong>Price List<\/strong><\/a> & <a href=\"\/pages\/shipping-fulfillment\"><strong>Shipping Cost<\/strong><\/a>",
+          "display_header_top": true,
+          "top_message_text": "We've updated our <a href=\"pages\/shipping-fulfillment\"><strong>Cancelation Policy<\/strong><\/a>",
           "font_weight_bold": false,
-          "bg_header_top": "#6b07e9",
+          "bg_header_top": "#232323",
           "text_header_top_color": "#ffffff",
           "brand_type": "image",
           "brand_text": "Printverse Pro",
