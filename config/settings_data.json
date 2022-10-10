@@ -2517,7 +2517,7 @@
         ],
         "settings": {
           "display_header_top": true,
-          "top_message_text": "We've updated our <a href=\"pages\/shipping-fulfillment\"><strong>Cancellation Policy<\/strong><\/a>",
+          "top_message_text": "We've updated our <a href=\"pages\/shipping-fulfillment\"><strong>Cancelation Policy<\/strong><\/a>",
           "font_weight_bold": false,
           "bg_header_top": "#232323",
           "text_header_top_color": "#ffffff",
