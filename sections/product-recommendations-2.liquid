@@ -36,9 +36,9 @@
   Looking for a relevant collection.
 {% endcomment %}
 
-
-  {% assign collection = collections[product.metafields.related_products.product_list.value] %}
-
+{% if product.metafields.global.related_products.value %}
+  {% assign collection = collections[product.metafields.global.related_products.value] %}
+{% endif %}
 
 {% assign found_a_collection = false %}
 {% if collection and collection.all_products_count > 1 %}
@@ -60,8 +60,6 @@
   If we have a relevant collection.
 {% endcomment %}
 
-
-  
 {% if found_a_collection %}
 
   {% assign counter = 0 %}
@@ -96,10 +94,7 @@
   {% capture related_items %}
 <div class="product-collection products-grid row grid grid--uniform{% if collection.products_count > 0 %} grid--view-items{% endif %}">
 
-  {%assign related_products = product.metafields.related_products.product_list.value %}
-
-    
-  {% for product in related_products %}
+  {% for product in collection.products %}
   {% unless product.handle == current_product.handle %}
   {% unless same_vendor and current_product.vendor != product.vendor %}
   {% unless same_type and current_product.type != product.type %}
