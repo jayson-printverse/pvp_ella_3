@@ -51,7 +51,7 @@
 {% unless found_a_collection %}
   {% for c in product.collections %}
     {% unless exclusions contains c.handle or c.all_products_count < 2 %}
-      {% assign found_a_collection = true %}
+      {% assign found_a_collection = false %}
       {% assign collection = c %}
       {% break %}
     {% endunless %}
