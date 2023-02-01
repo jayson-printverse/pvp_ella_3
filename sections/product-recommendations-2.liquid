@@ -78,7 +78,8 @@
       {% endfor %}
      </div>
    {%endif%}
-
+  
+  {%assign related_items = product.metafields.related_products.product_list.value %}
 
 {% if found_a_collection %}
 
