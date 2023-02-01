@@ -1032,9 +1032,28 @@
             <h6>Size (pixels)</h6>
           {% endif %}
         </div>
+        <div class="col-md-8 offset-md-4 mb-5" id="fulfillment">
+          <hr>
+          <h3>Downloads</h3>
+          <hr class="minor">
+
+          <div class="downloads" id="downloads">
+            {% if product.metafields.imprint_url.template__png != blank %}
+              <a
+                class="template-downloads"
+                id="template-downloads"
+                href="{{ current_variant.metafields.imprint_url['template__png'] }}"
+                target="_blank"
+                download="{{ current_variant.metafields.imprint_url['template__name'] }}"
+              >
+                {{ current_variant.metafields.imprint_url.template__name -}}
+              </a>
+            {% endif %}
+          </div>
+        </div>        
       </div>
       <div class="row align-items-start">
-        <div class="col-md-6" id="shipping">
+        <div class="col-md-12 mb-5" id="shipping">
           <hr>
           <h3>Shipping</h3>
           <hr class="minor">
@@ -1060,25 +1079,6 @@
               </div>
             {% endif %}
           {% endif %}
-        </div>
-        <div class="col-md-6" id="fulfillment">
-          <hr>
-          <h3>Downloads</h3>
-          <hr class="minor">
-
-          <div class="downloads" id="downloads">
-            {% if product.metafields.imprint_url.template__png != blank %}
-              <a
-                class="template-downloads"
-                id="template-downloads"
-                href="{{ current_variant.metafields.imprint_url['template__png'] }}"
-                target="_blank"
-                download="{{ current_variant.metafields.imprint_url['template__name'] }}"
-              >
-                {{ current_variant.metafields.imprint_url.template__name -}}
-              </a>
-            {% endif %}
-          </div>
         </div>
       </div>
       <div class="row align-items-start">
