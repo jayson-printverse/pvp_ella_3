@@ -1061,7 +1061,7 @@
       "recently-viewed-products": {
         "type": "recently-viewed-products",
         "settings": {
-          "display_recently_viewed_products": true,
+          "display_recently_viewed_products": false,
           "recently_viewed_products_title": "Recently Viewed Products",
           "number_of_recently_viewed_products": "8"
         }
