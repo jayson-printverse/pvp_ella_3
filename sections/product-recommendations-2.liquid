@@ -97,7 +97,9 @@
 <div class="product-collection products-grid row grid grid--uniform{% if collection.products_count > 0 %} grid--view-items{% endif %}">
 
   {%assign related_products = product.metafields.related_products.product_list.value %}
-  {% for product in collection.products %}
+
+    
+  {% for product in related_products %}
   {% unless product.handle == current_product.handle %}
   {% unless same_vendor and current_product.vendor != product.vendor %}
   {% unless same_type and current_product.type != product.type %}
