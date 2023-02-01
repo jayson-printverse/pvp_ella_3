@@ -42,7 +42,7 @@
   {% assign collection = collections[product.metafields.global.related_products.value] %}
 {% endif %}
 
-{% assign found_a_collection = true %}
+{% assign found_a_collection = false %}
 {% if collection and collection.all_products_count > 1 %}
   {% unless exclusions contains collection.handle %}
     {% assign found_a_collection = true %}
