@@ -37,8 +37,8 @@
   Looking for a relevant collection.
 {% endcomment %}
 
-{% if product.metafields.global.related_products.product_list.value %}
-  {% assign collection = collections[product.metafields.global.related_products.product_list.value] %}
+{% if product.metafields.related_products.product_list.value %}
+  {% assign collection = collections[product.metafields.related_products.product_list.value] %}
 {% endif %}
 
 {% assign found_a_collection = false %}
