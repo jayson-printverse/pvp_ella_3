@@ -2,65 +2,9 @@
 <hr>
 <div class="product-template__container page-width" itemscope itemtype="http://schema.org/Product" id="ProductSection-{{ section.id }}" data-section-id="{{ section.id }}" data-section-type="product" data-enable-history-state="true">
  
-{% comment %}
-  Number of related items per row,
-  and number of rows.
-{% endcomment %}
 
-{% assign number_of_related_products_per_row = section.settings.related_grid_num %}
-{% assign number_of_rows = section.settings.related_grid_row %}
-
-{% comment %}
-  Heading.
-  Leave blank if you don't need one.
-{% endcomment %}
-
-{% assign heading = section.settings.related_title %}
-
-{% comment %}
-  Set either or both to true, if you want
-  to limit yourself to items with same vendor, and/or type.
-{% endcomment %}
-
-{% assign same_vendor = false %}
-{% assign same_type = false %}
-
-{% comment %}
-  Collections to ignore.
-  Never pick related items from those.
-{% endcomment %}
-
-{% assign exclusions = 'frontpage,all' | split: ',' %}
-
-{% comment %}
-  Looking for a relevant collection.
-{% endcomment %}
-
-{% if product.metafields.global.related_products.value %}
-  {% assign collection = collections[product.metafields.global.related_products.value] %}
-{% endif %}
-
-{% assign found_a_collection = false %}
-{% if collection and collection.all_products_count > 1 %}
-  {% unless exclusions contains collection.handle %}
-    {% assign found_a_collection = true %}
-  {% endunless %}
-{% endif %}
-{% unless found_a_collection %}
-  {% for c in product.collections %}
-    {% unless exclusions contains c.handle or c.all_products_count < 2 %}
-      {% assign found_a_collection = true %}
-      {% assign collection = c %}
-      {% break %}
-    {% endunless %}
-  {% endfor %}
-{% endunless %}
-
-{% comment %}
-  If we have a relevant collection.
-{% endcomment %}
-
-{% if found_a_collection %}
+  {%assign related_products = product.metafields.related_products.product_list.value %}
+   {% if related_products %}
 
   {% assign counter = 0 %}
   {% assign break_at = number_of_rows | times: number_of_related_products_per_row %}
