@@ -65,14 +65,14 @@
    {% if related_items %}
     <h3>You might also like:</h3>
      <div class = "related-product-list">
-      {% for related_product in related_items %}
-       <a href = "{{shop.url | append: "/products/" | append: related_product.handle }}">
+      {% for current_product in related_items %}
+       <a href = "{{shop.url | append: "/products/" | append: current_product.handle }}">
         <div class = "related-product">
          <div class = "related-product-image">
-           <img src = "{{related_product.featured_image | img_url: 'medium' }}" />
+           <img src = "{{current_product.featured_image | img_url: 'medium' }}" />
           </div>
-         <div class = "related-product-name">{{related_product.title}}</div>
-         <div class = "related-product-price">{{related_product.price | money}}</div>
+         <div class = "related-product-name">{{current_product.title}}</div>
+         <div class = "related-product-price">{{current_product.price | money}}</div>
         </div>
        </a>
       {% endfor %}
