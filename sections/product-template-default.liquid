@@ -1117,7 +1117,9 @@
             </div>
           </div>
 
+            {% comment %}
           {% assign content = section.settings.shipping_returns_content %}
+          {% endcomment %}
 
           {% if content != blank %}
             {% if settings.enable_multilang and content contains '[lang2]' %}
