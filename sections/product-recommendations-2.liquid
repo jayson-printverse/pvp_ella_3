@@ -81,7 +81,7 @@
   
   {%assign related_items = product.metafields.related_products.product_list.value %}
 
-{% if found_a_collection %}
+{% if related_items %}
 
   {% assign counter = 0 %}
   {% assign break_at = number_of_rows | times: number_of_related_products_per_row %}
