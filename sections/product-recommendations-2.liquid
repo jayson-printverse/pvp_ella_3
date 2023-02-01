@@ -96,17 +96,18 @@
   {% capture related_items %}
 <div class="product-collection products-grid row grid grid--uniform{% if collection.products_count > 0 %} grid--view-items{% endif %}">
 
+        {%assign related_products = product.metafields.related_products.product_list.value %}
+       {% if related_products %}
+       {% for product in related_products %}
+         
   {% for product in collection.products %}
   {% unless product.handle == current_product.handle %}
   {% unless same_vendor and current_product.vendor != product.vendor %}
   {% unless same_type and current_product.type != product.type %}
   <div class="grid-item {{ grid_item_width }}">
-    {%assign related_products = product.metafields.related_products.product_list.value %}
-       {% if related_products %}
-       {% for product in related_products %}
+
     {% render 'product-grid-item-2', max_height: max_height %}
-         {% endfor %}
-         {% endif %}
+
   </div>
   {% assign counter = counter | plus: 1 %}
   {% if counter == break_at %}
@@ -116,6 +117,8 @@
   {% endunless %}
   {% endunless %}
   {% endfor %}
+                  {% endfor %}
+         {% endif %}
 </div>
   {% endcapture %}
 
