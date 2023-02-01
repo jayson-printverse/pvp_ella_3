@@ -1056,7 +1056,47 @@
         <div class="col-md-12" id="shipping">
           <hr>
           <h3>Shipping</h3>
+        </div>
+
+        <div class="col-md-12 my-5">
+          <div class="flex">
+            <div id="no-more-tables" class="table-responsive-md">
+              <table class="col-md-12 table-striped table-hover table-condensed cf">
+                <caption>
+                  USA shipping locations
+                </caption>
+                <thead class="cf">
+                  <tr>
+                    <th>Location</th>
+                    <th class="numeric">Price</th>
+                    <th class="numeric">Base shipping</th>
+                    <th class="numeric">Dynamic shipping</th>
+                    <th class="numeric">Additional item</th>
+                    <th class="numeric">Avg. production cycle</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td data-title="Location">Fremont, CA</td>
+                    <td data-title="Price" class="numeric">{{ product.price | money }}</td>
+                    <td data-title="BaseShipping" class="numeric">${{ product.metafields.global.shipping__us }}</td>
+                    <td data-title="DynamicShipping" class="numeric">Calculated</td>
+                    <td data-title="AddItem" class="numeric"><s>$4.99</s></td>
+                    <td data-title="AvPrCy" class="numeric">{{- product.metafields.global.production__time }} business days</td>
+                  </tr>
+                  <tr>
+                    <td data-title="Location">Shepherdsville, KY</td>
+                    <td data-title="Price" class="numeric">{{ product.price | money }}</td>
+                    <td data-title="BaseShipping" class="numeric">${{ product.metafields.global.shipping__us }}</td>
+                    <td data-title="DynamicShipping" class="numeric">Calculated</td>
+                    <td data-title="AddItem" class="numeric"><s>$4.99</s></td>
+                    <td data-title="AvPrCy" class="numeric">{{- product.metafields.global.production__time }} business days</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
           </div>
+        </div>
         
           <div class="col-md-8 offset-md-4 mb-5">
           {% if product.metafields.global['shipping__weight-category'] != blank %}
