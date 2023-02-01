@@ -91,6 +91,9 @@
   {%- assign max_height = 195 -%}
   {% endcase %}
 
+  {%assign related_products = product.metafields.related_products.product_list.value %}
+   {% if related_products %}
+     {% for product in related_products %}
 
   {% capture related_items %}
 <div class="product-collection products-grid row grid grid--uniform{% if collection.products_count > 0 %} grid--view-items{% endif %}">
@@ -112,6 +115,8 @@
   {% endfor %}
 </div>
   {% endcapture %}
+       {% endfor %}
+     {% endif %}
 
   {% assign related_items = related_items | trim %}
 
