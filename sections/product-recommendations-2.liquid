@@ -36,11 +36,10 @@
   Looking for a relevant collection.
 {% endcomment %}
 
-{% comment %}
+  
 {% if product.metafields.global.related_products.value %}
   {% assign collection = collections[product.metafields.global.related_products.value] %}
 {% endif %}
-{% endcomment %}
 
 {% assign found_a_collection = false %}
 {% if collection and collection.all_products_count > 1 %}
