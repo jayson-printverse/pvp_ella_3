@@ -23,7 +23,7 @@
 {% endcomment %}
 
 {% assign same_vendor = false %}
-{% assign same_type = true %}
+{% assign same_type = false %}
 {% assign same_product = false %}
 
 {% comment %}
@@ -31,9 +31,7 @@
   Never pick related items from those.
 {% endcomment %}
   
-{% comment %}
 {% assign exclusions = 'frontpage,all' | split: ',' %}
-{% endcomment %}
   
 {% comment %}
   Looking for a relevant collection.
@@ -96,6 +94,8 @@
 
   {% capture related_items %}
 <div class="product-collection products-grid row grid grid--uniform{% if collection.products_count > 0 %} grid--view-items{% endif %}">
+
+  {{ product.metafields.global.related_products.value }}
 
   {% for product in collection.products %}
   {% unless product.handle == current_product.handle %}
