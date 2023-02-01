@@ -87,7 +87,7 @@
 
   {% assign counter = 0 %}
   {% assign break_at = number_of_rows | times: number_of_related_products_per_row %}
-  {% assign current_product = product %}
+  {% assign related_product = product %}
   
   {% case number_of_related_products_per_row %}
     {% when '1' %}
