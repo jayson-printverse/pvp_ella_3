@@ -114,11 +114,11 @@
   {% endcase %}
 
 
-  {% capture related_items %}
+  {% capture related_products %}
 <div class="product-collection products-grid row grid grid--uniform{% if collection.products_count > 0 %} grid--view-items{% endif %}">
 
-  {% for product in collection.products %}
-  {% unless product.handle == current_product.handle %}
+{% for related_product in related_products %}
+  {% unless related_product.handle == current_product.handle %}
   {% unless same_vendor and current_product.vendor != product.vendor %}
   {% unless same_type and current_product.type != product.type %}
   <div class="grid-item {{ grid_item_width }}">
@@ -135,9 +135,9 @@
 </div>
   {% endcapture %}
 
-  {% assign related_items = related_items | trim %}
+  {% assign related_products = related_products | trim %}
 
-  {% unless related_items == blank %}
+  {% unless related_products == blank %}
 
   <aside class="grid">
     <div class="grid-item">
@@ -147,7 +147,7 @@
       </header>
       {% endunless %}
       <div class="product-collection products-grid grid-uniform">
-        {{ related_items }}
+        {{ related_products }}
       </div>
     </div>
   </aside>
