@@ -1081,7 +1081,7 @@
                     <td data-title="Price" class="numeric">{{ product.price | money }}</td>
                     <td data-title="BaseShipping" class="numeric">${{ product.metafields.global.shipping__us }}</td>
                     
-                    <td data-title="AddItem" class="numeric"><s>{{ product.metafields.global['shipping__additional'] | money_with_trailing_zeros }}</s> Dynamic*</td>
+                    <td data-title="AddItem" class="numeric"><s>${{ product.metafields.global['shipping__additional'] | money_with_trailing_zeros }}</s> Dynamic*</td>
                     <td data-title="AvPrCy" class="numeric">{{- product.metafields.global.production__time }} business days</td>
                   </tr>
                   <tr>
@@ -1089,8 +1089,8 @@
                     <td data-title="Price" class="numeric">{{ product.price | money }}</td>
                     <td data-title="BaseShipping" class="numeric">${{ product.metafields.global.shipping__us }}</td>
                     
-                    <td data-title="AddItem" class="numeric"><s>{{ product.metafields.global['shipping__additional'] | money_with_trailing_zeros }}</s> Dynamic*</td>
-                    <td data-title="AvPrCy" class="numeric">{{- product.metafields.global.production__time }} business days</td>
+                    <td data-title="AddItem" class="numeric"><s>${{ product.metafields.global['shipping__additional'] | money_with_trailing_zeros }}</s> Dynamic*</td>
+                    <td data-title="AvPrCy" class="numeric">{{- product.metafields.global.production__time_ky }} business days</td>
                   </tr>
                 </tbody>
               </table>
