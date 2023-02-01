@@ -1,4 +1,5 @@
- <div class="related-products-wrapper">
+{% comment %}
+<div class="related-products-wrapper">
   {%assign related_products = product.metafields.related_products.product_list.value %}
    {% if related_products %}
     <h3>You might also like:</h3>
@@ -18,6 +19,7 @@
    {%endif%}
 </div>
 <div class = "related-products-dummy"></div>
+{% endcomment %}
 
 {% assign number_of_related_products = section.settings.number_of_related_products | plus:1 %}
 {% if collection == null or collection.handle == 'frontpage' or collection.handle == 'all' %}
