@@ -7,6 +7,7 @@
   {% assign sold_out = false %}
 {% endif %}
 {%assign related_products = product.metafields.related_products.product_list.value %}
+   {% if related_products %}
 <div class="inner product-item{% if sold_out %} sold-out{% endif %}{% if on_sale %} on-sale{% endif %}" data-product-id="product-{{ product.id }}">
   <div class="inner-top">
     <div class="product-top">
@@ -190,3 +191,4 @@
     </div>
   </div>
 </div>
+   {%endif%}
