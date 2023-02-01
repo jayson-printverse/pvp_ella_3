@@ -37,7 +37,7 @@
 {% endcomment %}
 
 
-  {% assign collection = collections[product.metafields.global.related_products.value] %}
+  {% assign collection = collections[product.metafields.related_products.product_list.value] %}
 
 
 {% assign found_a_collection = false %}
