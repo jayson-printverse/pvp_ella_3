@@ -1099,10 +1099,12 @@
         </div>
         
           <div class="col-md-8 offset-md-4 mb-5">
+            {% comment %}
           {% if product.metafields.global['shipping__weight-category'] != blank %}
             <h4 class="product-weight-cat">{{ product.metafields.global['shipping__weight-category'] }}</h4>
             <h6>Weight Category</h6>
           {% endif %}
+          {% endcomment %}
 
           {% assign content = section.settings.shipping_returns_content %}
 
