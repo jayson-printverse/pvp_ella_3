@@ -621,7 +621,7 @@
                           <i class="fa fa-question-circle"></i>
                           <span class="text">Have Questions?<a href="javascript:void(0)" title="Ask An Expert" data-toggle="modal" data-target="#ask_an_expert">Ask An Expert</a> </span>
                         </h5>
-                        <p>or visit our <a href="https://help.printversepro.com/" title="Printverse Pro | Help Center" class="help_center" target="_blank">Help Center</a><p>
+                        <p>or visit our <a href="https://help.printversepro.com/" title="Printverse Pro | Help Center" class="help_center" target="_blank">Help Center</a></p>
                       </div> 
                       
                         {% endif %}
@@ -691,13 +691,13 @@
       
       	<div class="product_mid justify-content-between">
           	         
-          	<div class="row">
-                <div class="col-lg-12" id="what-is-it">
+          	<div class="row align-items-start">
+                <div class="col-md-12" id="what-is-it">
                   <hr>
                   <h3>What is it</h3>
                 </div>
-              <div class="col-md-4"></div>
-                <div class="col-md-8 product-desc pr-5">
+              
+                <div class="col-md-8 offset-md-4 product-desc pr-5">
 
                     {% if product.description contains '[countdown]' %}
                     {% assign des = product.description | split:'[/countdown]' | last %}
@@ -772,7 +772,7 @@
               	</div>                  
 
         	</div>
-            <div class="row">
+            <div class="row align-items-start">
                 <div class="col-md-3" id="about-the-product">
                     <hr>
                   	<h3>About the Product</h3>
@@ -899,7 +899,7 @@
                 </div>
               	{% endcomment %}
             </div> 
-            <div class="row">
+            <div class="row align-items-start">
 
                 <div class="col-md-6" id="shipping">
                     <hr>            
@@ -942,7 +942,7 @@
                   		</div>                        
                 </div>
               </div>
-          	<div class="row">
+          	<div class="row align-items-start">
               
                 <div class="col-12" id="similar-products">
                     <hr>        
