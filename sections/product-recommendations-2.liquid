@@ -115,7 +115,7 @@
   {% capture related_items %}
 <div class="product-collection products-grid row grid grid--uniform{% if collection.products_count > 0 %} grid--view-items{% endif %}">
 
-  {% for product in collection.products %}
+{% for current_product in related_items %}
   {% unless product.handle == current_product.handle %}
   {% unless same_vendor and current_product.vendor != product.vendor %}
   {% unless same_type and current_product.type != product.type %}
