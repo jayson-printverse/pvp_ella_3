@@ -29,15 +29,15 @@
   Collections to ignore.
   Never pick related items from those.
 {% endcomment %}
-  
+
 {% assign exclusions = 'frontpage,all' | split: ',' %}
-  
+
 {% comment %}
   Looking for a relevant collection.
 {% endcomment %}
-  
-{% if product.metafields.c_f['Related Products'] %}
-  {% assign collection = collections[product.metafields.c_f['Related Products']] %}
+
+{% if product.metafields.global.related_products.value %}
+  {% assign collection = collections[product.metafields.global.related_products.value] %}
 {% endif %}
 
 {% assign found_a_collection = false %}
@@ -60,34 +60,11 @@
   If we have a relevant collection.
 {% endcomment %}
 
-
-  {%assign related_products = product.metafields.related_products.product_list.value %}
-   {% if related_products %}
-    <h3>You might also like:</h3>
-     <div class = "related-product-list">
-      {% for related_product in related_products %}
-       <a href = "{{shop.url | append: "/products/" | append: related_product.handle }}">
-        <div class = "related-product">
-         <div class = "related-product-image">
-           <img src = "{{related_product.featured_image | img_url: 'medium' }}" />
-          </div>
-         <div class = "related-product-name">{{related_product.title}}</div>
-         <div class = "related-product-price">{{related_product.price | money}}</div>
-        </div>
-       </a>
-      {% endfor %}
-     </div>
-   {%endif%}
-</div>
-  
-{%assign related_products = product.metafields.related_products.product_list.value %}
- {% if related_products %}
-
-
+{% if found_a_collection %}
 
   {% assign counter = 0 %}
   {% assign break_at = number_of_rows | times: number_of_related_products_per_row %}
-  {% assign related_product = product %}
+  {% assign current_product = product %}
   
   {% case number_of_related_products_per_row %}
     {% when '1' %}
@@ -114,11 +91,11 @@
   {% endcase %}
 
 
-  {% capture related_products %}
+  {% capture related_items %}
 <div class="product-collection products-grid row grid grid--uniform{% if collection.products_count > 0 %} grid--view-items{% endif %}">
 
-{% for related_product in related_products %}
-  {% unless related_product.handle == current_product.handle %}
+  {% for product in collection.products %}
+  {% unless product.handle == current_product.handle %}
   {% unless same_vendor and current_product.vendor != product.vendor %}
   {% unless same_type and current_product.type != product.type %}
   <div class="grid-item {{ grid_item_width }}">
@@ -135,9 +112,9 @@
 </div>
   {% endcapture %}
 
-  {% assign related_products = related_products | trim %}
+  {% assign related_items = related_items | trim %}
 
-  {% unless related_products == blank %}
+  {% unless related_items == blank %}
 
   <aside class="grid">
     <div class="grid-item">
@@ -147,7 +124,7 @@
       </header>
       {% endunless %}
       <div class="product-collection products-grid grid-uniform">
-        {{ related_products }}
+        {{ related_items }}
       </div>
     </div>
   </aside>
