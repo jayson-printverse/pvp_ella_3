@@ -114,8 +114,7 @@
 
   {% for product in collection.products %}
   {% unless product.handle == current_product.handle %}
-  {% unless same_vendor and current_product.vendor != product.vendor %}
-  {% unless same_type and current_product.type != product.type %}
+
   <div class="grid-item {{ grid_item_width }}">
     {% render 'product-grid-item-2', max_height: max_height %}
   </div>
@@ -124,8 +123,7 @@
   {% break %}
   {% endif %}
   {% endunless %}
-  {% endunless %}
-  {% endunless %}
+
   {% endfor %}
 </div>
   {% endcapture %}
