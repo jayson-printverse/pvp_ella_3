@@ -37,9 +37,9 @@
 {% endcomment %}
 
   
-{% if product.metafields.global.related_products.value %}
-  {% assign collection = collections[product.metafields.global.related_products.value] %}
-{% endif %}
+
+{% assign collection = product.metafields.related_products.product_list.value %}
+
 
 {% assign found_a_collection = false %}
 {% if collection and collection.all_products_count > 1 %}
