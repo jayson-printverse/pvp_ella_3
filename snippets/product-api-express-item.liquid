@@ -390,7 +390,7 @@
                 <div class="column col-price text-center">
                   {% if product.has_only_default_variant %}
                     {% else %}                 
-						${{ product.metafields.global['shipping__additional'] | money_with_trailing_zeros }}
+						<s>${{ product.metafields.global['shipping__additional'] | money_with_trailing_zeros }}</s>
                   {% endif %}        
                 </div>  
               
