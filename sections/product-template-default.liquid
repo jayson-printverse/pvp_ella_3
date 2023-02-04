@@ -701,13 +701,9 @@
                       <div class="row justify-content-between">
                         <div class="col-6 card">
                           <div class="shipping-cost">
-                            <span class="shipping-label">Shipping US / INTL</span>
-                            <span class="shipping-cost"
-                              >${{ product.metafields.global.shipping__us }} / $
-                              {{- product.metafields.global.shipping__intl -}}
-                            </span>
-                            <span class="shipping-weight-cat"
-                              >Weight: {{ product.metafields.global['shipping__weight-category'] -}}
+                            <span class="shipping-label">Base Shipping (1 item)</span>
+                            <span class="shipping-cost">${{ product.metafields.global.shipping__us }}</span>
+                            <span class="shipping-weight-cat">Weight: {{ product.metafields.global['shipping__weight-category'] -}}
                             </span>
 
                             {% comment %}
