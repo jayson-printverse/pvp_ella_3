@@ -1250,6 +1250,13 @@
       "faq-page": {
         "type": "faq-page",
         "blocks": {
+          "df9e457f-b561-4a6b-bc91-900d8d49b30f": {
+            "type": "text",
+            "settings": {
+              "question_faqs": "What is dye sublimation printing?",
+              "answer_faqs": "Sublimation printing is a popular method of printing on fabric or other materials that involves using heat and pressure to transfer dye directly onto the material. This process results in vibrant and long-lasting colors that are resistant to fading or peeling."
+            }
+          },
           "5bf7ce44-a3e3-48d3-a3dd-a23b459e42d9": {
             "type": "text",
             "settings": {
@@ -1476,6 +1483,7 @@
           }
         },
         "block_order": [
+          "df9e457f-b561-4a6b-bc91-900d8d49b30f",
           "5bf7ce44-a3e3-48d3-a3dd-a23b459e42d9",
           "b6d2146f-6f27-4149-bf55-761dec342171",
           "1507878888245",
